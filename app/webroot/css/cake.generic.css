@@ -20,7 +20,6 @@
 	margin:0;
 	padding:0;
 }
-
 /** General Style Info **/
 body {
 	background: #003d4c;
@@ -97,6 +96,17 @@ p {
 	background: #003d4c;
 	text-decoration: underline;
 }
+#nav-menu{
+}
+#nav-menu ul{
+	list-style: none;
+}
+#nav-menu li{
+	float: left;
+	background: pink;
+	padding: 5px;	
+}
+
 #content{
 	background: #fff;
 	clear: both;
