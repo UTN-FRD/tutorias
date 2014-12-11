@@ -77,11 +77,11 @@ p {
 }
 
 #header{
-	padding: 10px 20px;
+	padding: 10px 0px;
 }
 #header h1 {
-	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
+	/*line-height:20px;*/
+	background: #003d4c; /*url('../img/cake.icon.png') no-repeat left;*/
 	color: #fff;
 	padding: 0px 30px;
 }
@@ -90,6 +90,7 @@ p {
 	background: #003d4c;
 	font-weight: normal;
 	text-decoration: none;
+	font-size: 200%;
 }
 #header h1 a:hover {
 	color: #fff;
@@ -103,10 +104,13 @@ p {
 }
 #nav-menu li{
 	float: left;
-	background: pink;
-	padding: 5px;	
+	background: #D4F7FF;
+	padding: 5px;
+	margin:1px;	
 }
-
+#nav-menu li>a{
+	text-decoration: none;	
+}
 #content{
 	background: #fff;
 	clear: both;

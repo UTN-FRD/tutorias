@@ -22,7 +22,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<?php
@@ -38,15 +37,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<h1><a href="/tutorias">Sistema de Tutorias</a></h1>
 		</div>
 
 		<div id="nav-menu">
 			<ul>
-				<li><a href="estudiantes">Estudiantes</a></li>
-				<li><a href="tutores">Tutores</a></li>
-				<li><a href="encuestas">Encuestas</a></li>
-				<li><a href="preguntas">Preguntas</a></li>
+				<li><a href="/tutorias/estudiantes">Estudiantes</a></li>
+				<li><a href="/tutorias/tutores">Tutores</a></li>
+				<li><a href="/tutorias/encuestas">Encuestas</a></li>
+				<li><a href="/tutorias/preguntas">Preguntas</a></li>
 			</ul>	
 
 		</div>
@@ -58,14 +57,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
 			<p>
-				<?php echo $cakeVersion; ?>
+				UTN - Facultad Regional Delta
 			</p>
 		</div>
 	</div>
