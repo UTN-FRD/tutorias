@@ -1,16 +1,17 @@
 <div class="encuestas ">
-	<h2><?php echo __('Encuestas'); ?></h2>
+	<h2><?php echo __('Encuesta de '); ?><?php echo $encuestas[0]['Estudiante']['nombre']; ?></h2>
 	<div>
+	<table>
 		<?php foreach ($encuestas as $encuesta): ?>
-		<ul>
-			<li><?php echo h($encuesta['Encuesta']['id']); ?>&nbsp;</li>
-			<li><?php echo h($encuesta['Encuesta']['respuesta']); ?>&nbsp;</li>
-			<li><?php echo h($encuesta['Encuesta']['legajo']); ?>&nbsp;</li>
-			<li><?php echo h($encuesta['Estudiante']['id']); ?>&nbsp;</li>
-			<li><?php echo h($encuesta['Estudiante']['nombre']); ?>&nbsp;</li>
-		</div>
-		<hr>
+		<tr>
+			<td><?php echo h($encuesta['Encuesta']['id']); ?>&nbsp;</td>
+			<td><?php echo h($encuesta['Pregunta']['pregunta']); ?>&nbsp;</td>
+			<td><?php echo $this->Form->h($encuesta['Encuesta']['respuesta']);?></td>
+			<td><?php echo h($encuesta['Estudiante']['nombre']); ?>&nbsp;</td>
+		</tr>
 		<?php endforeach; ?>
+	</table>
+	<p><?php echo print_r($encuestas) ?></p>
 	</div>
 
 </div>
