@@ -16,6 +16,17 @@ class EstudiantesController extends AppController {
 
 	public $helpers = array('Html','Form');
 
+	public $paginate = [
+        'limit' => 25,
+        'order' => [
+            'Estudiante.nombre' => 'asc'
+        ]
+    ];
+
+	function index(){
+		$this->set('estudiantes', $this->paginate('Estudiante'));
+	}
+
 	function edit($id = null) {
 		$tutore = new Tutore(); 
         $this->set('tutores', 

@@ -11,7 +11,7 @@
 		</tr>
 		<?php endforeach; ?>
 	</table>
-	<p><?php echo print_r($encuestas) ?></p>
+	<p><?php debug($encuestas) ?></p>
 	</div>
 
 </div>

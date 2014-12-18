@@ -61,6 +61,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				UTN - Facultad Regional Delta
 			</p>
 		</div>
+		<?php echo $this->element('sql_dump') ?>
 	</div>
 </body>
 </html>

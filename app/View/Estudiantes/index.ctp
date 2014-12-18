@@ -1,5 +1,5 @@
 <div class="estudiantes index">
-	<h2><?php echo __('Estudiantes'); ?></h2>
+	<h2><?php echo __('Estudiantes'); ?>fdsa</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -14,7 +14,7 @@
 	<tbody>
 	<?php foreach ($estudiantes as $estudiante): ?>
 	<tr>
-		<td><?php echo h($estudiante['Estudiante']['id']); ?>&nbsp;</td>
+		<td><a href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Ver Encuesta</a></td>
 		<td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
 		<td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
