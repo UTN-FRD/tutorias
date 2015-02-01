@@ -6,7 +6,11 @@
 		echo $this->Form->input('legajo');
 		echo $this->Form->input('nombre');
 		echo $this->Form->input('carrera');
-		echo $this->Form->input('tutor_id');
+		echo $this->Form->input('tutores', array(
+		    'type'    => 'select',
+		    'options' => $tutores,
+		    'empty'   => false
+		));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
