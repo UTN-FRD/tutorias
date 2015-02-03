@@ -65,8 +65,8 @@ $result = 'saving student ';
 					$encuesta = new Encuesta();
 					$encuesta->estudiante_id = $estudiante_id;
 					$encuesta->pregunta_id = $p;
-					$pregunta->save($encuesta);
-
+					$encuesta->save($encuesta);
+					$result .= $p;
 				}
 
 
@@ -75,6 +75,7 @@ $result = 'saving student ';
 	            return $this->redirect(array('action' => 'index'));
 	        }
 	        $this->Session->setFlash(__('Unable to update your estudiante.'));
+	        $this->Session->setFlash(__($result));
 	    }
 	     
 	    
