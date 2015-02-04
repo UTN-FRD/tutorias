@@ -1,9 +1,8 @@
 <div class="estudiantes index">
-	<h2><?php echo __('Estudiantes'); ?>fdsa</h2>
+	<h2><?php echo __('Estudiantes'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('legajo'); ?></th>
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
 			<th><?php echo $this->Paginator->sort('carrera'); ?></th>
@@ -14,15 +13,14 @@
 	<tbody>
 	<?php foreach ($estudiantes as $estudiante): ?>
 	<tr>
-		<td><a href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Ver Encuesta</a></td>
 		<td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
 		<td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
 		<td><?php echo h($estudiante['Estudiante']['tutor_id']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $estudiante['Estudiante']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $estudiante['Estudiante']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $estudiante['Estudiante']['id']), array(), __('Are you sure you want to delete # %s?', $estudiante['Estudiante']['id'])); ?>
+			<a href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Ver Encuesta</a>
+			<?php echo $this->Html->link(__('Editar Estudiante'), array('action' => 'edit', $estudiante['Estudiante']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Borrar Estudiante'), array('action' => 'delete', $estudiante['Estudiante']['id']), array(), __('Are you sure you want to delete # %s?', $estudiante['Estudiante']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

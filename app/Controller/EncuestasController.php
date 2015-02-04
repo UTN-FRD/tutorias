@@ -52,10 +52,11 @@ SQL Query: SELECT `Encuesta`.`id`, `Encuesta`.`estudiante_id`, `Encuesta`.`pregu
 
 		$sinResponder = $this->Encuesta->Pregunta->find('all');
 
-		debug($sinResponder);
+		//debug($sinResponder);
 
+		$this->set('encuestas', $respuestasDelEstudiante);
 
-		$this->set('encuestas', $this->Encuesta->Pregunta->find('all',$options));
+//		$this->set('encuestas', $this->Encuesta->Pregunta->find('all',$options));
 
 	}
 }

@@ -1,5 +1,5 @@
 <div class="tutores index">
-	<h2><?php echo __('Tutores'); ?></h2>
+	<h2><?php echo __('Tutores'); ?>dsa</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -41,6 +41,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Tutore'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Nuevo Tutor'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

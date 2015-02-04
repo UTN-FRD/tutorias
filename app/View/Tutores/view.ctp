@@ -1,5 +1,5 @@
 <div class="tutores view">
-<h2><?php echo __('Tutore'); ?></h2>
+<h2><?php echo __('Tutor'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>

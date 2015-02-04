@@ -44,7 +44,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<ul>
 				<li><a href="/tutorias/estudiantes">Estudiantes</a></li>
 				<li><a href="/tutorias/tutores">Tutores</a></li>
-				<li><a href="/tutorias/encuestas">Encuestas</a></li>
 				<li><a href="/tutorias/preguntas">Preguntas</a></li>
 			</ul>	
 
