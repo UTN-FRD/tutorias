@@ -15,7 +15,6 @@ class EstudiantesController extends AppController {
  *
  * @var mixed
  */
-	public $scaffold;
 
 	public $helpers = array('Html','Form');
 

@@ -14,7 +14,6 @@ class EncuestasController extends AppController {
  *
  * @var array
  */
-	public $scaffold;
 	public $components = array('Paginator', 'Session');
 
 	function index($id = null){
