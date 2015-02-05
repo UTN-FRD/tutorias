@@ -6,7 +6,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
 			<th><?php echo $this->Paginator->sort('carrera'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -16,9 +16,9 @@
 		<td><?php echo h($tutore['Tutore']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($tutore['Tutore']['carrera']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $tutore['Tutore']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $tutore['Tutore']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $tutore['Tutore']['id']), array(), __('Are you sure you want to delete # %s?', $tutore['Tutore']['id'])); ?>
+			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $tutore['Tutore']['id'])); ?>
+			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $tutore['Tutore']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $tutore['Tutore']['id']), array(), __('¿Está seguro que desea borrar # %s?', $tutore['Tutore']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -39,7 +39,7 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Nuevo Tutor'), array('action' => 'add')); ?></li>
 	</ul>

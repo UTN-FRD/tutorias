@@ -19,14 +19,14 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Pregunta'), array('action' => 'edit', $pregunta['Pregunta']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Pregunta'), array('action' => 'delete', $pregunta['Pregunta']['id']), array(), __('Are you sure you want to delete # %s?', $pregunta['Pregunta']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Preguntas'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Pregunta'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Encuestas'), array('controller' => 'encuestas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Encuesta'), array('controller' => 'encuestas', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Editar Pregunta'), array('action' => 'edit', $pregunta['Pregunta']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Borrar Pregunta'), array('action' => 'delete', $pregunta['Pregunta']['id']), array(), __('¿Está seguro que desea borrar # %s?', $pregunta['Pregunta']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Listar Preguntas'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Agregar Pregunta'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Listar Encuestas'), array('controller' => 'encuestas', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Agregar Encuesta'), array('controller' => 'encuestas', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -51,7 +51,7 @@
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'encuestas', 'action' => 'view', $encuesta['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'encuestas', 'action' => 'edit', $encuesta['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'encuestas', 'action' => 'delete', $encuesta['id']), array(), __('Are you sure you want to delete # %s?', $encuesta['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'encuestas', 'action' => 'delete', $encuesta['id']), array(), __('¿Está seguro que desea borrar # %s?', $encuesta['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

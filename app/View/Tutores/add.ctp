@@ -1,18 +1,18 @@
 <div class="tutores form">
 <?php echo $this->Form->create('Tutore'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Tutore'); ?></legend>
+		<legend><?php echo __('Agregar Tutor'); ?></legend>
 	<?php
 		echo $this->Form->input('nombre');
 		echo $this->Form->input('carrera');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Enviar')); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Tutores'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Listar Tutores'), array('action' => 'index')); ?></li>
 	</ul>
 </div>

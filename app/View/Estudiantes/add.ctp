@@ -1,7 +1,7 @@
 <div class="estudiantes form">
 <?php echo $this->Form->create('Estudiante'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Estudiante'); ?></legend>
+		<legend><?php echo __('Agregar Estudiante'); ?></legend>
 	<?php
 		echo $this->Form->input('legajo');
 		echo $this->Form->input('nombre');
@@ -13,12 +13,12 @@
 		));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Enviar')); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Estudiantes'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Listar Estudiantes'), array('action' => 'index')); ?></li>
 	</ul>
 </div>

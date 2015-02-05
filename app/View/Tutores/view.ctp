@@ -19,11 +19,11 @@
 	</dl>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Tutore'), array('action' => 'edit', $tutore['Tutore']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Tutore'), array('action' => 'delete', $tutore['Tutore']['id']), array(), __('Are you sure you want to delete # %s?', $tutore['Tutore']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Tutores'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tutore'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Editar Tutor'), array('action' => 'edit', $tutore['Tutore']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Borrar Tutor'), array('action' => 'delete', $tutore['Tutore']['id']), array(), __('¿Está seguro que desea borrar # %s?', $tutore['Tutore']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Listar Tutores'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Agregar Tutor), array('action' => 'add')); ?> </li>
 	</ul>
 </div>

@@ -7,7 +7,7 @@
 			<th><?php echo $this->Paginator->sort('nombre'); ?></th>
 			<th><?php echo $this->Paginator->sort('carrera'); ?></th>
 			<th><?php echo $this->Paginator->sort('tutor'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -20,7 +20,7 @@
 		<td class="actions">
 			<a href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Ver Encuesta</a>
 			<?php echo $this->Html->link(__('Editar Estudiante'), array('action' => 'edit', $estudiante['Estudiante']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Borrar Estudiante'), array('action' => 'delete', $estudiante['Estudiante']['id']), array(), __('Are you sure you want to delete # %s?', $estudiante['Estudiante']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Borrar Estudiante'), array('action' => 'delete', $estudiante['Estudiante']['id']), array(), __('¿Está seguro que desea borrar # %s?', $estudiante['Estudiante']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -41,8 +41,8 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Estudiante'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Estudiante'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
