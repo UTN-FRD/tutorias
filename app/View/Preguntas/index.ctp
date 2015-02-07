@@ -5,6 +5,8 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('orden'); ?></th>
 			<th><?php echo $this->Paginator->sort('pregunta'); ?></th>
+			<th><?php echo $this->Paginator->sort('tipo'); ?></th>
+			<th><?php echo __('valores'); ?></th>
 			<th class="actions"><?php echo __('Acciones'); ?></th>
 	</tr>
 	</thead>
@@ -13,6 +15,8 @@
 	<tr>
 		<td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
 		<td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
+		<td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
+		<td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $pregunta['Pregunta']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $pregunta['Pregunta']['id']), array(), __('¿Está seguro que desea borrar # %s?', $pregunta['Pregunta']['id'])); ?>

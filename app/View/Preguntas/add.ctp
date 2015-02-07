@@ -5,6 +5,12 @@
 	<?php
 		echo $this->Form->input('orden');
 		echo $this->Form->input('pregunta');
+		echo $this->Form->input('tipo', array(
+		    'type'    => 'select',
+		    'options' => $tiposDePreguntas,
+		    'empty'   => false
+		));
+		echo $this->Form->input('valores');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Guardar')); ?>

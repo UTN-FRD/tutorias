@@ -54,7 +54,18 @@ class PreguntasController extends AppController {
 			} else {
 				$this->Session->setFlash(__('La pregunta no ha podido ser guardada. Por favor, intente nuevamente.'));
 			}
+		}else{
+			$this->set('tiposDePreguntas', 
+				array(
+					    'texto' => 'Texto',
+					    'number' => 'Numerico',
+					    'select' => 'Menu Desplegable',
+					    'checkbox' => 'Check Box',
+					    'radio' => 'Radio Button'
+					)
+	        	);
 		}
+
 	}
 
 /**
@@ -78,6 +89,17 @@ class PreguntasController extends AppController {
 		} else {
 			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
 			$this->request->data = $this->Pregunta->find('first', $options);
+
+			$this->set('tiposDePreguntas', 
+				array(
+					    'texto' => 'Texto',
+					    'number' => 'Numerico',
+					    'select' => 'Menu Desplegable',
+					    'checkbox' => 'Check Box',
+					    'radio' => 'Radio Button'
+					)
+	        	);
+
 		}
 	}
 
