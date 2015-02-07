@@ -57,9 +57,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="/tutorias/estudiantes">Estudiantes</a></li>
-	        <li><a href="/tutorias/tutores">Tutores</a></li>
-	        <li><a href="/tutorias/preguntas">Preguntas</a></li>
+	        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
+	        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/tutores">Tutores</a></li>
+	        <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
@@ -85,11 +85,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-12" id="footer">
-				<p>UTN - Facultad Regional Delta</p>
-			</div>
-		</div>
 	</div>
+	<nav class="navbar-bottom" id="footer">
+	  <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
+	</nav>
 </body>
 </html>
