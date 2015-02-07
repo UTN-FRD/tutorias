@@ -56,7 +56,15 @@ class TutoresController extends AppController {
 				$this->Session->setFlash(__('El tutor no ha podido ser guardado. Por favor, intente nuevamente.'));
 			}
 		}
-
+		
+		$this->set('carreras', 
+			array(
+				    'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
+				    'Ingeniería Mecanica' => 'Ingeniería Mecanica',
+				    'Ingeniería Electrica' => 'Ingeniería Electrica',
+				    'Ingeniería Química' => 'Ingeniería Química'
+				)
+        	);
 	}
 
 /**
