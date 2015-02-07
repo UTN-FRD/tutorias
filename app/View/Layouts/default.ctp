@@ -27,40 +27,69 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
-
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+
+		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('styles');
+		echo $this->Html->script('jquery-1.11.2.min');
+		echo $this->Html->script('bootstrap.min');
+
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><a href="/tutorias">Sistema de Tutorias</a></h1>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Tutorias</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="/tutorias/estudiantes">Estudiantes</a></li>
+	        <li><a href="/tutorias/tutores">Tutores</a></li>
+	        <li><a href="/tutorias/preguntas">Preguntas</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuario <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li><a href="#">Perfil</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">logout</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="content">
+					<?php echo $this->Session->flash(); ?>
+					<?php echo $this->fetch('content'); ?>
+				</div>
+			</div>
 		</div>
 
-		<div id="nav-menu">
-			<ul>
-				<li><a href="/tutorias/estudiantes">Estudiantes</a></li>
-				<li><a href="/tutorias/tutores">Tutores</a></li>
-				<li><a href="/tutorias/preguntas">Preguntas</a></li>
-			</ul>	
-
+		<div class="row">
+			<div class="col-md-12" id="footer">
+				<p>UTN - Facultad Regional Delta</p>
+			</div>
 		</div>
-
-		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<p>
-				UTN - Facultad Regional Delta
-			</p>
-		</div>
-		<?php echo $this->element('sql_dump') ?>
 	</div>
 </body>
 </html>

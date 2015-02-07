@@ -7,7 +7,7 @@
 				<legend><?php echo h($encuesta['Pregunta']['pregunta']); ?></legend>
 				<input type='hidden' name='encuestaId' id='encuestaId' value='<?php echo h($encuesta['Encuesta']['id']); ?>'/>
 				<input type='text'  name='respuesta' id='respuesta' value='<?php echo h($encuesta['Encuesta']['respuesta']); ?>'/>
-				<input type='submit'/>
+				<input class="btn btn-default" type="submit" value="Submit">
 			</fieldset>
 		</form>
 	<?php endforeach; ?>
