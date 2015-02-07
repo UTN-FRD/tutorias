@@ -53,7 +53,7 @@ class EstudiantesController extends AppController {
 			$estudiante->carrera = $this->request->data['Estudiante']['carrera'];
 			$estudiante->tutor_id = $this->request->data['Estudiante']['tutores'];
 
-$result = 'saving student ';
+$result = 'Guardando estudiante ';
 
 	        if ($this->Estudiante->save($estudiante) ){
 	        	$estudiante_id = $estudiante->id;
@@ -73,7 +73,7 @@ $result = 'saving student ';
 	            $this->Session->setFlash(__($result));
 	            return $this->redirect(array('action' => 'index'));
 	        }
-	        $this->Session->setFlash(__('Unable to update your estudiante.'));
+	        $this->Session->setFlash(__('No se ha podido actualizar el estudiante.'));
 	        $this->Session->setFlash(__($result));
 	    }
 	     
@@ -88,21 +88,21 @@ $result = 'saving student ';
         		));
 
 	    if (!$id) {
-	        throw new NotFoundException(__('Invalid tutor'));
+	        throw new NotFoundException(__('Tutor inválido'));
 	    }
 
 	    $estudiante = $this->Estudiante->findById($id);
 	    if (!$estudiante) {
-	        throw new NotFoundException(__('Invalid estudiante'));
+	        throw new NotFoundException(__('Estudiante inválido'));
 	    }
 
 	    if ($this->request->is(array('estudiante', 'put'))) {
 	        $this->Estudiante->id = $id;
 	        if ($this->Estudiante->save($this->request->data)) {
-	            $this->Session->setFlash(__('Your estudiante has been updated.'));
+	            $this->Session->setFlash(__('El estudiante ha sido actualizado'));
 	            return $this->redirect(array('action' => 'index'));
 	        }
-	        $this->Session->setFlash(__('Unable to update your estudiante.'));
+	        $this->Session->setFlash(__('No se puede actualizar estudiante.'));
 	    }
 
 	    if (!$this->request->data) {

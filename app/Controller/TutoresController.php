@@ -35,7 +35,7 @@ class TutoresController extends AppController {
  */
 	public function view($id = null) {
 		if (!$this->Tutore->exists($id)) {
-			throw new NotFoundException(__('Invalid tutore'));
+			throw new NotFoundException(__('Tutor inválido'));
 		}
 		$options = array('conditions' => array('Tutore.' . $this->Tutore->primaryKey => $id));
 		$this->set('tutore', $this->Tutore->find('first', $options));
@@ -50,12 +50,13 @@ class TutoresController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Tutore->create();
 			if ($this->Tutore->save($this->request->data)) {
-				$this->Session->setFlash(__('The tutore has been saved.'));
+				$this->Session->setFlash(__('El tutor ha sido guardado.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The tutore could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El tutor no ha podido ser guardado. Por favor, intente nuevamente.'));
 			}
 		}
+
 	}
 
 /**
@@ -67,21 +68,21 @@ class TutoresController extends AppController {
  */
 	function edit($id = null) {
 	    if (!$id) {
-	        throw new NotFoundException(__('Invalid tutor'));
+	        throw new NotFoundException(__('Tutor inválido'));
 	    }
 
 	    $tutor = $this->Tutore->findById($id);
 	    if (!$tutor) {
-	        throw new NotFoundException(__('Invalid tutor'));
+	        throw new NotFoundException(__('Tutor inválido'));
 	    }
 
 	    if ($this->request->is(array('tutor', 'put'))) {
 	        $this->Tutore->id = $id;
 	        if ($this->Tutore->save($this->request->data)) {
-	            $this->Session->setFlash(__('Your tutor has been updated.'));
+	            $this->Session->setFlash(__('El tutor ha sido actualizado.'));
 	            return $this->redirect(array('action' => 'index'));
 	        }
-	        $this->Session->setFlash(__('Unable to update your tutor.'));
+	        $this->Session->setFlash(__('No se puede actualizar el tutor.'));
 	    }
 
 	    if (!$this->request->data) {
@@ -110,13 +111,13 @@ class TutoresController extends AppController {
 	public function delete($id = null) {
 		$this->Tutore->id = $id;
 		if (!$this->Tutore->exists()) {
-			throw new NotFoundException(__('Invalid tutore'));
+			throw new NotFoundException(__('Tutor inválido'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Tutore->delete()) {
-			$this->Session->setFlash(__('The tutore has been deleted.'));
+			$this->Session->setFlash(__('El tutor ha sido borrado.'));
 		} else {
-			$this->Session->setFlash(__('The tutore could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('El tutor no ha podido ser borrado. Por favor, intente nuevamente.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

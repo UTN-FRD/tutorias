@@ -1,5 +1,5 @@
 <div class="tutores index">
-	<h2><?php echo __('Tutores'); ?>dsa</h2>
+	<h2><?php echo __('Tutores'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -16,7 +16,7 @@
 		<td><?php echo h($tutore['Tutore']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($tutore['Tutore']['carrera']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $tutore['Tutore']['id'])); ?>
+			<?php //echo $this->Html->link(__('Ver'), array('action' => 'view', $tutore['Tutore']['id'])); ?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $tutore['Tutore']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $tutore['Tutore']['id']), array(), __('¿Está seguro que desea borrar # %s?', $tutore['Tutore']['id'])); ?>
 		</td>
@@ -41,6 +41,6 @@
 <div class="actions">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Nuevo Tutor'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Tutor'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
