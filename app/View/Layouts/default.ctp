@@ -87,6 +87,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 	</div>
 	<nav class="navbar-bottom" id="footer">
+	<?php echo $this->element('sql_dump'); ?>
+	
 	  <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
 	</nav>
 </body>

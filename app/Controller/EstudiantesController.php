@@ -26,7 +26,8 @@ class EstudiantesController extends AppController {
     ];
 
 	function index(){
-		$this->set('estudiantes', $this->paginate('Estudiante'));
+		$this->set('estudiantes', $this->paginate('Estudiante',
+			array('Estudiante.tutor_id' => $this->params['tutorId'])));
 	}
 
 	function add(){
