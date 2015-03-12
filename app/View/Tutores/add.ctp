@@ -5,6 +5,7 @@
 	<?php
 		echo $this->Form->input('nombre');
 		echo $this->Form->input('carrera');
+		
 
 	?>
 	</fieldset>
