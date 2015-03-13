@@ -17,9 +17,9 @@ class Estudiante extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Tutore' => array(
-			'className' => 'Tutore',
-			'foreignKey' => 'tutor_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -39,4 +39,14 @@ class Encuesta extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function crearEncuesta($estudiante_id) {
+		foreach($this->Pregunta->find('list') as $p ){
+			$this->create();
+			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $p);
+			$this->save($data);
+		}
+
+		return true;
+	}
 }

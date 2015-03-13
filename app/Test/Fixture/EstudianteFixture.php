@@ -15,7 +15,7 @@ class EstudianteFixture extends CakeTestFixture {
 		'legajo' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 4, 'unsigned' => false),
 		'nombre' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 150, 'collate' => 'utf8_spanish2_ci', 'charset' => 'utf8'),
 		'carrera' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_spanish2_ci', 'charset' => 'utf8'),
-		'tutor_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false),
+		'tutore_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -33,7 +33,7 @@ class EstudianteFixture extends CakeTestFixture {
 			'legajo' => 1,
 			'nombre' => 'Lorem ipsum dolor sit amet',
 			'carrera' => 'Lorem ipsum dolor sit amet',
-			'tutor_id' => 1
+			'tutore_id' => 1
 		),
 	);
 

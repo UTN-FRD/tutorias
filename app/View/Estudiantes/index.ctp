@@ -17,7 +17,7 @@
 			<td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
 			<td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
 			<td><?php echo h($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
-			<td><?php echo h($estudiante['Estudiante']['tutor_id']); ?>&nbsp;</td>
+			<td><?php echo h($estudiante['Estudiante']['user_id']); ?>&nbsp;</td>
 			<td class="actions">
 				<a class="btn btn-default" href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Encuesta</a>
 				<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default')); ?>

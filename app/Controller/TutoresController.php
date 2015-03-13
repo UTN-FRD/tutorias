@@ -85,7 +85,6 @@ class TutoresController extends AppController {
 	    }
 
 	    if ($this->request->is(array('tutor', 'put'))) {
-	        $this->Tutore->id = $id;
 	        if ($this->Tutore->save($this->request->data)) {
 	            $this->Session->setFlash(__('El tutor ha sido actualizado.'));
 	            return $this->redirect(array('action' => 'index'));

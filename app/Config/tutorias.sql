@@ -61,14 +61,14 @@ CREATE TABLE IF NOT EXISTS `estudiantes` (
   `legajo` int(4) NOT NULL,
   `nombre` varchar(150) COLLATE utf8_spanish2_ci NOT NULL,
   `carrera` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
-  `tutor_id` int(10) NOT NULL
+  `tutore_id` int(10) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `estudiantes`
 --
 
-INSERT INTO `estudiantes` (`id`, `legajo`, `nombre`, `carrera`, `tutor_id`) VALUES
+INSERT INTO `estudiantes` (`id`, `legajo`, `nombre`, `carrera`, `tutore_id`) VALUES
 (0, 7881, 'Santiago', 'Ingenieria en Sistemas de informacion', 0),
 (1, 6771, 'Sergio', 'IngenierÃ­a en Sistemas', 0),
 (3, 8449, 'Matias', 'IngenierÃ­a en Sistemas', 0),

@@ -23,7 +23,7 @@
 		</dd>
 		<dt><?php echo __('Tutor'); ?></dt>
 		<dd>
-			<?php echo h($estudiante['Estudiante']['tutor_id']); ?>
+			<?php echo h($estudiante['Estudiante']['user_id']); ?>
 			&nbsp;
 		</dd>
 	</dl>

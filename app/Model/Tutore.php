@@ -6,4 +6,5 @@ App::uses('AppModel', 'Model');
  */
 class Tutore extends AppModel {
 
+	public $displayField = 'nombre';
 }
