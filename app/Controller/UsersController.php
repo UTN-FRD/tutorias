@@ -2,6 +2,13 @@
 App::uses('AppController','Controller');
 
 class UsersController extends AppController {
+    public $components = array(
+        'Session',
+        'Auth'=>array(
+            'loginRedirect' => array('controller' => 'Estudiantes', 'action' => 'index'),
+        )
+    );
+    
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','logout');
@@ -77,6 +84,7 @@ public function login() {
         }
         $this->Session->setFlash(__('Invalid username or password, try again'));
     }
+
 }
 
 public function logout() {

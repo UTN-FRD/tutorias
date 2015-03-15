@@ -57,6 +57,7 @@ class AppController extends Controller {
     );
 
     public function beforeFilter() {
+        $this->set('username', AuthComponent::user('username'));
         $this->Auth->allow('index', 'view');
     }
 }
