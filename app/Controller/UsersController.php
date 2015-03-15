@@ -2,6 +2,14 @@
 App::uses('AppController','Controller');
 
 class UsersController extends AppController {
+    public $components = array(
+        'Session',
+        'Auth'=>array(
+            'loginRedirect' => array('controller' => 'estudiantes', 'action' => 'index')
+//            ,'logoutRedirect' => array('controller' => 'Players', 'action' => 'index')
+        )
+    );
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add','logout');
@@ -70,16 +78,21 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-public function login() {
-    if ($this->request->is('post')) {
-        if ($this->Auth->login()) {
+    public function login() {
+        // If already logged-in, redirect
+        if($this->Auth->loggedIn()){
             return $this->redirect($this->Auth->redirectUrl());
         }
-        $this->Session->setFlash(__('Invalid username or password, try again'));
-    }
-}
 
-public function logout() {
-    return $this->redirect($this->Auth->logout());
-}
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Session->setFlash(__('Invalid username or password, try again'));
+        }
+    }
+
+    public function logout() {
+        return $this->redirect($this->Auth->logout());
+    }
 }
