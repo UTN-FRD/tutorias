@@ -4,12 +4,21 @@ App::uses('AppController','Controller');
 class UsersController extends AppController {
     public $components = array(
         'Session',
+<<<<<<< HEAD
         'Paginator',
         'Auth'=>array(
             'loginRedirect' => array('controller' => 'Estudiantes', 'action' => 'index'),
         )
     );
     
+=======
+        'Auth'=>array(
+            'loginRedirect' => array('controller' => 'estudiantes', 'action' => 'index')
+//            ,'logoutRedirect' => array('controller' => 'Players', 'action' => 'index')
+        )
+    );
+
+>>>>>>> 87db5d7fb011e152b169aaa3a0df3fc330c08fa7
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('logout','edit');
@@ -78,17 +87,26 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
-public function login() {
-    if ($this->request->is('post')) {
-        if ($this->Auth->login()) {
+    public function login() {
+        // If already logged-in, redirect
+        if($this->Auth->loggedIn()){
             return $this->redirect($this->Auth->redirectUrl());
         }
-        $this->Session->setFlash(__('Invalid username or password, try again'));
+
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Session->setFlash(__('Invalid username or password, try again'));
+        }
     }
+<<<<<<< HEAD
 
 }
+=======
+>>>>>>> 87db5d7fb011e152b169aaa3a0df3fc330c08fa7
 
-public function logout() {
-    return $this->redirect($this->Auth->logout());
-}
+    public function logout() {
+        return $this->redirect($this->Auth->logout());
+    }
 }

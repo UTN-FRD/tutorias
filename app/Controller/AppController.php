@@ -56,6 +56,7 @@ class AppController extends Controller {
             'authorize' => array('Controller')
         )
     );
+<<<<<<< HEAD
 
     public function isAuthorized($user) {
     // Admin can access every action
@@ -72,4 +73,6 @@ class AppController extends Controller {
         $this->set('id', AuthComponent::user('id'));
         $this->Auth->allow('view','index');
     }
+=======
+>>>>>>> 87db5d7fb011e152b169aaa3a0df3fc330c08fa7
 }
