@@ -65,7 +65,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $username?><span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="/tutorias/users/edit">Perfil</a></li>
+	            <li><a href="/tutorias/users/edit/<?php echo $id ?>">Perfil</a></li>
 	            <li class="divider"></li>
 	            <li><a href="/tutorias/users/logout">logout</a></li>
 	          </ul>

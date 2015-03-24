@@ -4,6 +4,7 @@ App::uses('AppController','Controller');
 class UsersController extends AppController {
     public $components = array(
         'Session',
+        'Paginator',
         'Auth'=>array(
             'loginRedirect' => array('controller' => 'Estudiantes', 'action' => 'index'),
         )
@@ -11,7 +12,7 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add','logout');
+        $this->Auth->allow('logout','edit');
     }
 
     public function index() {
