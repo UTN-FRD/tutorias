@@ -1,3 +1,5 @@
+<?php $this->Html->script('encuesta', array('inline' => false)) ?>
+
 <div class="encuestas ">
 	<h2><?php echo __('Encuesta de '); ?><a href="/tutorias/estudiantes/edit/<?php echo $encuestas[0]['Estudiante']['id']; ?>"><?php echo $encuestas[0]['Estudiante']['nombre']; ?></a></h2>
 	<div>
