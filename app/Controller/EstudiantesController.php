@@ -13,13 +13,17 @@ class EstudiantesController extends AppController {
 		/*$carrera = ClassRegistry::init('Carrera');
 		debug($carrera->find('all'));*/
 		debug($this->Auth->user('id'));
-		$this->set('estudiantes', $this->paginate('Estudiante',
-			array('Estudiante.user_id' => $this->Auth->user('id') )));
+		if ($this->Auth->user('role')=='admin') {
+			$this->set('estudiantes', $this->paginate('Estudiante'));
+		}else{
+			$this->set('estudiantes', $this->paginate('Estudiante',
+				array('Estudiante.user_id' => $this->Auth->user('id') )));
+		}
 	}
 
 	function add(){
 
-       $this->set('tutores', $this->Estudiante->User->find('all'));
+       $this->set('users', $this->Estudiante->User->find('all'));
 
 		$this->set('carreras', 
 			array(

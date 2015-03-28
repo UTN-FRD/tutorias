@@ -31,7 +31,7 @@ class EncuestasController extends AppController {
 
 
 		$conditions = array(
-			'order' => 'pregunta_id', //cambiar por orden
+			'order' => 'orden', //cambiar por orden
 			'conditions' => ['Estudiante.id' => $id]
 		);
 

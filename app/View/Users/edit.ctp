@@ -5,13 +5,16 @@
 	<?php
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
-		echo $this->Form->input('role', array(
-            'options' => array('admin' => 'Admin', 'tutor' => 'Tutor')
-        ));	
+		if($authUser['role']==='admin'){
+			echo $this->Form->input('role', array(
+	            'options' => array('admin' => 'Admin', 'tutor' => 'Tutor')
+	        ));	
+		}
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Enviar')); ?>
 </div>
+<?php if($authUser['role']==='admin'): ?>
 <div class="actions">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
@@ -20,3 +23,4 @@
 		<li><?php echo $this->Html->link(__('Listar Usuarios'), array('action' => 'index')); ?></li>
 	</ul>
 </div>
+<?php endif; ?>

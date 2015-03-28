@@ -1,6 +1,13 @@
 <div class="row">
-	<div class="col-md-9 estudiantes index">
-		<h2><?php echo __('Estudiantes'); ?></h2>
+	<div class="col-md-12 estudiantes">
+		<div class="page-title">
+			<h2><?php echo __('Estudiantes'); ?></h2>
+			<?php if($authUser['role']==='admin'): ?>
+			<div class="buttons">
+				<?php echo $this->Html->link(__('Agregar Estudiante'), array('action' => 'add'), array('class' => 'btn btn-default')); ?>
+			</div>
+		    <?php endif; ?>
+		</div>
 		<table class="table">
 		<thead>
 		<tr>
@@ -40,11 +47,5 @@
 			echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 		?>
 		</div>
-	</div>
-	<div class="actions col-md-3">
-		<h3><?php echo __('Acciones'); ?></h3>
-		<ul>
-			<li><?php echo $this->Html->link(__('Agregar Estudiante'), array('action' => 'add'), array('class' => 'btn btn-default')); ?></li>
-		</ul>
 	</div>
 </div>

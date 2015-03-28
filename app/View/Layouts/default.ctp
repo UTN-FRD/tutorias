@@ -56,11 +56,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
-	        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/tutores">Tutores</a></li>
-	        <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
-	      </ul>
+	    	<ul class="nav navbar-nav">
+		        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
+			<?php if($authUser['role']==='admin'): ?>
+		        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/tutores">Tutores</a></li>
+		        <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
+		    <?php endif; ?>
+		    </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $username?><span class="caret"></span></a>
