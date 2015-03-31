@@ -40,7 +40,7 @@ class EstudiantesController extends AppController {
 
 	        if ($this->Estudiante->save()){
 	        	$this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
-	            return $this->redirect(array('controller'=>'estudiantes','action' => 'index'));
+	            return $this->redirect(array('controller' => '/estudiantes', 'action' => 'index'));
 	        }
 	        $this->Session->setFlash(__('No se ha podido actualizar el estudiante.'));
 	    }
@@ -87,5 +87,8 @@ class EstudiantesController extends AppController {
         	);
     }
 
+    public function isAuthorized($user) {
+        return (isset($user['role']));
+    }
 
 }

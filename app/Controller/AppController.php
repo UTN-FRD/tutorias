@@ -36,7 +36,7 @@ class AppController extends Controller {
         'limit' => 25
     ];
 
-	public $components = array(
+     public $components = array(
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
@@ -45,8 +45,7 @@ class AppController extends Controller {
             ),
             'logoutRedirect' => array(
                 'controller' => '/pages',
-                'action' => 'display',
-                'home'
+                'action' => 'display'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -57,7 +56,6 @@ class AppController extends Controller {
         )
     );
 
-
     public function isAuthorized($user) {
         // Admin can access every action
         return (isset($user['role']) && $user['role'] === 'admin');
@@ -67,7 +65,8 @@ class AppController extends Controller {
         $this->set('authUser', $this->Auth->user());
         $this->set('username', AuthComponent::user('username'));
         $this->set('id', AuthComponent::user('id'));
-        $this->Auth->allow('view','index','add');
+        $this->set('loggedIn', $this->Auth->loggedIn());
+        // $this->Auth->allow('add');
     }
 
 }
