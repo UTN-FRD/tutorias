@@ -8,14 +8,15 @@
 			<fieldset>
 				<legend><?php echo h($encuesta['Pregunta']['pregunta']); ?></legend>
 				<input type='hidden' name='encuestaId' id='encuestaId' value='<?php echo h($encuesta['Encuesta']['id']); ?>'/>
-				<div class="input-group">
+				<div class="form-group">
 				<?php $tipo = h($encuesta['Pregunta']['tipo']); 
 				if( $tipo == 'select'){
 					echo $this->Form->input('respuesta', array(
 					    'type'    => $tipo,
 					    'options' => explode(',', $encuesta['Pregunta']['valores']),
 					    'empty'   => false,
-					    'value'	  => $encuesta['Encuesta']['respuesta']
+					    'value'	  => $encuesta['Encuesta']['respuesta'],
+					    'class'	=> 'form-control'
 					));
 				}else if( $tipo == 'radio'){
 					echo $this->Form->radio('respuesta', explode(',', $encuesta['Pregunta']['valores']), [
@@ -50,3 +51,10 @@
 	</div>
 
 </div>
+<script>
+$(document).ready(function(){
+	$("input:radio, select").change(function(){
+		$(this).parents('form:first').submit();
+	});
+});
+</script>
