@@ -51,28 +51,30 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="/">Tutorias</a>
+	      <a class="navbar-brand" href="/tutorias">Tutorias</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    	<ul class="nav navbar-nav">
-		        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
-			<?php if($authUser['role']==='admin'): ?>
-		        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/users">Tutores</a></li>
-		        <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
-		    <?php endif; ?>
+		      <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
+				<?php if($authUser['role']==='admin'): ?>
+		        	<li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/users">Tutores</a></li>
+		        	<li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
+		    	<?php endif; ?>
 		    </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $username?><span class="caret"></span></a>
-	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="/tutorias/users/edit/<?php echo $id ?>">Perfil</a></li>
-	            <li class="divider"></li>
-	            <li><a href="/tutorias/users/logout">logout</a></li>
-	          </ul>
-	        </li>
-	      </ul>
+		    <?php if($loggedIn): ?>
+					<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $username?><span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		            <li><a href="/tutorias/users/edit/<?php echo $id ?>">Perfil</a></li>
+		            <li class="divider"></li>
+		            <li><a href="/tutorias/users/logout">Logout</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+				<?php endif; ?>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>

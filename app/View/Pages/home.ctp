@@ -1,5 +1,7 @@
 <?php $this->layout='default'; ?>
 
 <p>
-	<a href="users/login">Login</a>
+	<?php if(!$loggedIn): ?>
+		<a href="users/login">Login</a>
+	<?php endif; ?>
 </p>

@@ -14,7 +14,6 @@
 <div class="actions">
 	<h3><?php echo __('Acciones'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Html->link(__('Listar Estudiantes'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('Listar Estudiantes'), array('controller' => '/estudiantes', 'action' => 'index'), array('class' => 'btn btn-default')); ?></li>
 	</ul>
 </div>

@@ -3,15 +3,9 @@ App::uses('AppController','Controller');
 
 class UsersController extends AppController {
     public $components = array(
-        'Session',
-
-        'Paginator',
-        'Auth'=>array(
-            'loginRedirect' => array('controller' => 'Estudiantes', 'action' => 'index'),
-//            ,'logoutRedirect' => array('controller' => 'Players', 'action' => 'index')
-        )
+        'Paginator'
     );
-    
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('logout','edit');
@@ -95,8 +89,8 @@ class UsersController extends AppController {
     }
 
     public function logout() {
-            return $this->redirect($this->Auth->logout());
-        }
+        return $this->redirect($this->Auth->logout());
+    }
 }
 
     
