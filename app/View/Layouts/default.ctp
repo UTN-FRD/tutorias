@@ -59,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	    	<ul class="nav navbar-nav">
 		        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
 			<?php if($authUser['role']==='admin'): ?>
-		        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/tutores">Tutores</a></li>
+		        <li <?php echo ($this->request->params['controller'] == 'tutores')? 'class="active"' : ''?>><a href="/tutorias/users">Tutores</a></li>
 		        <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
 		    <?php endif; ?>
 		    </ul>
