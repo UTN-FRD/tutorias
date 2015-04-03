@@ -66,11 +66,13 @@ class UsersController extends AppController {
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
+		
         if ($this->User->delete()) {
             $this->Session->setFlash(__('User deleted'));
-            return $this->redirect(array('action' => 'index'));
+        } else {
+			$this->Session->setFlash(__('Invalid user'));
         }
-        $this->Session->setFlash(__('Invalid user'));
+
         return $this->redirect(array('action' => 'index'));
     }
 
@@ -90,6 +92,17 @@ class UsersController extends AppController {
 
     public function logout() {
         return $this->redirect($this->Auth->logout());
+    }
+
+	public function isAuthorized($user) {
+	    if (in_array($this->action, array('edit'))) {
+	        $userId = (int) $this->request->params['pass'][0];
+	        if ($userId == $user['id']) {
+	            return true;
+	        }
+	    }
+
+		return parent::isAuthorized($user);
     }
 }
 

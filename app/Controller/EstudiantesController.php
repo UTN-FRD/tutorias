@@ -13,7 +13,7 @@ class EstudiantesController extends AppController {
 		/*$carrera = ClassRegistry::init('Carrera');
 		debug($carrera->find('all'));*/
 		debug($this->Auth->user('id'));
-		if ($this->Auth->user('role')=='admin') {
+		if ($this->Auth->user('role') =='admin') {
 			$this->set('estudiantes', $this->paginate('Estudiante'));
 		}else{
 			$this->set('estudiantes', $this->paginate('Estudiante',
@@ -22,8 +22,7 @@ class EstudiantesController extends AppController {
 	}
 
 	function add(){
-
-       $this->set('users', $this->Estudiante->User->find('all'));
+		$this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
 
 		$this->set('carreras', 
 			array(
@@ -75,8 +74,6 @@ class EstudiantesController extends AppController {
 	        $this->request->data = $estudiante;
 	    }
 
-
-
 		$this->set('carreras', 
 			array(
 				    'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
@@ -87,8 +84,38 @@ class EstudiantesController extends AppController {
         	);
     }
 
-    public function isAuthorized($user) {
-        return (isset($user['role']));
+	public function delete($id = null) {
+        // prior to 2.5 use 
+        // $this->request->onlyAllow('post');
+        
+        $this->request->allowMethod('post');
+        
+        $this->Estudiante->id = $id;
+        if (!$this->Estudiante->exists()) {
+            throw new NotFoundException(__('Estudiante invalido'));
+        }
+
+        if ($this->Estudiante->delete()) {
+            $this->Session->setFlash(__('Estudiante eliminado'));
+        } else {
+        	$this->Session->setFlash(__('Estudiante invalido'));
+        }
+        
+        return $this->redirect(array('controller' => '/estudiantes', 'action' => 'index'));
     }
 
+    public function isAuthorized($user) {
+	    if (in_array($this->action, array('index'))) {
+			return true;
+	    }
+
+	    if (in_array($this->action, array('edit'))) {
+	        $estudianteId = (int) $this->request->params['pass'][0];
+	        if ($this->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
+	            return true;
+	        }
+	    }
+
+		return parent::isAuthorized($user);
+    }
 }

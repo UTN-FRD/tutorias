@@ -27,8 +27,12 @@
 			<td><?php echo h($estudiante['Estudiante']['user_id']); ?>&nbsp;</td>
 			<td class="actions">
 				<a class="btn btn-default" href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Encuesta</a>
-				<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default')); ?>
-				<?php echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar # %s?', $estudiante['Estudiante']['id'])); ?>
+				<?php
+					echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'));
+					if($authUser['role']==='admin'):
+						echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar # %s?', $estudiante['Estudiante']['id'])); 
+					endif;
+				?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

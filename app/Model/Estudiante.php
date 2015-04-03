@@ -47,4 +47,7 @@ class Estudiante extends AppModel {
 		)
 	);
 
+	public function isOwnedBy($estudiante, $user) {
+		return $this->field('id', array('id' => $estudiante, 'user_id' => $user)) !== false;
+	}
 }
