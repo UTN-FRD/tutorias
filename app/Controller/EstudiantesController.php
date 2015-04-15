@@ -46,11 +46,7 @@ class EstudiantesController extends AppController {
 	}
 
 	function edit($id = null) {
-		$tutore = new Tutore(); 
-        $this->set('tutores', 
-        	$tutore->find('list', 
-        		array('fields' => array('User.id', 'User.nombre'))
-        		));
+        $this->set('tutores', $this->Estudiante->User->find('list') );
 
 	    if (!$id) {
 	        throw new NotFoundException(__('Tutor inválido'));

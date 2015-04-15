@@ -51,7 +51,7 @@ class UsersController extends AppController {
                 __('The user could not be saved. Please, try again.')
             );
         } else {
-            $this->request->date = $this->User->read(null, $id);
+            $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
         }
     }
