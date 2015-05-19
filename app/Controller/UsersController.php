@@ -1,11 +1,7 @@
 <?php
-App::uses('AppController','Controller');
+App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
-    public $components = array(
-        'Paginator'
-    );
-
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('logout');
@@ -13,7 +9,7 @@ class UsersController extends AppController {
 
     public function index() {
         $this->User->recursive = 0;
-        $this->set('users',$this->paginate());
+        $this->set('users', $this->paginate());
     }
 
     public function view($id = null) {
@@ -21,7 +17,7 @@ class UsersController extends AppController {
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
-        $this->set('user',$this->User->read(null,$id));
+        $this->set('user', $this->User->read(null, $id));
     }
 
     public function add() {
@@ -31,6 +27,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
+            
             $this->Session->setFlash(
                 __('The user could not be saved.Please, try again.')
             );
@@ -42,11 +39,13 @@ class UsersController extends AppController {
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
+
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
                 return $this->redirect(array('action' => 'index'));
             }
+            
             $this->Session->setFlash(
                 __('The user could not be saved. Please, try again.')
             );
@@ -56,21 +55,18 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete($id = null) {
-        // prior to 2.5 use 
-        // $this->request->onlyAllow('post');
-        
+    public function delete($id = null) {        
         $this->request->allowMethod('post');
         
         $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
-		
+        
         if ($this->User->delete()) {
             $this->Session->setFlash(__('User deleted'));
         } else {
-			$this->Session->setFlash(__('Invalid user'));
+            $this->Session->setFlash(__('Invalid user'));
         }
 
         return $this->redirect(array('action' => 'index'));
@@ -94,17 +90,14 @@ class UsersController extends AppController {
         return $this->redirect($this->Auth->logout());
     }
 
-	public function isAuthorized($user) {
-	    if (in_array($this->action, array('edit'))) {
-	        $userId = (int) $this->request->params['pass'][0];
-	        if ($userId == $user['id']) {
-	            return true;
-	        }
-	    }
+    public function isAuthorized($user) {
+        if (in_array($this->action, array('edit'))) {
+            $userId = (int) $this->request->params['pass'][0];
+            if ($userId == $user['id']) {
+                return true;
+            }
+        }
 
-		return parent::isAuthorized($user);
+        return parent::isAuthorized($user);
     }
 }
-
-    
-
