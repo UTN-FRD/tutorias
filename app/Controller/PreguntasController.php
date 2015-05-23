@@ -7,14 +7,6 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class PreguntasController extends AppController {
-
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
-
 /**
  * index method
  *
@@ -22,7 +14,7 @@ class PreguntasController extends AppController {
  */
 	public function index() {
 		$this->Pregunta->recursive = 0;
-		$this->set('preguntas', $this->Paginator->paginate());
+		$this->set('preguntas', $this->paginate());
 	}
 
 /**
@@ -57,13 +49,13 @@ class PreguntasController extends AppController {
 		}else{
 			$this->set('tiposDePreguntas', 
 				array(
-					    'texto' => 'Texto',
-					    'number' => 'Numerico',
-					    'select' => 'Menu Desplegable',
-					    'checkbox' => 'Check Box',
-					    'radio' => 'Radio Button'
+						'texto' => 'Texto',
+						'number' => 'Numerico',
+						'select' => 'Menu Desplegable',
+						'checkbox' => 'Check Box',
+						'radio' => 'Radio Button'
 					)
-	        	);
+				);
 		}
 
 	}
@@ -92,13 +84,13 @@ class PreguntasController extends AppController {
 
 			$this->set('tiposDePreguntas', 
 				array(
-					    'texto' => 'Texto',
-					    'number' => 'Numerico',
-					    'select' => 'Menu Desplegable',
-					    'checkbox' => 'Check Box',
-					    'radio' => 'Radio Button'
+						'texto' => 'Texto',
+						'number' => 'Numerico',
+						'select' => 'Menu Desplegable',
+						'checkbox' => 'Check Box',
+						'radio' => 'Radio Button'
 					)
-	        	);
+				);
 
 		}
 	}

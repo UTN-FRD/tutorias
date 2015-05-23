@@ -8,14 +8,6 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class EncuestasController extends AppController {
-
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator', 'Session');
-
 	function index($id = null){
 		if (!$id) {
 	        throw new NotFoundException(__('Estudiante Invalido'));

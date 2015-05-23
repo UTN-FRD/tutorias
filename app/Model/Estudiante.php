@@ -7,7 +7,26 @@ App::uses('AppModel', 'Model');
  * @property Encuesta $Encuesta
  */
 class Estudiante extends AppModel {
-
+	public $validate = array(
+		'legajo' => array(
+			'mayorCero' => array(
+				'rule' => array('comparison', '>', 0),
+				'message' => 'El número de legajo debe ser mayor a cero'
+			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'El número de legajo debe ser único'
+			)
+		),
+		'nombre' => array(
+			'alphaNumeric' => array(
+				'rule' => 'alphaNumeric',
+				'required' => true,
+				'notEmpty' => false,
+				'message' => 'El nombre no puede estar vacio'
+			)
+		)
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

@@ -31,7 +31,11 @@
             <td class="actions">
                 <?php
                 echo $this->Html->link(__('Editar'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-default'));
-                echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar a %s?', $user['User']['username']));
+                if (AuthComponent::user('id') <> $user['User']['id']):
+                    echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $user['User']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar a %s?', $user['User']['username']));
+                else:
+                    echo $this->Form->postLink(__('Borrar'), array(), array('class' => 'btn btn-default disabled'));
+                endif;
                 ?>
             </td>
         </tr>
