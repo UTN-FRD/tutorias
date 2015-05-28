@@ -4,7 +4,8 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('logout');
+        // sacar el add luego.
+        $this->Auth->allow('logout','add');
     }
 
     public function index() {
@@ -15,7 +16,7 @@ class UsersController extends AppController {
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
+            throw new NotFoundException(__('Usuario invalido'));
         }
         $this->set('user', $this->User->read(null, $id));
     }
@@ -24,12 +25,12 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('El usuario ha sido creado'));
                 return $this->redirect(array('action' => 'index'));
             }
-            
+
             $this->Session->setFlash(
-                __('The user could not be saved.Please, try again.')
+                __('El usuario no puede ser guardado, intente nuevamente.')
             );
         }
     }
@@ -37,17 +38,17 @@ class UsersController extends AppController {
     public function edit($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
+            throw new NotFoundException(__('Usuario invalido'));
         }
 
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
+                $this->Session->setFlash(__('El usuario ha sido guardado'));
                 return $this->redirect(array('action' => 'index'));
             }
-            
+
             $this->Session->setFlash(
-                __('The user could not be saved. Please, try again.')
+                __('El usuario no puede ser guardado, intente nuevamente.')
             );
         } else {
             $this->request->data = $this->User->read(null, $id);
@@ -55,18 +56,18 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete($id = null) {        
+    public function delete($id = null) {
         $this->request->allowMethod('post');
-        
+
         $this->User->id = $id;
         if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
+            throw new NotFoundException(__('Usuario invalido'));
         }
-        
+
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
+            $this->Session->setFlash(__('Usuario eliminado'));
         } else {
-            $this->Session->setFlash(__('Invalid user'));
+            $this->Session->setFlash(__('Usuario invalido'));
         }
 
         return $this->redirect(array('action' => 'index'));
@@ -82,7 +83,7 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
+            $this->Session->setFlash(__('Nombre de usuario o contraseña invalido, intente nuevamente.'));
         }
     }
 

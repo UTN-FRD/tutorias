@@ -2,14 +2,14 @@
     <?php echo $this->Form->create('User'); ?>
         <fieldset>
         <legend><?php echo __('Editar Usuario'); ?></legend>
-        
+
         <?php
         echo $this->Form->input('username');
         echo $this->Form->input('password');
         if($authUser['role'] === 'admin'){
             echo $this->Form->input('role', array(
                 'options' => array('admin' => 'Administrador', 'tutor' => 'Tutor')
-            )); 
+            ));
         }
         ?>
         </fieldset>
