@@ -36,10 +36,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     echo $this->Html->css('styles');
     echo $this->Html->script('jquery-1.11.2.min');
     echo $this->Html->script('bootstrap.min');
+    echo $this->Html->script('http://malsup.github.io/jquery.form.js');
 
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>
+ 
 </head>
 
 <body>
@@ -100,5 +102,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <?php echo $this->element('sql_dump'); ?>
         <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
     </nav>
+
 </body>
 </html>

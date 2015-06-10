@@ -8,7 +8,22 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class EncuestasController extends AppController {
+
 	function index($id = null){
+
+		$conditions = array(
+			'order' => 'orden', //cambiar por orden
+			'conditions' => ['Estudiante.id' => $id]
+		);
+
+		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
+
+	}
+
+	function save($id = null){
+		$this->layout = 'ajax';
+		$this->autoRender=false;
+
 		if (!$id) {
 	        throw new NotFoundException(__('Estudiante Invalido'));
 	    }
@@ -19,15 +34,9 @@ class EncuestasController extends AppController {
 			    'respuesta' => $this->data['respuesta']
 			));
 			$this->Encuesta->save();
+			$this->response->body('contenido');
 		}
 
-
-		$conditions = array(
-			'order' => 'orden', //cambiar por orden
-			'conditions' => ['Estudiante.id' => $id]
-		);
-
-		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
 
 	}
 }
