@@ -33,8 +33,9 @@ class EncuestasController extends AppController {
 			$this->Encuesta->set(array(
 			    'respuesta' => $this->data['respuesta']
 			));
+			
 			$this->Encuesta->save();
-			$this->response->body('contenido');
+			//$this->response->body('contenido');
 		}
 
 
