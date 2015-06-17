@@ -39,5 +39,10 @@ class EncuestasController extends AppController {
 
 
 	}
+
+	    public function isAuthorized($user) {
+        // Admin can access every action
+        return true;
+    }
 }
 
