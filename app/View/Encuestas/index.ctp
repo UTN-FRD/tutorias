@@ -31,9 +31,9 @@
 	    // property set to 'json' then the first argument to the success callback 
 	    // is the json data object returned by the server 
 	 
-	    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
+/*	    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
 	        '\n\nThe output div should have already been updated with the responseText.'); 
-	}
+*/	}
 </script>
 <div class="encuestas ">
 	<h2><?php echo __('Encuesta de '); ?><a href="/tutorias/estudiantes/edit/<?php echo $encuestas[0]['Estudiante']['id']; ?>"><?php echo $encuestas[0]['Estudiante']['nombre']; ?></a></h2>
@@ -85,8 +85,8 @@
 		</form>
 	<?php endforeach; ?>
 	</div>
-
 </div>
+
 <script>
 $(document).ready(function(){
 	$("input:radio, select").change(function(){
