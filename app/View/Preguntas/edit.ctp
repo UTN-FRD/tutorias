@@ -10,7 +10,7 @@
 			<legend>
 				<?php echo __('Editar Pregunta'); ?>
 			</legend>
-			
+
             <div class="form-group">
                 <?php echo $this->Form->input('orden'); ?>
             </div>
@@ -20,6 +20,10 @@
             </div>
 
             <div class="form-group">
+                <?php echo $this->Form->input('pregunta'); ?>
+            </div>
+            
+            <div class="form-group">
                 <?php
 	            echo $this->Form->input('tipo', array(
 				    'type'    => 'select',
@@ -28,7 +32,7 @@
 				    'class'   => 'form-control'
 				));
                 ?>
-            </div>          
+            </div>
 
             <div class="form-group">
                 <?php echo $this->Form->input('valores'); ?>

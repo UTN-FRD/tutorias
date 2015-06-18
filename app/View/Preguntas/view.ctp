@@ -11,6 +11,10 @@
 			<?php echo h($pregunta['Pregunta']['pregunta']); ?>
 			&nbsp;
 		</dd>
+		<dd>
+			<?php echo h($pregunta['Pregunta']['ayuda']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Orden'); ?></dt>
 		<dd>
 			<?php echo h($pregunta['Pregunta']['orden']); ?>

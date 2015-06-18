@@ -20,6 +20,10 @@
             </div>
 
             <div class="form-group">
+                <?php echo $this->Form->input('ayuda'); ?>
+            </div>
+
+            <div class="form-group">
                 <?php
 	            echo $this->Form->input('tipo', array(
 				    'type'    => 'select',
@@ -28,7 +32,7 @@
 				    'class'   => 'form-control'
 				));
                 ?>
-            </div>          
+            </div>
 
             <div class="form-group">
                 <?php echo $this->Form->input('valores'); ?>
@@ -44,4 +48,3 @@
         </div>
     </div>
 </div>
-

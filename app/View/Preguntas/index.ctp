@@ -27,6 +27,7 @@
 			<tr>
 				<td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
 				<td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
+        <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
 				<td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
 				<td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
 				<td class="actions">
@@ -45,7 +46,7 @@
             ));
             ?>
         </p>
-        
+
         <div class="paging">
             <?php
             echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
