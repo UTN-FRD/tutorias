@@ -1,24 +1,51 @@
-<div class="estudiantes form">
-<?php echo $this->Form->create('Estudiante'); ?>
-    <fieldset>
-        <legend><?php echo __('Agregar Estudiante'); ?></legend>
-        <?php
-        echo $this->Form->input('legajo');
-        echo $this->Form->input('nombre');
-        echo $this->Form->input('carrera');
-        echo $this->Form->input('user_id', array(
-            'label' => 'Tutor',
-            'type' => 'select',
-            'empty' => false
-        ));
-        ?>
-    </fieldset>
-<?php echo $this->Form->end(__('Enviar')); ?>
-</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-title">
+            <h2><?php echo $this->Form->create('Estudiante'); ?></h2>
+        </div>
+    </div>
 
-<div class="actions">
-    <h3><?php echo __('Acciones'); ?></h3>
-    <ul>
-        <li><?php echo $this->Html->link(__('Listar Estudiantes'), array('controller' => '/estudiantes', 'action' => 'index'), array('class' => 'btn btn-default')); ?></li>
-    </ul>
+    <div class="col-lg-12">
+        <fieldset>
+            <legend>
+                <?php echo __('Agregar Estudiante'); ?>
+            </legend>
+
+            <div class="form-group">
+                <?php echo $this->Form->input('legajo', array('autocomplete' => 'off')); ?>
+            </div>
+
+            <div class="form-group">
+                <?php echo $this->Form->input('nombre', array('autocomplete' => 'off')); ?>
+            </div>
+
+            <div class="form-group">
+                <?php
+                echo $this->Form->input('carrera', array(
+                    'type' => 'select',
+                    'empty' => false,
+                    'class'   => 'form-control'
+                ));
+                ?>
+            </div>
+
+            <div class="form-group">
+                <?php
+                echo $this->Form->input('user_id', array(
+                    'label' => 'Tutor',
+                    'type' => 'select',
+                    'class'   => 'form-control'
+                ));
+                ?>
+            </div>
+        </fieldset>
+
+        <div class="col-lg-1">
+            <?php echo $this->Form->end(__('Guardar')); ?>
+        </div>
+
+        <div class="col-lg-1">
+            <?php echo $this->Html->link(__('Cancelar'), array('action' => 'index'), array('class' => 'btn btn-default')); ?>
+        </div>
+    </div>
 </div>

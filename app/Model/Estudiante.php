@@ -19,10 +19,8 @@ class Estudiante extends AppModel {
 			)
 		),
 		'nombre' => array(
-			'alphaNumeric' => array(
-				'rule' => 'alphaNumeric',
-				'required' => true,
-				'notEmpty' => false,
+			'required' => array(
+				'rule' => 'notEmpty',
 				'message' => 'El nombre no puede estar vacio'
 			)
 		)

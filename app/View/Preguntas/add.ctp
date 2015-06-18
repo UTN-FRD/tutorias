@@ -7,23 +7,41 @@
 
     <div class="col-lg-12">
 		<fieldset>
-			<legend><?php echo __('Agregar Pregunta'); ?></legend>
-		<?php
-			echo $this->Form->input('orden');
-			echo $this->Form->input('pregunta');
-			echo $this->Form->input('tipo', array(
-			    'type'    => 'select',
-			    'options' => $tiposDePreguntas,
-			    'empty'   => false,
-			    'class'   => 'form-control'
-			));
-			echo $this->Form->input('valores');
-		?>
+			<legend>
+				<?php echo __('Agregar Pregunta'); ?>
+			</legend>
+
+            <div class="form-group">
+                <?php echo $this->Form->input('orden'); ?>
+            </div>
+
+            <div class="form-group">
+                <?php echo $this->Form->input('pregunta'); ?>
+            </div>
+
+            <div class="form-group">
+                <?php
+	            echo $this->Form->input('tipo', array(
+				    'type'    => 'select',
+				    'options' => $tiposDePreguntas,
+				    'empty'   => false,
+				    'class'   => 'form-control'
+				));
+                ?>
+            </div>          
+
+            <div class="form-group">
+                <?php echo $this->Form->input('valores'); ?>
+            </div>
 		</fieldset>
-		<div>
-			<?php echo $this->Form->end(__('Guardar')); ?>
-			<?php echo $this->Html->link(__('Cancelar'), array('action' => 'index'), array('class' => 'btn btn-default')); ?>
-		</div>	
+
+        <div class="col-lg-1">
+            <?php echo $this->Form->end(__('Guardar')); ?>
+        </div>
+
+        <div class="col-lg-1">
+            <?php echo $this->Html->link(__('Cancelar'), array('action' => 'index'), array('class' => 'btn btn-default')); ?>
+        </div>
     </div>
 </div>
 
