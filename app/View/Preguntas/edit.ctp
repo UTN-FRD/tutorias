@@ -20,9 +20,9 @@
             </div>
 
             <div class="form-group">
-                <?php echo $this->Form->input('pregunta'); ?>
+                <?php echo $this->Form->input('ayuda'); ?>
             </div>
-            
+
             <div class="form-group">
                 <?php
 	            echo $this->Form->input('tipo', array(

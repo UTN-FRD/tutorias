@@ -14,11 +14,12 @@ class EncuestasController extends AppController {
 			'conditions' => ['Estudiante.id' => $id]
 		);
 		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
-
+/*
 		if (!isset($encuestas[0]['Estudiante']['nombre'])) {
 			$this->Session->setFlash(__('La encuesta no tiene definida ninguna pregunta.'));
 			return $this->redirect(array('controller' => 'estudiantes', 'action' => 'index'));
 		}
+		*/
 	}
 	function save($id = null){
 		$this->layout = 'ajax';
@@ -31,12 +32,12 @@ class EncuestasController extends AppController {
 			$this->Encuesta->set(array(
 			    'respuesta' => $this->data['respuesta']
 			));
-			
+
 			$this->Encuesta->save();
 			//$this->response->body('contenido');
 		}
 	}
-	
+
 	public function isAuthorized($user) {
         // Admin can access every action
         return true;

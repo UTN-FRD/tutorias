@@ -17,6 +17,7 @@
 			<tr>
 					<th><?php echo $this->Paginator->sort('orden'); ?></th>
 					<th><?php echo $this->Paginator->sort('pregunta'); ?></th>
+          <th><?php echo $this->Paginator->sort('ayuda'); ?></th>
 					<th><?php echo $this->Paginator->sort('tipo'); ?></th>
 					<th><?php echo __('valores'); ?></th>
 					<th></th>
