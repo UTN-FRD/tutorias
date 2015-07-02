@@ -17,11 +17,15 @@ class EstudiantesController extends AppController {
                 array('Estudiante.user_id' => $this->Auth->user('id') )));
         }
     }
-
+    public function regenerarEncuesta($id = null) {
+      $this->Estudiante->id = $id;
+      $this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
+      return $this->redirect(array('action' => 'index'));
+    }
     public function add(){
         $this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
 
-        $this->set('carreras', 
+        $this->set('carreras',
             array(
                 'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
                 'Ingeniería Mecanica' => 'Ingeniería Mecanica',
@@ -45,7 +49,7 @@ class EstudiantesController extends AppController {
     public function edit($id = null) {
         $this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
 
-        $this->set('carreras', 
+        $this->set('carreras',
             array(
                 'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
                 'Ingeniería Mecanica' => 'Ingeniería Mecanica',
@@ -77,9 +81,9 @@ class EstudiantesController extends AppController {
         }
     }
 
-    public function delete($id = null) {        
+    public function delete($id = null) {
         $this->request->allowMethod('post');
-        
+
         $this->Estudiante->id = $id;
         if (!$this->Estudiante->exists()) {
             throw new NotFoundException(__('Estudiante invalido'));
@@ -90,7 +94,7 @@ class EstudiantesController extends AppController {
         } else {
             $this->Session->setFlash(__('Estudiante invalido'));
         }
-        
+
         return $this->redirect(array('action' => 'index'));
     }
 
