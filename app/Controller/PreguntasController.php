@@ -68,9 +68,12 @@ class PreguntasController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->Pregunta->id = $id;
+
 		if (!$this->Pregunta->exists($id)) {
 			throw new NotFoundException(__('Pregunta inválida'));
 		}
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
 				$this->Session->setFlash(__('La pregunta ha sido guardada.'));
@@ -82,16 +85,13 @@ class PreguntasController extends AppController {
 			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
 			$this->request->data = $this->Pregunta->find('first', $options);
 
-			$this->set('tiposDePreguntas', 
-				array(
-						'texto' => 'Texto',
-						'number' => 'Numerico',
-						'select' => 'Menu Desplegable',
-						'checkbox' => 'Check Box',
-						'radio' => 'Radio Button'
-					)
-				);
-
+			$this->set('tiposDePreguntas', array(
+				'texto' => 'Texto',
+				'number' => 'Numerico',
+				'select' => 'Menu Desplegable',
+				'checkbox' => 'Check Box',
+				'radio' => 'Radio Button'
+			));
 		}
 	}
 
