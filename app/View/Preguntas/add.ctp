@@ -6,38 +6,54 @@
     </div>
 
     <div class="col-lg-12">
-		<fieldset>
-			<legend>
-				<?php echo __('Agregar Pregunta'); ?>
-			</legend>
-
-            <div class="form-group">
-                <?php echo $this->Form->input('orden'); ?>
-            </div>
-
-            <div class="form-group">
-                <?php echo $this->Form->input('pregunta'); ?>
-            </div>
-
-            <div class="form-group">
-                <?php echo $this->Form->input('ayuda'); ?>
-            </div>
+        <fieldset>
+            <legend>
+                <?php echo __('Agregar Pregunta'); ?>
+            </legend>
 
             <div class="form-group">
                 <?php
-	            echo $this->Form->input('tipo', array(
-				    'type'    => 'select',
-				    'options' => $tiposDePreguntas,
-				    'empty'   => false,
-				    'class'   => 'form-control'
-				));
+                echo $this->Form->input('orden', array(
+                    'class'   => 'form-control'
+                ));
                 ?>
             </div>
 
             <div class="form-group">
-                <?php echo $this->Form->input('valores'); ?>
+                <?php
+                echo $this->Form->input('pregunta', array(
+                    'class'   => 'form-control'
+                ));
+                ?>
             </div>
-		</fieldset>
+
+            <div class="form-group">
+                <?php
+                echo $this->Form->input('ayuda', array(
+                    'class'   => 'form-control'
+                ));
+                ?>
+            </div>
+
+            <div class="form-group">
+                <?php
+                echo $this->Form->input('tipo', array(
+                    'type'    => 'select',
+                    'options' => $tiposDePreguntas,
+                    'empty'   => false,
+                    'class'   => 'form-control'
+                ));
+                ?>
+            </div>
+
+            <div class="form-group">
+                <?php
+                echo $this->Form->input('valores', array(
+                    'class'   => 'form-control'
+                ));
+                ?>
+            </div>
+        </fieldset>
 
         <div class="col-lg-1">
             <?php echo $this->Form->end(__('Guardar')); ?>

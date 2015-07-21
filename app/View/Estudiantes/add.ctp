@@ -12,11 +12,21 @@
             </legend>
 
             <div class="form-group">
-                <?php echo $this->Form->input('legajo', array('autocomplete' => 'off')); ?>
+                <?php
+                echo $this->Form->input('legajo', array(
+                    'autocomplete' => 'off',
+                    'class'   => 'form-control'
+                ));
+                ?>
             </div>
-
+            
             <div class="form-group">
-                <?php echo $this->Form->input('nombre', array('autocomplete' => 'off')); ?>
+                <?php
+                echo $this->Form->input('nombre', array(
+                    'autocomplete' => 'off',
+                    'class'   => 'form-control'
+                ));
+                ?>
             </div>
 
             <div class="form-group">

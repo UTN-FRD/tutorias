@@ -23,10 +23,12 @@ class EncuestasController extends AppController {
 	}
 	function save($id = null){
 		$this->layout = 'ajax';
-		$this->autoRender=false;
+		$this->autoRender = false;
+
 		if (!$id) {
 	        throw new NotFoundException(__('Estudiante Invalido'));
 	    }
+
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Encuesta->id = $this->data['encuestaId'];
 			$this->Encuesta->set(array(
@@ -34,7 +36,10 @@ class EncuestasController extends AppController {
 			));
 
 			$this->Encuesta->save();
-			//$this->response->body('contenido');
+
+			echo "success";
+		} else {
+			echo "error";
 		}
 	}
 
