@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
   `ayuda` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `orden` int(10) NOT NULL,
   `tipo` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
-  `valores` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL
+  `valores` text CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
+  `activo` boolean NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

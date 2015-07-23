@@ -14,13 +14,14 @@ class EncuestasController extends AppController {
 			'conditions' => ['Estudiante.id' => $id]
 		);
 		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
-/*
-		if (!isset($encuestas[0]['Estudiante']['nombre'])) {
-			$this->Session->setFlash(__('La encuesta no tiene definida ninguna pregunta.'));
-			return $this->redirect(array('controller' => 'estudiantes', 'action' => 'index'));
-		}
-		*/
 	}
+
+	public function regenerate() {
+		$this->Encuesta->regenerarEncuesta($this->Encuesta->Estudiante->id);
+		return $this->redirect(array('action' => 'index'));
+	}
+
+
 	function save($id = null){
 		$this->layout = 'ajax';
 		$this->autoRender=false;
@@ -33,7 +34,11 @@ class EncuestasController extends AppController {
 			    'respuesta' => $this->data['respuesta']
 			));
 
-			$this->Encuesta->save();
+			if ($this->Encuesta->save()) {
+				echo "success";
+			} else {
+				echo "error";
+			}
 			//$this->response->body('contenido');
 		}
 	}

@@ -2,9 +2,13 @@
 <script>
     // wait for the DOM to be loaded
     $(document).ready(function() {
+      //var form = null;
 			var options = {
 		        target:        '#output1',   // target element(s) to be updated with server response
-		        //beforeSubmit:  showRequest,  // pre-submit callback
+		        //beforeSubmit:  function(arr, $form, options) {
+            //  form = $form;
+            //  return true;
+            //},  // pre-submit callback
 		        success:       showResponse  // post-submit callback
 
 		        // other available options:
@@ -20,6 +24,9 @@
 	    	$('form').ajaxForm(options);
     });
     function showResponse(responseText, statusText, xhr, $form)  {
+      if (responseText === "success") {
+        $('input[name=respuesta]', $form).css({backgroundColor: "green"});
+      }
 	    // for normal html responses, the first argument to the success callback
 	    // is the XMLHttpRequest object's responseText property
 
@@ -34,7 +41,15 @@
 /*	    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
 	        '\n\nThe output div should have already been updated with the responseText.');
 */	}
+
 </script>
+<?php if($authUser['role'] === 'admin'): ?>
+    <div class="col-lg-12">
+        <div class="text-right">
+            <?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate'), array('class' => 'btn btn-default')); ?>
+        </div>
+    </div>
+<?php endif; ?>
 <div class="encuestas ">
 	<h2><?php echo __('Encuesta de '); ?><a href="/tutorias/estudiantes/edit/<?php echo $encuestas[0]['Estudiante']['id']; ?>"><?php echo $encuestas[0]['Estudiante']['nombre']; ?></a></h2>
 	<div>
