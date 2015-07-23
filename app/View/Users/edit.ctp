@@ -35,11 +35,21 @@
             ?>
 
             <div class="form-group">
-                <?php echo $this->Form->input('username', array('autocomplete' => 'off')); ?>
+                <?php 
+                echo $this->Form->input('username', array(
+                    'autocomplete' => 'off',
+                    'class'   => 'form-control'
+                ));
+                ?>
             </div>
 
             <div class="form-group">
-                <?php echo $this->Form->input('password', array('autocomplete' => 'off')); ?>
+                <?php
+                echo $this->Form->input('password', array(
+                    'autocomplete' => 'off',
+                    'class'   => 'form-control'
+                ));
+                ?>
             </div>
         </fieldset>
 
