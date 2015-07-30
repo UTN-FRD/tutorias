@@ -16,13 +16,13 @@ class EncuestasController extends AppController {
 		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
 	}
 
-	public function regenerate() {
-		$this->Encuesta->regenerarEncuesta($this->Encuesta->Estudiante->id);
-		return $this->redirect(array('action' => 'index'));
+	public function regenerate($id = null) {
+		$this->Encuesta->regenerarEncuesta($id);
+		return $this->redirect(array('action' => 'index', $id));
 	}
 
 
-	function save($id = null){
+	function save($id = null) {
 		$this->layout = 'ajax';
 		$this->autoRender = false;
 
@@ -36,20 +36,11 @@ class EncuestasController extends AppController {
 			    'respuesta' => $this->data['respuesta']
 			));
 
-<<<<<<< HEAD
-			if ($this->Encuesta->save()) {
-				echo "success";
-			} else {
-				echo "error";
-			}
-			//$this->response->body('contenido');
-=======
 			$this->Encuesta->save();
 
 			echo "success";
 		} else {
 			echo "error";
->>>>>>> a8a1353119121093a3f798564108edaa2ff75536
 		}
 	}
 

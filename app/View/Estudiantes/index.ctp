@@ -37,7 +37,6 @@
                 <?php
                 echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'));
                 if ($authUser['role'] === 'admin'):
-                    echo $this->Form->postLink(__('Regenerar Encuesta'), array('action' => 'regenerarEncuesta', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea regenerar la encuesta de %s?', $estudiante['Estudiante']['nombre']));
                     echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar a %s?', $estudiante['Estudiante']['nombre']));
                 endif;
                 ?>

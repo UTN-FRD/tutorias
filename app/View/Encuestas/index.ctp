@@ -1,58 +1,6 @@
 
 <?php $this->Html->script('encuesta', array('inline' => false)) ?>
 <script>
-<<<<<<< HEAD
-    // wait for the DOM to be loaded
-    $(document).ready(function() {
-      //var form = null;
-			var options = {
-		        target:        '#output1',   // target element(s) to be updated with server response
-		        //beforeSubmit:  function(arr, $form, options) {
-            //  form = $form;
-            //  return true;
-            //},  // pre-submit callback
-		        success:       showResponse  // post-submit callback
-
-		        // other available options:
-		        //url:       url         // override for form's 'action' attribute
-		        //type:      type        // 'get' or 'post', override for form's 'method' attribute
-		        //dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
-		        //clearForm: true        // clear all form fields after successful submit
-		        //resetForm: true        // reset the form after successful submit
-
-		        // $.ajax options can be used here too, for example:
-		        //timeout:   3000
-		    };
-	    	$('form').ajaxForm(options);
-    });
-    function showResponse(responseText, statusText, xhr, $form)  {
-      if (responseText === "success") {
-        $('input[name=respuesta]', $form).css({backgroundColor: "green"});
-      }
-	    // for normal html responses, the first argument to the success callback
-	    // is the XMLHttpRequest object's responseText property
-
-	    // if the ajaxForm method was passed an Options Object with the dataType
-	    // property set to 'xml' then the first argument to the success callback
-	    // is the XMLHttpRequest object's responseXML property
-
-	    // if the ajaxForm method was passed an Options Object with the dataType
-	    // property set to 'json' then the first argument to the success callback
-	    // is the json data object returned by the server
-
-/*	    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
-	        '\n\nThe output div should have already been updated with the responseText.');
-*/	}
-
-</script>
-<?php if($authUser['role'] === 'admin'): ?>
-    <div class="col-lg-12">
-        <div class="text-right">
-            <?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate'), array('class' => 'btn btn-default')); ?>
-        </div>
-    </div>
-<?php endif; ?>
-=======
 	// wait for the DOM to be loaded
 	$(document).ready(function() {
 	  //var form = null;
@@ -90,11 +38,16 @@
 			});
 		}
 	}
-
 </script>
 
+<?php if($authUser['role'] === 'admin'): ?>
+    <div class="col-lg-12">
+        <div class="text-right">
+            <?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $encuestas[0]['Estudiante']['id']), array('class' => 'btn btn-default')); ?>
+        </div>
+    </div>
+<?php endif; ?>
 
->>>>>>> a8a1353119121093a3f798564108edaa2ff75536
 <div class="encuestas ">
 	<h2>
 		<?php echo __('Encuesta de '); ?>
@@ -129,65 +82,57 @@
 							echo $this->Form->input('respuesta', array(
 								'type'    => $tipo,
 								'options' => explode(',', $encuesta['Pregunta']['valores']),
-								'empty'   => false,
+								'legend'  => false,
 								'value'	  => $encuesta['Encuesta']['respuesta'],
 								'class'   => 'form-control'
 							));
 						} else if($tipo == 'radio') {
-							echo $this->Form->radio('respuesta', explode(',', $encuesta['Pregunta']['valores']), [
-								'type'   => $tipo,
+							echo $this->Form->input('respuesta', array(
+								'type' => $tipo,
+								'options' => explode(',', $encuesta['Pregunta']['valores']),
+								'legend' => false,
 								'value'	 => $encuesta['Encuesta']['respuesta'],
-								'legend' => false
-							]);
+								'separator' => '</p><p>',
+								'before' => '<p>',
+								'after' => '</p>'
+							));
 						} else if($tipo == 'checkbox') {
-							foreach (explode(',', $encuesta['Pregunta']['valores']) as $val):
-								echo $this->Form->input('respuesta', array(
-									'type'  => $tipo,
-									'value'	=> $val,
-									'label' => $val
-								));
-							endforeach;
+							echo $this->Form->checkbox('respuesta', array(
+								'options' => explode(',', $encuesta['Pregunta']['valores'])
+							));
 						?>
-
-						<button
-							class="btn btn-default"
-							type="submit"
-						>Guardar</button>
 
 						<?php
 						} else {
 						?>
+							<!-- aca se muestra ayuda -->
+							<I><?php echo h($encuesta['Pregunta']['ayuda']); ?></I>
 
-						<!-- aca se muestra ayuda -->
-						<I><?php echo h($encuesta['Pregunta']['ayuda']); ?></I>
+							<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="form-group">
+								<input
+									id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"'
+									name='respuesta'
+									type='<?php echo $tipo ?>'
+									class="form-control"
+									value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
+								/>
+							</div>
 
-						<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="form-group">
-							<input
-								id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"'
-								name='respuesta'
-								type='<?php echo $tipo ?>'
-								class="form-control"
-								value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
-							/>
-
-							<span
-								id="span-<?php echo $encuesta['Pregunta']['id'] ?>"
-								class="form-control-feedback"
-							></span>
-						</div>
-
-						<span class="input-group-btn">
-							<button
-								id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
-								class="btn btn-default"
-								type="submit"
-								onclick="validar(this), <?php echo h($encuesta['Encuesta']['respuesta']) ?>"
-							>Guardar</button>
-						</span>
-
+							<span class="input-group-btn">
+								<button
+									id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
+									class="btn btn-default"
+									type="submit"
+								>Guardar</button>
+							</span>
 						<?php
 						}
 						?>
+
+						<span
+							id="span-<?php echo $encuesta['Pregunta']['id'] ?>"
+							class="form-control-feedback"
+						></span>
 					</div>
 				</fieldset>
 			</form>

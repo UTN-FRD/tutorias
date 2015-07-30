@@ -43,24 +43,19 @@ class Encuesta extends AppModel {
 	public function crearEncuesta($estudiante_id) {
 		foreach($this->Pregunta->find('list', array(
 			'conditions' => array('Pregunta.activo =' => '1')
-		)) as $p ){ // aplicar filtro
+		)) as $p ) { // aplicar filtro
 			$this->create();
 			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $p);
 			$this->save($data);
 		}
+
 		return true;
 	}
 
-
-
 	public function regenerarEncuesta($estudiante_id) {
-		foreach($this->Pregunta->find('list', array(
-			'conditions' => array('Pregunta.activo =' => '1')
-		)) as $p ){
-			$this->delete();
-		}
+		$this->deleteAll(array('estudiante_id =' => $estudiante_id));
 		$this->crearEncuesta($estudiante_id);
-		return true;
- 		}
 
+		return true;
+ 	}
 }

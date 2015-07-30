@@ -17,11 +17,7 @@ class EstudiantesController extends AppController {
                 array('Estudiante.user_id' => $this->Auth->user('id') )));
         }
     }
-    public function regenerarEncuesta($id = null) {
-      $this->Estudiante->id = $id;
-      $this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
-      return $this->redirect(array('action' => 'index'));
-    }
+
     public function add(){
         $this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
 

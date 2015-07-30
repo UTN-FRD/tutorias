@@ -31,4 +31,19 @@ class Pregunta extends AppModel {
 		)
 	);
 
+	public $validate = array(
+		'orden' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'message' => 'El orden no puede estar vacio'
+			)
+		),
+		'pregunta' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'message' => 'La pregunta no puede estar vacia'
+			)
+		)
+	);
+
 }

@@ -39,7 +39,6 @@
                 <?php
                 echo $this->Form->input('tipo', array(
                     'type'    => 'select',
-                    'options' => $tiposDePreguntas,
                     'empty'   => false,
                     'class'   => 'form-control'
                 ));

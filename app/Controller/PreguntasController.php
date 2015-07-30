@@ -12,6 +12,14 @@ class PreguntasController extends AppController {
  *
  * @return void
  */
+
+    public $paginate = [
+        'limit' => 25,
+        'order' => [
+            'Pregunta.orden' => 'asc'
+        ]
+    ];
+
 	public function index() {
 		$this->Pregunta->recursive = 0;
 		$this->set('preguntas', $this->paginate());
@@ -38,26 +46,24 @@ class PreguntasController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->set('tipos', array(
+			'texto' => 'Texto',
+			'number' => 'Numerico',
+			'select' => 'Menu Desplegable',
+			'checkbox' => 'Check Box',
+			'radio' => 'Radio Button'
+		));
+
 		if ($this->request->is('post')) {
-			$this->Pregunta->create();
-			if ($this->Pregunta->save($this->request->data)) {
+			$this->Pregunta->create($this->request->data);
+
+			if ($this->Pregunta->save()) {
 				$this->Session->setFlash(__('La pregunta ha sido guardada.'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('La pregunta no ha podido ser guardada. Por favor, intente nuevamente.'));
 			}
-		}else{
-			$this->set('tiposDePreguntas', 
-				array(
-						'texto' => 'Texto',
-						'number' => 'Numerico',
-						'select' => 'Menu Desplegable',
-						'checkbox' => 'Check Box',
-						'radio' => 'Radio Button'
-					)
-				);
-		}
 
+			$this->Session->setFlash(__('La pregunta no ha podido ser guardada. Por favor, intente nuevamente.'));
+		}
 	}
 
 /**
