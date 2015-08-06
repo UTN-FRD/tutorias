@@ -83,7 +83,7 @@ class UsersController extends AppController {
             if ($this->Auth->login()) {
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Session->setFlash(__('Nombre de usuario o contraseña invalido, intente nuevamente.'));
+            $this->Session->setFlash('Nombre de usuario o contraseña invalido. Por favor intente nuevamente o comuniquese con SAE.', 'error');
         }
     }
 

@@ -38,7 +38,7 @@ class EstudiantesController extends AppController {
                 return $this->redirect(array('action' => 'index'));
             }
 
-            $this->Session->setFlash(__('No se ha podido actualizar el estudiante.'));
+            $this->Session->setFlash('No se ha podido actualizar el estudiante.', 'error');
         }
     }
 

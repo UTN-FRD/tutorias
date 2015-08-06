@@ -1,14 +1,17 @@
 
-<div class="users form">
-<?php echo $this->Session->flash('auth'); ?>
-<?php echo $this->Form->create('User'); ?>
-    <fieldset>
-        <legend>
-            <?php echo __('Por favor, ingrese su nombre de usuario y contraseña.'); ?>
-        </legend>
-        <?php echo $this->Form->input('username');
-        echo $this->Form->input('password');
-    ?>
-    </fieldset>
-<?php echo $this->Form->end(__('Login')); ?>
+<div class="col-md-6">
+	<h1>Bienvenido</h1>
+	<p>Por favor, ingrese su nombre de usuario y contraseña.</p>
+	<p>Si olvidó sus credenciales de acceso, por favor, comuniquese con el administrador de tutorias o dirijase a la oficina de SAE</p>
+</div>
+<div class="col-md-6">
+	<div class="alert alert-success">
+		<?php echo $this->Session->flash('auth'); ?>
+		<?php echo $this->Form->create('User'); ?>
+		        <?php 
+		        echo $this->Form->input('username');
+		        echo $this->Form->input('password');
+			    ?>
+			    <button class="btn btn-success" type="submit" >Login</button>
+	</div>
 </div>

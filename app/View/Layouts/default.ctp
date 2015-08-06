@@ -60,6 +60,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <?php if($loggedIn): ?>
             <ul class="nav navbar-nav">
                 <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>><a href="/tutorias/estudiantes">Estudiantes</a></li>
 
@@ -68,6 +69,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>><a href="/tutorias/preguntas">Preguntas</a></li>
                 <?php endif; ?>
             </ul>
+            <?php endif; ?>
 
             <?php if($loggedIn): ?>
                 <ul class="nav navbar-nav navbar-right">
@@ -88,9 +90,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <?php echo $this->Session->flash();?>
                 <div id="content">
                     <?php
-                    echo $this->Session->flash();
                     echo $this->fetch('content');
                     ?>
                 </div>
