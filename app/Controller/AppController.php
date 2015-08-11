@@ -41,12 +41,8 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => '/pages',
-                'action' => 'display'
-            ),
-            'logoutRedirect' => array(
-                'controller' => '/pages',
-                'action' => 'display'
+                'controller' => '/estudiantes',
+                'action' => 'index'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -65,7 +61,6 @@ class AppController extends Controller {
     public function beforeFilter() {
         $this->set('authUser', $this->Auth->user());
         $this->set('loggedIn', $this->Auth->loggedIn());
-        // $this->Auth->allow('add');
     }
 
 }
