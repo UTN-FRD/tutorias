@@ -41,8 +41,12 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => '/estudiantes',
+                'controller' => 'estudiantes',
                 'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'users',
+                'action' => 'login'
             ),
             'authenticate' => array(
                 'Form' => array(
