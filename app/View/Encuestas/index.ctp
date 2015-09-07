@@ -1,5 +1,6 @@
 
 <?php $this->Html->script('encuesta', array('inline' => false)) ?>
+
 <script>
 	// wait for the DOM to be loaded
 	$(document).ready(function() {
@@ -41,14 +42,14 @@
 </script>
 
 <?php if($authUser['role'] === 'admin'): ?>
-    <div class="col-lg-12">
-        <div class="text-right">
-            <?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $encuestas[0]['Estudiante']['id']), array('class' => 'btn btn-default')); ?>
-        </div>
-    </div>
+	<div class="col-lg-12">
+		<div class="text-right">
+			<?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $encuestas[0]['Estudiante']['id']), array('class' => 'btn btn-default')); ?>
+		</div>
+	</div>
 <?php endif; ?>
 
-<div class="encuestas ">
+<div class="encuestas">
 	<h2>
 		<?php echo __('Encuesta de '); ?>
 			<a href="/tutorias/estudiantes/edit/<?php echo $encuestas[0]['Estudiante']['id']; ?>"><?php echo $encuestas[0]['Estudiante']['nombre']; ?></a>
@@ -64,37 +65,47 @@
 				method='post'
 			>
 				<fieldset>
-					<legend>
-						<?php echo h($encuesta['Pregunta']['pregunta']); ?>
-					</legend>
-
-					<input
-						type='hidden'
-						name='encuestaId'
-						id='encuestaId'
-						value='<?php echo h($encuesta['Encuesta']['id']); ?>'
-					/>
-
 					<div class="form-group">
+						<legend>
+							<?php echo h($encuesta['Pregunta']['pregunta']); ?>
+						</legend>
+
+						<input
+							type='hidden'
+							name='encuestaId'
+							id='encuestaId'
+							value='<?php echo h($encuesta['Encuesta']['id']); ?>'
+						/>
+
+						<?php if($encuesta['Pregunta']['ayuda']) { ?>
+							<div class="alert alert-warning" role="alert">
+								<?php echo h($encuesta['Pregunta']['ayuda']); ?>
+							</div>
+
 						<?php
+						}
+						
 						$tipo = h($encuesta['Pregunta']['tipo']);
+
 						if($tipo == 'select') {
 							echo $this->Form->input('respuesta', array(
+								'class'   => 'form-control',
 								'type'    => $tipo,
-								'options' => explode(',', $encuesta['Pregunta']['valores']),
+								'label'   => false,
 								'legend'  => false,
 								'value'	  => $encuesta['Encuesta']['respuesta'],
-								'class'   => 'form-control'
+								'options' => explode(',', $encuesta['Pregunta']['valores'])
 							));
 						} else if($tipo == 'radio') {
 							echo $this->Form->input('respuesta', array(
-								'type' => $tipo,
-								'options' => explode(',', $encuesta['Pregunta']['valores']),
-								'legend' => false,
-								'value'	 => $encuesta['Encuesta']['respuesta'],
-								'separator' => '</p><p>',
-								'before' => '<p>',
-								'after' => '</p>'
+								'type'      => $tipo,
+								'label'     => false,
+								'legend'    => false,
+								'before'    => '<label>',
+								'after'     => '</label>',
+								'separator' => '</label></div><div class="radio"><label>',
+								'value'	    => $encuesta['Encuesta']['respuesta'],
+								'options'   => explode(',', $encuesta['Pregunta']['valores'])
 							));
 						} else if($tipo == 'checkbox') {
 							echo $this->Form->checkbox('respuesta', array(
@@ -102,13 +113,8 @@
 							));
 						?>
 
-						<?php
-						} else {
-						?>
-							<!-- aca se muestra ayuda -->
-							<I><?php echo h($encuesta['Pregunta']['ayuda']); ?></I>
-
-							<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="form-group">
+						<?php } else { ?>
+							<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
 								<input
 									id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"'
 									name='respuesta'
@@ -116,18 +122,15 @@
 									class="form-control"
 									value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
 								/>
+								<span class="input-group-btn">
+									<button
+										id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
+										class="btn btn-default"
+										type="submit"
+									>Guardar</button>
+								</span>
 							</div>
-
-							<span class="input-group-btn">
-								<button
-									id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
-									class="btn btn-default"
-									type="submit"
-								>Guardar</button>
-							</span>
-						<?php
-						}
-						?>
+						<?php } ?>
 
 						<span
 							id="span-<?php echo $encuesta['Pregunta']['id'] ?>"

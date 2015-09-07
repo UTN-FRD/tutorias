@@ -35,10 +35,11 @@ class EstudiantesController extends AppController {
 
             if ($this->Estudiante->save()){
                 $this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
+                 $this->Session->setFlash('El estudiante ha sido creado correctamente.', 'success');
                 return $this->redirect(array('action' => 'index'));
             }
 
-            $this->Session->setFlash('No se ha podido actualizar el estudiante.', 'error');
+            $this->Session->setFlash('No se ha podido crear el estudiante. Por favor, intente nuevamente.', 'error');
         }
     }
 
@@ -66,10 +67,11 @@ class EstudiantesController extends AppController {
         if ($this->request->is(array('put'))) {
             $this->Estudiante->id = $id;
             if ($this->Estudiante->save($this->request->data)) {
-                $this->Session->setFlash(__('El estudiante ha sido actualizado'));
+                $this->Session->setFlash('El estudiante ha sido actualizado.', 'success');
                 return $this->redirect(array('action' => 'index'));
             }
-            $this->Session->setFlash(__('No se puede actualizar estudiante.'));
+
+            $this->Session->setFlash('No se ha podido actualizar el estudiante. Por favor, intente nuevamente.', 'error');
         }
 
         if (!$this->request->data) {
@@ -86,9 +88,9 @@ class EstudiantesController extends AppController {
         }
 
         if ($this->Estudiante->delete()) {
-            $this->Session->setFlash(__('Estudiante eliminado'));
+            $this->Session->setFlash('El estudiante se ha eliminado correctamente.', 'success');
         } else {
-            $this->Session->setFlash(__('Estudiante invalido'));
+            $this->Session->setFlash('No se ha podido eliminar el estudiante. Por favor, intente nuevamente.', 'error');
         }
 
         return $this->redirect(array('action' => 'index'));
