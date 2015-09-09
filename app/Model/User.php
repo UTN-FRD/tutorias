@@ -9,6 +9,7 @@ class User extends AppModel {
         'username' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
+                'required' => true,
                 'message' => 'Por favor ingrese un nombre de usuario'
             ),
             'unique' => array(
@@ -19,14 +20,15 @@ class User extends AppModel {
         'password' => array(
             'notEmpty' => array(
                 'rule' => 'notEmpty',
+                'required' => true,
                 'message' => 'Por favor ingrese una contraseña'
             )
         ),
         'role' => array(
             'valid' => array(
                 'rule' => array('inList', array('admin', 'tutor')),
-                'message' => 'Por favor ingrese un rol valido',
-                'allowEmpty' => false
+                'required' => true,
+                'message' => 'Por favor ingrese un rol valido'
             )
         )
     );

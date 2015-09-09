@@ -35,10 +35,12 @@ class EncuestasController extends AppController {
 			$this->Encuesta->set(array(
 			    'respuesta' => $this->data['respuesta']
 			));
-
-			$this->Encuesta->save();
-
-			echo "success";
+		
+			if ($this->Encuesta->save()) {
+				echo "success";
+			} else {
+				echo "error";
+			}
 		} else {
 			echo "error";
 		}

@@ -37,6 +37,14 @@
 			$("#span-".concat(id)).attr({
 				class: "glyphicon glyphicon-ok form-control-feedback"
 			});
+		} else {
+			$form.attr({
+				class: "form-group has-error has-feedback"
+			});
+
+			$("#span-".concat(id)).attr({
+				class: "glyphicon glyphicon-remove form-control-feedback"
+			});
 		}
 	}
 </script>
@@ -116,7 +124,7 @@
 						<?php } else { ?>
 							<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
 								<input
-									id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"'
+									id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>'
 									name='respuesta'
 									type='<?php echo $tipo ?>'
 									class="form-control"

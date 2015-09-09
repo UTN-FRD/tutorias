@@ -35,7 +35,7 @@ class EstudiantesController extends AppController {
 
             if ($this->Estudiante->save()){
                 $this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
-                 $this->Session->setFlash('El estudiante ha sido creado correctamente.', 'success');
+                $this->Session->setFlash('El estudiante ha sido creado correctamente.', 'success');
                 return $this->redirect(array('action' => 'index'));
             }
 
