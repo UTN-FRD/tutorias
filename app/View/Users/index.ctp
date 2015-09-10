@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'Usuarios');?>
 <div class="row">
     <div class="col-md-12">
         <div class="page-title">
@@ -16,8 +17,8 @@
         <thead>
         <tr>
             <th><?php echo $this->Paginator->sort('id'); ?></th>
-            <th><?php echo $this->Paginator->sort('username'); ?></th>
-            <th><?php echo $this->Paginator->sort('role'); ?></th>
+            <th><?php echo $this->Paginator->sort('username','Nombre'); ?></th>
+            <th><?php echo $this->Paginator->sort('role','Rol'); ?></th>
             <th class="actions"></th>
         </tr>
         </thead>
