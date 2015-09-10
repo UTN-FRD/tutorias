@@ -30,7 +30,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
-
+		// switch
+		echo $this->Html->css('bootstrap-switch');
+		echo $this->Html->script('bootstrap-switch');
+		
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('styles');
@@ -82,7 +85,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</div>
 	<nav class="navbar-bottom" id="footer">
 	<?php echo $this->element('sql_dump'); ?>
-	
+
 	  <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
 	</nav>
 </body>

@@ -38,10 +38,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('http://malsup.github.io/jquery.form.js');
 
+    echo $this->Html->css('bootstrap-switch.min');
+	echo $this->Html->script('bootstrap-switch.min');
+    echo $this->Html->script('app');
+    echo $this->Html->script('/funciones/switch');
+
     echo $this->fetch('css');
     echo $this->fetch('script');
+
+    // switch
+
+
+    
     ?>
- 
+
 </head>
 
 <body>
@@ -99,7 +109,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             </div>
         </div>
     </div>
-    
+
     <nav class="navbar-bottom" id="footer">
         <?php echo $this->element('sql_dump'); ?>
         <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>

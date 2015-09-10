@@ -32,8 +32,8 @@
 				<td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
 				<td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
 				<td class="actions">
+          <?php echo $this->Form->checkbox('activo', array('data-id' => $pregunta['Pregunta']['id'], 'checked' => $pregunta['Pregunta']['activo'], "class" => "checkbox-switch", "label" => false)); ?>
 					<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $pregunta['Pregunta']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $pregunta['Pregunta']['id']), array(), __('¿Está seguro que desea borrar # %s?', $pregunta['Pregunta']['id'])); ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
@@ -57,3 +57,4 @@
         </div>
     </div>
 </div>
+

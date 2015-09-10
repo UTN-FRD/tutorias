@@ -45,5 +45,4 @@ class Pregunta extends AppModel {
 			)
 		)
 	);
-
 }

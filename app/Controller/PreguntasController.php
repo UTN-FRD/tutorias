@@ -121,4 +121,18 @@ class PreguntasController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+  public function activate($id = null, $value = 0) {
+    $this->Pregunta->id = $id;
+    if (!$this->Pregunta->exists()) {
+			throw new NotFoundException(__('Pregunta inválida'));
+		}
+
+	  $this->autoRender = false;
+	  $estado = (int)$this->Pregunta->field("activo");
+      if ($estado != (int)$value) {
+		  $this->Pregunta->saveField("activo", $value);
+	  }
+  }
 }
