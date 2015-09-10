@@ -77,7 +77,7 @@ class UsersController extends AppController {
 
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl("/"));
             }
             $this->Session->setFlash('Nombre de usuario o contraseña invalido. Por favor intente nuevamente o comuniquese con SAE.', 'error');
         }
