@@ -5,7 +5,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         // sacar el add luego.
-        $this->Auth->allow('logout','add');
+        $this->Auth->allow('logout');
     }
 
     public function index() {
@@ -25,13 +25,11 @@ class UsersController extends AppController {
         if ($this->request->is('post')) {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El usuario ha sido creado'));
+                $this->Session->setFlash('El usuario ha sido creado correctamente.', 'success');
                 return $this->redirect(array('action' => 'index'));
             }
 
-            $this->Session->setFlash(
-                __('El usuario no puede ser guardado, intente nuevamente.')
-            );
+            $this->Session->setFlash('No se ha podido crear el usuario. Por favor, intente nuevamente.', 'error');
         }
     }
 
@@ -43,13 +41,11 @@ class UsersController extends AppController {
 
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El usuario ha sido guardado'));
+                $this->Session->setFlash('El usuario ha sido actualizado correctamente.', 'success');
                 return $this->redirect(array('action' => 'index'));
             }
 
-            $this->Session->setFlash(
-                __('El usuario no puede ser guardado, intente nuevamente.')
-            );
+            $this->Session->setFlash('No se ha podido actualizar el usuario. Por favor, intente nuevamente.', 'error');
         } else {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
@@ -65,9 +61,9 @@ class UsersController extends AppController {
         }
 
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('Usuario eliminado'));
+            $this->Session->setFlash('El usuario ha sido eliminado correctamente.', 'success');
         } else {
-            $this->Session->setFlash(__('Usuario invalido'));
+            $this->Session->setFlash('No se ha podido eliminar el usuario. Por favor, intente nuevamente.', 'error');
         }
 
         return $this->redirect(array('action' => 'index'));

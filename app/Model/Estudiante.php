@@ -11,6 +11,7 @@ class Estudiante extends AppModel {
 		'legajo' => array(
 			'mayorCero' => array(
 				'rule' => array('comparison', '>', 0),
+				'required' => true,
 				'message' => 'El número de legajo debe ser mayor a cero'
 			),
 			'unique' => array(
@@ -21,7 +22,15 @@ class Estudiante extends AppModel {
 		'nombre' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
+				'required' => true,
 				'message' => 'El nombre no puede estar vacio'
+			)
+		),
+		'carrera' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'required' => true,
+				'message' => 'La carrera no puede estar vacia'
 			)
 		)
 	);

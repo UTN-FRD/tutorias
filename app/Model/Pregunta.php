@@ -35,13 +35,22 @@ class Pregunta extends AppModel {
 		'orden' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
+				'required' => true,
 				'message' => 'El orden no puede estar vacio'
 			)
 		),
 		'pregunta' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
+				'required' => true,
 				'message' => 'La pregunta no puede estar vacia'
+			)
+		),
+		'tipo' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'required' => true,
+				'message' => 'El tipo no puede estar vacio.'
 			)
 		)
 	);

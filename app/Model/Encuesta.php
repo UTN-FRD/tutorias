@@ -40,6 +40,39 @@ class Encuesta extends AppModel {
 		)
 	);
 
+	public $validate = array(
+		'respuesta' => array(
+			'required' => array(
+				'rule' => 'validarTipo',
+				'message' => 'Respuesta invalida'
+			)
+		)
+	);
+
+	public function validarTipo($check) {
+		$encuesta = $this->findById($this->id);
+		$respuesta = array_values($check)[0];
+
+		if ($respuesta === '') {
+			return true;
+		}
+
+		$tipo = $encuesta['Pregunta']['tipo'];
+		switch ($tipo) {
+			case 'number':
+				return preg_match('/^-?[0-9]+$/', $respuesta);
+			case 'select':	// Misma validación que para 'radio'.
+			case 'radio':
+				$valores = explode(',', $encuesta['Pregunta']['valores']);
+				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
+//			case 'checkbox':
+			case 'texto':
+				return true;
+		}
+
+		return false;
+	}
+
 	public function crearEncuesta($estudiante_id) {
 		foreach($this->Pregunta->find('list', array(
 			'conditions' => array('Pregunta.activo =' => '1')
@@ -57,5 +90,5 @@ class Encuesta extends AppModel {
 		$this->crearEncuesta($estudiante_id);
 
 		return true;
- 	}
+	}
 }

@@ -58,11 +58,11 @@ class PreguntasController extends AppController {
 			$this->Pregunta->create($this->request->data);
 
 			if ($this->Pregunta->save()) {
-				$this->Session->setFlash(__('La pregunta ha sido guardada.'));
+				$this->Session->setFlash('La pregunta ha sido creada correctamente.', 'success');
 				return $this->redirect(array('action' => 'index'));
 			}
 
-			$this->Session->setFlash(__('La pregunta no ha podido ser guardada. Por favor, intente nuevamente.'));
+			$this->Session->setFlash('No se ha podido crear la pregunta. Por favor, intente nuevamente.', 'error');
 		}
 	}
 
@@ -82,10 +82,10 @@ class PreguntasController extends AppController {
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
-				$this->Session->setFlash(__('La pregunta ha sido guardada.'));
+				$this->Session->setFlash('La pregunta ha sido actualizada correctamente.', 'success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('La pregunta no ha podido ser guardada. Por favor, intente nuevamente.'));
+				$this->Session->setFlash('No se ha podido actualizar la pregunta. Por favor, intente nuevamente.', 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
@@ -110,15 +110,18 @@ class PreguntasController extends AppController {
  */
 	public function delete($id = null) {
 		$this->Pregunta->id = $id;
+
 		if (!$this->Pregunta->exists()) {
 			throw new NotFoundException(__('Pregunta inválida'));
 		}
+
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Pregunta->delete()) {
-			$this->Session->setFlash(__('La pregunta ha sido borrada.'));
+			$this->Session->setFlash('La pregunta ha sido eliminada correctamente.', 'success');
 		} else {
-			$this->Session->setFlash(__('La pregunta no ha podido ser borrada. Por favor, intente nuevamente.'));
+			$this->Session->setFlash('No se ha podido eliminar la pregunta. Por favor, intente nuevamente.', 'error');
 		}
+
 		return $this->redirect(array('action' => 'index'));
 	}
 
