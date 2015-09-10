@@ -13,12 +13,12 @@ class PreguntasController extends AppController {
  * @return void
  */
 
-    public $paginate = [
-        'limit' => 25,
-        'order' => [
-            'Pregunta.orden' => 'asc'
-        ]
-    ];
+	public $paginate = [
+		'limit' => 25,
+		'order' => [
+			'Pregunta.orden' => 'asc'
+		]
+	];
 
 	public function index() {
 		$this->Pregunta->recursive = 0;
@@ -126,16 +126,16 @@ class PreguntasController extends AppController {
 	}
 
 
-  public function activate($id = null, $value = 0) {
-    $this->Pregunta->id = $id;
-    if (!$this->Pregunta->exists()) {
+	public function activate($id = null, $value = 0) {
+		$this->Pregunta->id = $id;
+		if (!$this->Pregunta->exists()) {
 			throw new NotFoundException(__('Pregunta inválida'));
 		}
 
-	  $this->autoRender = false;
-	  $estado = (int)$this->Pregunta->field("activo");
-      if ($estado != (int)$value) {
-		  $this->Pregunta->saveField("activo", $value);
-	  }
-  }
+		$this->autoRender = false;
+		$estado = (int)$this->Pregunta->field("activo");
+		if ($estado != (int)$value) {
+			$this->Pregunta->saveField("activo", $value);
+		}
+	}
 }
