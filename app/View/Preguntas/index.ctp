@@ -13,31 +13,38 @@
 
     <div class="col-md-12">
         <table class="table">
-			<thead>
-			<tr>
-					<th><?php echo $this->Paginator->sort('orden'); ?></th>
-					<th><?php echo $this->Paginator->sort('pregunta'); ?></th>
-          <th><?php echo $this->Paginator->sort('ayuda'); ?></th>
-					<th><?php echo $this->Paginator->sort('tipo'); ?></th>
-					<th><?php echo __('valores'); ?></th>
-					<th></th>
-			</tr>
-			</thead>
-			<tbody>
-			<?php foreach ($preguntas as $pregunta): ?>
-			<tr>
-				<td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
-				<td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
-        <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
-				<td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
-				<td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
-				<td class="actions">
-          <?php echo $this->Form->checkbox('activo', array('data-id' => $pregunta['Pregunta']['id'], 'checked' => $pregunta['Pregunta']['activo'], "class" => "checkbox-switch", "label" => false)); ?>
-					<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $pregunta['Pregunta']['id'])); ?>
-				</td>
-			</tr>
-			<?php endforeach; ?>
-        </tbody>
+            <thead>
+                <tr>
+                    <th><?php echo $this->Paginator->sort('orden'); ?></th>
+                    <th><?php echo $this->Paginator->sort('pregunta'); ?></th>
+                    <th><?php echo $this->Paginator->sort('ayuda'); ?></th>
+                    <th><?php echo $this->Paginator->sort('tipo'); ?></th>
+                    <th><?php echo __('Valores'); ?></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php foreach ($preguntas as $pregunta): ?>
+                    <tr>
+                        <td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
+                        <td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
+                        <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
+                        <td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
+                        <td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
+                        <td class="actions">
+                            <?php
+                            echo $this->Form->checkbox('activo', array(
+                                'data-id' => $pregunta['Pregunta']['id'],
+                                'checked' => $pregunta['Pregunta']['activo'],
+                                "class" => "checkbox-switch",
+                                "label" => false
+                            ));
+                            echo $this->Html->link(__('Editar'), array('action' => 'edit', $pregunta['Pregunta']['id']));
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
 
         <p style="font-weight:bold;">
@@ -57,11 +64,11 @@
         </div>
     </div>
 </div>
+
 <script>
     $(function() {
         $('input[type="checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
             $.get("/tutorias/preguntas/activate/" + $(this).data('id') + "/" + (state === true ? 1 : 0));
         });
     });
-
 </script>
