@@ -28,7 +28,7 @@ class User extends AppModel {
             'valid' => array(
                 'rule' => array('inList', array('admin', 'tutor')),
                 'required' => true,
-                'message' => 'Por favor ingrese un rol valido'
+                'message' => 'El rol es invalido'
             )
         )
     );

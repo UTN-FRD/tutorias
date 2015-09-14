@@ -8,12 +8,11 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class EncuestasController extends AppController {
-	function index($id = null){
-		$conditions = array(
-			'order' => 'orden', //cambiar por orden
-			'conditions' => ['Estudiante.id' => $id]
-		);
-		$this->set('encuestas', $this->Encuesta->find('all', $conditions));
+	function index($id = null) {
+		$this->set(array(
+			'estudiante' => $this->Encuesta->Estudiante->findById($id)['Estudiante'],
+			'encuestas' => $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden')
+		));
 	}
 
 	public function regenerate($id = null) {
@@ -27,13 +26,13 @@ class EncuestasController extends AppController {
 		$this->autoRender = false;
 
 		if (!$id) {
-	        throw new NotFoundException(__('Estudiante Invalido'));
-	    }
+			throw new NotFoundException(__('Estudiante Invalido'));
+		}
 
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Encuesta->id = $this->data['encuestaId'];
 			$this->Encuesta->set(array(
-			    'respuesta' => $this->data['respuesta']
+				'respuesta' => $this->data['respuesta']
 			));
 		
 			if ($this->Encuesta->save()) {
@@ -47,7 +46,7 @@ class EncuestasController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-        // Admin can access every action
-        return true;
-    }
+		// Admin can access every action
+		return true;
+	}
 }

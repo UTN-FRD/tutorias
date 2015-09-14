@@ -30,12 +30,35 @@ class Estudiante extends AppModel
         ),
         'carrera' => array(
             'required' => array(
-                'rule' => 'notEmpty',
+                'rule' => array('inList', array(
+                    'Ingeniería en Sistemas',
+                    'Ingeniería Mecanica',
+                    'Ingeniería Electrica',
+                    'Ingeniería Química'
+                )),
                 'required' => true,
-                'message' => 'La carrera no puede estar vacia'
+                'message' => 'La carrera es invalida'
+            )
+        ),
+        'user_id' => array(
+            'required' => array(
+                'rule' => 'validarUser',
+                'allowEmpty' => true,
+                'message' => 'El tutor es invalido'
             )
         )
     );
+
+    public function validarUser($check) {
+        $usuarios = $this->User->find('list', array(
+            'fields' => array('User.username', 'User.id'),
+            'conditions' => array('User.role =' => 'tutor')
+        ));
+        $respuesta = array_values($check)[0];
+
+        return in_array($respuesta, $usuarios);
+    }
+
 
     //The Associations below have been created with all possible keys, those that are not needed can be removed
 

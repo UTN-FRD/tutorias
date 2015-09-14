@@ -4,26 +4,21 @@
 <script>
 	// wait for the DOM to be loaded
 	$(document).ready(function() {
-	  //var form = null;
-			var options = {
-				target:        '#output1',   // target element(s) to be updated with server response
-				//beforeSubmit:  function(arr, $form, options) {
-			//  form = $form;
-			//  return true;
-			//},  // pre-submit callback
-				success:       showResponse  // post-submit callback
+		var options = {
+			success:       showResponse  // post-submit callback
 
-				// other available options:
-				//url:       url         // override for form's 'action' attribute
-				//type:      type        // 'get' or 'post', override for form's 'method' attribute
-				//dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
-				//clearForm: true        // clear all form fields after successful submit
-				//resetForm: true        // reset the form after successful submit
+			// other available options:
+			//beforeSubmit:          // pre-submit callback
+			//url:       url         // override for form's 'action' attribute
+			//type:      type        // 'get' or 'post', override for form's 'method' attribute
+			//dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
+			//clearForm: true        // clear all form fields after successful submit
+			//resetForm: true        // reset the form after successful submit
 
-				// $.ajax options can be used here too, for example:
-				//timeout:   3000
-			};
-			$('form').ajaxForm(options);
+			// $.ajax options can be used here too, for example:
+			//timeout:   3000
+		};
+		$('form').ajaxForm(options);
 	});
 
 	function showResponse(responseText, statusText, xhr, $form)  {
@@ -52,7 +47,7 @@
 <?php if($authUser['role'] === 'admin'): ?>
 	<div class="col-lg-12">
 		<div class="text-right">
-			<?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $encuestas[0]['Estudiante']['id']), array('class' => 'btn btn-default')); ?>
+			<?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $estudiante['id']), array('class' => 'btn btn-default')); ?>
 		</div>
 	</div>
 <?php endif; ?>
@@ -60,16 +55,16 @@
 <div class="encuestas">
 	<h2>
 		<?php echo __('Encuesta de '); ?>
-			<a href="/tutorias/estudiantes/edit/<?php echo $encuestas[0]['Estudiante']['id']; ?>"><?php echo $encuestas[0]['Estudiante']['nombre']; ?></a>
+			<a href="/tutorias/estudiantes/edit/<?php echo $estudiante['id']; ?>">
+				<?php echo ($estudiante['nombre']); ?>
+			</a>
 	</h2>
 
 	<div>
-		<span id="output1"></span>
-
 		<?php foreach ($encuestas as $encuesta): ?>
 			<form
 				id="form-<?php echo $encuesta['Pregunta']['id'] ?>"
-				action="/tutorias/encuestas/save/<?php echo $encuestas[0]['Estudiante']['id']; ?>"
+				action="/tutorias/encuestas/save/<?php echo $estudiante['id']; ?>"
 				method='post'
 			>
 				<fieldset>
@@ -101,8 +96,8 @@
 								'type'    => $tipo,
 								'label'   => false,
 								'legend'  => false,
-								'value'	  => $encuesta['Encuesta']['respuesta'],
-								'options' => explode(',', $encuesta['Pregunta']['valores'])
+								'value'	  => h($encuesta['Encuesta']['respuesta']),
+								'options' => explode(',', h($encuesta['Pregunta']['valores']))
 							));
 						} else if($tipo == 'radio') {
 							echo $this->Form->input('respuesta', array(
@@ -112,12 +107,12 @@
 								'before'    => '<label>',
 								'after'     => '</label>',
 								'separator' => '</label></div><div class="radio"><label>',
-								'value'	    => $encuesta['Encuesta']['respuesta'],
-								'options'   => explode(',', $encuesta['Pregunta']['valores'])
+								'value'	    => h($encuesta['Encuesta']['respuesta']),
+								'options'   => explode(',', h($encuesta['Pregunta']['valores']))
 							));
 						} else if($tipo == 'checkbox') {
 							echo $this->Form->checkbox('respuesta', array(
-								'options' => explode(',', $encuesta['Pregunta']['valores'])
+								'options' => explode(',', h($encuesta['Pregunta']['valores']))
 							));
 						?>
 

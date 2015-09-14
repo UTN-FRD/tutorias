@@ -48,9 +48,15 @@ class Pregunta extends AppModel {
 		),
 		'tipo' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => array('inList', array(
+					'texto',
+					'number',
+					'select',
+					'checkbox',
+					'radio'
+				)),
 				'required' => true,
-				'message' => 'El tipo no puede estar vacio.'
+				'message' => 'El tipo de pregunta es invalido'
 			)
 		)
 	);

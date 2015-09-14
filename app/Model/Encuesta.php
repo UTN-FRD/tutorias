@@ -44,7 +44,7 @@ class Encuesta extends AppModel {
 		'respuesta' => array(
 			'required' => array(
 				'rule' => 'validarTipo',
-				'message' => 'Respuesta invalida'
+				'message' => 'La respuesta es invalida'
 			)
 		)
 	);
@@ -74,11 +74,13 @@ class Encuesta extends AppModel {
 	}
 
 	public function crearEncuesta($estudiante_id) {
-		foreach($this->Pregunta->find('list', array(
+		$preguntas = $this->Pregunta->find('list', array(
 			'conditions' => array('Pregunta.activo =' => '1')
-		)) as $p ) { // aplicar filtro
+		));
+		
+		foreach($preguntas as $pregunta) {
 			$this->create();
-			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $p);
+			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $pregunta);
 			$this->save($data);
 		}
 
