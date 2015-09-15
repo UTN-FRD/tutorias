@@ -49,7 +49,7 @@ class Pregunta extends AppModel {
 		'tipo' => array(
 			'required' => array(
 				'rule' => array('inList', array(
-					'texto',
+					'text',
 					'number',
 					'select',
 					'checkbox',

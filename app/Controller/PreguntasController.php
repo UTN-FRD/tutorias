@@ -32,7 +32,7 @@ class PreguntasController extends AppController {
  */
 	public function add() {
 		$this->set('tipos', array(
-			'texto' => 'Texto',
+			'text' => 'Texto',
 			'number' => 'Numerico',
 			'select' => 'Menu Desplegable',
 			'checkbox' => 'Check Box',
@@ -65,7 +65,7 @@ class PreguntasController extends AppController {
 		}
 
 		$this->set('tipos', array(
-			'texto' => 'Texto',
+			'text' => 'Texto',
 			'number' => 'Numerico',
 			'select' => 'Menu Desplegable',
 			'checkbox' => 'Check Box',
