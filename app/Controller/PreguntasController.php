@@ -26,21 +26,6 @@ class PreguntasController extends AppController {
 	}
 
 /**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Pregunta->exists($id)) {
-			throw new NotFoundException(__('Pregunta inválida'));
-		}
-		$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
-		$this->set('pregunta', $this->Pregunta->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
@@ -75,58 +60,35 @@ class PreguntasController extends AppController {
  */
 	public function edit($id = null) {
 		$this->Pregunta->id = $id;
-
-		if (!$this->Pregunta->exists($id)) {
+		if (!$this->Pregunta->exists()) {
 			throw new NotFoundException(__('Pregunta inválida'));
 		}
+
+		$this->set('tipos', array(
+			'texto' => 'Texto',
+			'number' => 'Numerico',
+			'select' => 'Menu Desplegable',
+			'checkbox' => 'Check Box',
+			'radio' => 'Radio Button'
+		));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
 				$this->Session->setFlash('La pregunta ha sido actualizada correctamente.', 'success');
 				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash('No se ha podido actualizar la pregunta. Por favor, intente nuevamente.', 'error');
 			}
-		} else {
-			$options = array('conditions' => array('Pregunta.' . $this->Pregunta->primaryKey => $id));
-			$this->request->data = $this->Pregunta->find('first', $options);
 
-			$this->set('tiposDePreguntas', array(
-				'texto' => 'Texto',
-				'number' => 'Numerico',
-				'select' => 'Menu Desplegable',
-				'checkbox' => 'Check Box',
-				'radio' => 'Radio Button'
-			));
+			$this->Session->setFlash('No se ha podido actualizar la pregunta. Por favor, intente nuevamente.', 'error');
+		}
+
+		if (!$this->request->data) {
+			$this->request->data = $this->Pregunta->findById($id);
 		}
 	}
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->Pregunta->id = $id;
-
-		if (!$this->Pregunta->exists()) {
-			throw new NotFoundException(__('Pregunta inválida'));
-		}
-
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Pregunta->delete()) {
-			$this->Session->setFlash('La pregunta ha sido eliminada correctamente.', 'success');
-		} else {
-			$this->Session->setFlash('No se ha podido eliminar la pregunta. Por favor, intente nuevamente.', 'error');
-		}
-
-		return $this->redirect(array('action' => 'index'));
-	}
-
 
 	public function activate($id = null, $value = 0) {
+		$this->request->allowMethod('post', 'put');
+
 		$this->Pregunta->id = $id;
 		if (!$this->Pregunta->exists()) {
 			throw new NotFoundException(__('Pregunta inválida'));

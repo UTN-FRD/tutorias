@@ -89,15 +89,15 @@
 						}
 						
 						$tipo = h($encuesta['Pregunta']['tipo']);
+						$valores = explode(',', h($encuesta['Pregunta']['valores']));
 
 						if($tipo == 'select') {
-							echo $this->Form->input('respuesta', array(
+							echo $this->Form->select('respuesta', $valores, array(
 								'class'   => 'form-control',
-								'type'    => $tipo,
 								'label'   => false,
 								'legend'  => false,
-								'value'	  => h($encuesta['Encuesta']['respuesta']),
-								'options' => explode(',', h($encuesta['Pregunta']['valores']))
+								'empty'   => false,
+								'value'	  => h($encuesta['Encuesta']['respuesta'])
 							));
 						} else if($tipo == 'radio') {
 							echo $this->Form->input('respuesta', array(
@@ -108,12 +108,14 @@
 								'after'     => '</label>',
 								'separator' => '</label></div><div class="radio"><label>',
 								'value'	    => h($encuesta['Encuesta']['respuesta']),
-								'options'   => explode(',', h($encuesta['Pregunta']['valores']))
+								'options'   => $valores
 							));
 						} else if($tipo == 'checkbox') {
-							echo $this->Form->checkbox('respuesta', array(
-								'options' => explode(',', h($encuesta['Pregunta']['valores']))
+							/*
+							echo $this->Form->select('done', $valores, array(
+								'multiple' => 'checkbox'
 							));
+							*/
 						?>
 
 						<?php } else { ?>

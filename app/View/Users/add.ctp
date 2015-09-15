@@ -1,4 +1,5 @@
-<!-- app/View/Users/add.ctp -->
+<?php $this->assign('title', 'Usuarios');?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="page-title">

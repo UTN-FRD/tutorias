@@ -44,6 +44,7 @@ class Encuesta extends AppModel {
 		'respuesta' => array(
 			'required' => array(
 				'rule' => 'validarTipo',
+				'allowEmpty' => true,
 				'message' => 'La respuesta es invalida'
 			)
 		)
@@ -52,10 +53,6 @@ class Encuesta extends AppModel {
 	public function validarTipo($check) {
 		$encuesta = $this->findById($this->id);
 		$respuesta = array_values($check)[0];
-
-		if ($respuesta === '') {
-			return true;
-		}
 
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {

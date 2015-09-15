@@ -1,3 +1,4 @@
+<?php $this->assign('title', 'Tutorias - UTN FRD');?>
 
 <div class="col-md-6">
 	<h1>Bienvenido</h1>

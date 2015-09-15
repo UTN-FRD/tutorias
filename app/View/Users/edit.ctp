@@ -1,4 +1,5 @@
-<!-- app/View/Users/edit.ctp -->
+<?php $this->assign('title', 'Usuarios');?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="page-title">
@@ -11,28 +12,6 @@
             <legend>
                 <?php echo __('Editar Usuario'); ?>
             </legend>
-
-            <?php
-            if (($authUser['role'] === 'admin') && (AuthComponent::user('id') <> $this->Form->value('User.id'))) {
-            ?>
-
-            <div class="col-lg-12">
-                <div class="text-right">
-
-                <?php
-                /*
-                    Mostrar este boton impide poder guardar el formulario.
-
-                    echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $this->Form->value('User.id')), array('class' => 'btn btn-danger'), __('¿Está seguro que desea borrar a %s?', $this->Form->value('User.username')));
-                */
-                ?>
-
-                </div>
-            </div>
-            
-            <?php
-            }
-            ?>
 
             <div class="form-group">
                 <?php 

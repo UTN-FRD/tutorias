@@ -4,21 +4,12 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
-        // sacar el add luego.
         $this->Auth->allow('logout');
     }
 
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
-    }
-
-    public function view($id = null) {
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Usuario invalido'));
-        }
-        $this->set('user', $this->User->read(null, $id));
     }
 
     public function add() {
