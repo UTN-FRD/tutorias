@@ -84,8 +84,13 @@ class Encuesta extends AppModel {
 		return true;
 	}
 
-	public function regenerarEncuesta($estudiante_id) {
+	public function eliminarEncuesta($estudiante_id) {
 		$this->deleteAll(array('estudiante_id =' => $estudiante_id));
+		return true;
+	}
+
+	public function regenerarEncuesta($estudiante_id) {
+		$this->eliminarEncuesta($estudiante_id);
 		$this->crearEncuesta($estudiante_id);
 
 		return true;

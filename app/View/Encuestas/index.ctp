@@ -47,7 +47,9 @@
 <?php if($authUser['role'] === 'admin'): ?>
 	<div class="col-lg-12">
 		<div class="text-right">
-			<?php echo $this->Html->link(__('Regenerar encuesta'), array('action' => 'regenerate', $estudiante['id']), array('class' => 'btn btn-default')); ?>
+			<?php
+			echo $this->Form->postLink(__('Regenerar encuesta'), array('action' => 'regenerate', $estudiante['id']), array('class' => 'btn btn-default'));
+			?>
 		</div>
 	</div>
 <?php endif; ?>
@@ -64,7 +66,7 @@
 		<?php foreach ($encuestas as $encuesta): ?>
 			<form
 				id="form-<?php echo $encuesta['Pregunta']['id'] ?>"
-				action="/tutorias/encuestas/save/<?php echo $estudiante['id']; ?>"
+				action="/tutorias/encuestas/save/"
 				method='post'
 			>
 				<fieldset>
@@ -91,50 +93,53 @@
 						$tipo = h($encuesta['Pregunta']['tipo']);
 						$valores = explode(',', h($encuesta['Pregunta']['valores']));
 
-						if($tipo == 'select') {
-							echo $this->Form->select('respuesta', $valores, array(
-								'class'   => 'form-control',
-								'label'   => false,
-								'legend'  => false,
-								'empty'   => false,
-								'value'	  => h($encuesta['Encuesta']['respuesta'])
-							));
-						} else if($tipo == 'radio') {
-							echo $this->Form->input('respuesta', array(
-								'type'      => $tipo,
-								'label'     => false,
-								'legend'    => false,
-								'before'    => '<label>',
-								'after'     => '</label>',
-								'separator' => '</label></div><div class="radio"><label>',
-								'value'	    => h($encuesta['Encuesta']['respuesta']),
-								'options'   => $valores
-							));
-						} else if($tipo == 'checkbox') {
-							/*
-							echo $this->Form->select('done', $valores, array(
-								'multiple' => 'checkbox'
-							));
-							*/
-						?>
-
-						<?php } else { ?>
-							<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
-								<input
-									id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>'
-									name='respuesta'
-									type='<?php echo $tipo ?>'
-									class="form-control"
-									value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
-								/>
-								<span class="input-group-btn">
-									<button
-										id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
-										class="btn btn-default"
-										type="submit"
-									>Guardar</button>
-								</span>
-							</div>
+						switch ($tipo) {
+							case 'select':
+								echo $this->Form->select('respuesta', $valores, array(
+									'class'   => 'form-control',
+									'label'   => false,
+									'legend'  => false,
+									'empty'   => false,
+									'value'   => h($encuesta['Encuesta']['respuesta'])
+								));
+								break;
+							case 'radio':
+								echo $this->Form->input('respuesta', array(
+									'type'      => $tipo,
+									'label'     => false,
+									'legend'    => false,
+									'before'    => '<label>',
+									'after'     => '</label>',
+									'separator' => '</label></div><div class="radio"><label>',
+									'value'     => h($encuesta['Encuesta']['respuesta']),
+									'options'   => $valores
+								));
+								break;
+							case 'checkbox':
+								/*
+								echo $this->Form->select('done', $valores, array(
+									'multiple' => 'checkbox'
+								));
+								*/
+								break;
+							default:
+								?>
+								<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
+									<input
+										id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>'
+										name='respuesta'
+										type='<?php echo $tipo ?>'
+										class="form-control"
+										value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
+									/>
+									<span class="input-group-btn">
+										<button
+											id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
+											class="btn btn-default"
+											type="submit"
+										>Guardar</button>
+									</span>
+								</div>
 						<?php } ?>
 
 						<span

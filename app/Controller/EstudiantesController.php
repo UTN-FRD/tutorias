@@ -87,7 +87,7 @@ class EstudiantesController extends AppController {
             throw new NotFoundException(__('Estudiante invalido'));
         }
 
-        if ($this->Estudiante->delete()) {
+        if ($this->Estudiante->delete() && $this->Estudiante->Encuesta->eliminarEncuesta($id)) {
             $this->Session->setFlash('El estudiante se ha eliminado correctamente.', 'success');
         } else {
             $this->Session->setFlash('No se ha podido eliminar el estudiante. Por favor, intente nuevamente.', 'error');

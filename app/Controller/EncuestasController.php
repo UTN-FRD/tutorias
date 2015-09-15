@@ -8,7 +8,11 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class EncuestasController extends AppController {
-	function index($id = null) {
+	public function index($id = null) {
+		if (!$this->Encuesta->Estudiante->exists($id)) {
+			throw new NotFoundException(__('Estudiante invalido'));
+		}
+
 		$this->set(array(
 			'estudiante' => $this->Encuesta->Estudiante->findById($id)['Estudiante'],
 			'encuestas' => $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden')
@@ -16,37 +20,48 @@ class EncuestasController extends AppController {
 	}
 
 	public function regenerate($id = null) {
+		$this->request->allowMethod('post', 'put');
+
+		if (!$this->Encuesta->Estudiante->exists($id)) {
+			throw new NotFoundException(__('Estudiante invalido'));
+		}
+
 		$this->Encuesta->regenerarEncuesta($id);
 		return $this->redirect(array('action' => 'index', $id));
 	}
 
 
-	function save($id = null) {
+	public function save() {
+		$this->request->allowMethod('post', 'put');
+
 		$this->layout = 'ajax';
 		$this->autoRender = false;
 
-		if (!$id) {
-			throw new NotFoundException(__('Estudiante Invalido'));
-		}
-
-		if ($this->request->is(array('post', 'put'))) {
-			$this->Encuesta->id = $this->data['encuestaId'];
-			$this->Encuesta->set(array(
-				'respuesta' => $this->data['respuesta']
-			));
-		
-			if ($this->Encuesta->save()) {
-				echo "success";
-			} else {
-				echo "error";
-			}
+		$this->Encuesta->id = $this->data['encuestaId'];
+		$this->Encuesta->set(array(
+			'respuesta' => $this->data['respuesta']
+		));
+	
+		if ($this->Encuesta->save()) {
+			return "success";
 		} else {
-			echo "error";
+			return "error";
 		}
 	}
 
 	public function isAuthorized($user) {
-		// Admin can access every action
-		return true;
+		if (in_array($this->action, array('index', 'save'))) {
+			if ($this->action == 'index') {
+				$estudianteId = (int) $this->request->params['pass'][0];
+			} elseif ($this->action == 'save') {
+				$estudianteId = $this->Encuesta->findById($this->request->data['encuestaId'])['Encuesta']['estudiante_id'];
+			}
+
+			if ($this->Encuesta->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
+				return true;
+			}
+		}
+
+		return parent::isAuthorized($user);
 	}
 }
