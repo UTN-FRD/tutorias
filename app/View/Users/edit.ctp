@@ -38,6 +38,6 @@
 
         <div class="col-lg-1">
             <?php echo $this->Html->link(__('Cancelar'), array('action' => 'index'), array('class' => 'btn btn-default')); ?>
-        </div>            
+        </div>
     </div>
 </div>
