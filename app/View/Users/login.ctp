@@ -12,6 +12,7 @@
 		echo $this->Session->flash('auth');
 		echo $this->Form->create('User');
 		echo $this->Form->input('username', array(
+			'autofocus'    => 'true',
 			'autocomplete' => 'off'
 		));
 		echo $this->Form->input('password');

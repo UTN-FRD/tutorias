@@ -38,10 +38,18 @@ class EncuestasController extends AppController {
 		$this->autoRender = false;
 
 		$this->Encuesta->id = $this->data['encuestaId'];
-		$this->Encuesta->set(array(
-			'respuesta' => $this->data['respuesta']
-		));
-	
+
+		$tipo_pregunta = $this->Encuesta->findById($this->Encuesta->id)['Pregunta']['tipo'];
+		if ($tipo_pregunta === 'checkbox' && !empty($this->data['respuesta'])) {
+			$this->Encuesta->set(array(
+				'respuesta' => implode(",", $this->data['respuesta'])
+			));
+		} else {
+			$this->Encuesta->set(array(
+				'respuesta' => $this->data['respuesta']
+			));
+		}
+
 		if ($this->Encuesta->save()) {
 			return "success";
 		} else {

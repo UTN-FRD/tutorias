@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th><?php echo $this->Paginator->sort('id'); ?></th>
-                    <th><?php echo $this->Paginator->sort('username', 'Nombre'); ?></th>
+                    <th><?php echo $this->Paginator->sort('username'); ?></th>
                     <th><?php echo $this->Paginator->sort('role', 'Rol'); ?></th>
                     <th class="actions"></th>
                 </tr>

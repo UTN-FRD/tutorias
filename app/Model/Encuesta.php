@@ -62,7 +62,8 @@ class Encuesta extends AppModel {
 			case 'radio':
 				$valores = explode(',', $encuesta['Pregunta']['valores']);
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
-//			case 'checkbox':
+			case 'checkbox':
+				// TODO
 			case 'text':
 				return true;
 		}

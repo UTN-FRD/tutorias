@@ -1,48 +1,4 @@
-
 <?php $this->Html->script('encuesta', array('inline' => false)) ?>
-
-<script>
-	// wait for the DOM to be loaded
-	$(document).ready(function() {
-		var options = {
-			success:       showResponse  // post-submit callback
-
-			// other available options:
-			//beforeSubmit:          // pre-submit callback
-			//url:       url         // override for form's 'action' attribute
-			//type:      type        // 'get' or 'post', override for form's 'method' attribute
-			//dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
-			//clearForm: true        // clear all form fields after successful submit
-			//resetForm: true        // reset the form after successful submit
-
-			// $.ajax options can be used here too, for example:
-			//timeout:   3000
-		};
-		$('form').ajaxForm(options);
-	});
-
-	function showResponse(responseText, statusText, xhr, $form)  {
-		id = $form.attr("id").slice(5);
-
-		if (responseText === "success") {
-			$form.attr({
-				class: "form-group has-success has-feedback"
-			});
-
-			$("#span-".concat(id)).attr({
-				class: "glyphicon glyphicon-ok form-control-feedback"
-			});
-		} else {
-			$form.attr({
-				class: "form-group has-error has-feedback"
-			});
-
-			$("#span-".concat(id)).attr({
-				class: "glyphicon glyphicon-remove form-control-feedback"
-			});
-		}
-	}
-</script>
 
 <?php if($authUser['role'] === 'admin'): ?>
 	<div class="col-lg-12">
@@ -66,6 +22,7 @@
 		<?php foreach ($encuestas as $encuesta): ?>
 			<form
 				id="form-<?php echo $encuesta['Pregunta']['id'] ?>"
+				class="form-group has-feedback"
 				action="/tutorias/encuestas/save/"
 				method='post'
 			>
@@ -89,7 +46,7 @@
 
 						<?php
 						}
-						
+
 						$tipo = h($encuesta['Pregunta']['tipo']);
 						$valores = explode(',', h($encuesta['Pregunta']['valores']));
 
@@ -116,11 +73,13 @@
 								));
 								break;
 							case 'checkbox':
-								/*
-								echo $this->Form->select('done', $valores, array(
-									'multiple' => 'checkbox'
+								echo $this->Form->input('respuesta', array(
+									'multiple' => $tipo,
+									'label'    => false,
+									'legend'   => false,
+									'options'  => $valores,
+									'selected' => explode(',', h($encuesta['Encuesta']['respuesta']))
 								));
-								*/
 								break;
 							default:
 								?>
@@ -132,13 +91,6 @@
 										class="form-control"
 										value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
 									/>
-									<span class="input-group-btn">
-										<button
-											id="button-<?php echo $encuesta['Pregunta']['id'] ?>"
-											class="btn btn-default"
-											type="submit"
-										>Guardar</button>
-									</span>
 								</div>
 						<?php } ?>
 
@@ -152,11 +104,3 @@
 		<?php endforeach; ?>
 	</div>
 </div>
-
-<script>
-	$(document).ready(function(){
-		$("input:radio, select").change(function(){
-			$(this).parents('form:first').submit();
-		});
-	});
-</script>
