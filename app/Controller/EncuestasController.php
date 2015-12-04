@@ -9,12 +9,13 @@ App::uses('AppController', 'Controller');
  */
 class EncuestasController extends AppController {
 	public function index($id = null) {
-		if (!$this->Encuesta->Estudiante->exists($id)) {
+		$estudiante = $this->Encuesta->Estudiante->findById($id);
+		if (!$estudiante) {
 			throw new NotFoundException(__('Estudiante invalido'));
 		}
 
 		$this->set(array(
-			'estudiante' => $this->Encuesta->Estudiante->findById($id)['Estudiante'],
+			'estudiante' => $estudiante['Estudiante'],
 			'encuestas' => $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden')
 		));
 	}
@@ -39,8 +40,12 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->id = $this->data['encuestaId'];
 
-		$tipo_pregunta = $this->Encuesta->findById($this->Encuesta->id)['Pregunta']['tipo'];
-		if ($tipo_pregunta === 'checkbox' && !empty($this->data['respuesta'])) {
+		$encuesta = $this->Encuesta->findById($this->Encuesta->id);
+		if (!$encuesta) {
+			throw new NotFoundException(__('Encuesta invalida'));
+		}
+
+		if ($encuesta['Pregunta']['tipo'] === 'checkbox' && !empty($this->data['respuesta'])) {
 			$this->Encuesta->set(array(
 				'respuesta' => implode(",", $this->data['respuesta'])
 			));
@@ -51,9 +56,9 @@ class EncuestasController extends AppController {
 		}
 
 		if ($this->Encuesta->save()) {
-			return "success";
+			$this->response->statusCode(200);
 		} else {
-			return "error";
+			$this->response->statusCode(400);
 		}
 	}
 
@@ -62,7 +67,12 @@ class EncuestasController extends AppController {
 			if ($this->action == 'index') {
 				$estudianteId = (int) $this->request->params['pass'][0];
 			} elseif ($this->action == 'save') {
-				$estudianteId = $this->Encuesta->findById($this->request->data['encuestaId'])['Encuesta']['estudiante_id'];
+				$encuesta = $this->Encuesta->findById($this->request->data['encuestaId']);
+				if (!$encuesta) {
+					throw new NotFoundException(__('Encuesta invalida'));
+				}
+
+				$estudianteId = $encuesta['Encuesta']['estudiante_id'];
 			}
 
 			if ($this->Encuesta->Estudiante->isOwnedBy($estudianteId, $user['id'])) {

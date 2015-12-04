@@ -1,4 +1,7 @@
-<?php $this->Html->script('encuesta', array('inline' => false)) ?>
+<?php
+$this->Html->script('encuesta', array('inline' => false));
+$this->Html->css('encuesta', array('inline' => false));
+?>
 
 <?php if($authUser['role'] === 'admin'): ?>
 	<div class="col-lg-12">

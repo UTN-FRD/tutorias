@@ -1,0 +1,15 @@
+span.glyphicon {
+  pointer-events: auto;
+}
+
+span.glyphicon-circle-arrow-up {
+  color: SkyBlue;
+}
+
+span.glyphicon-ok {
+  color: #3C763D;
+}
+
+span.glyphicon-remove {
+  color: #A94442;
+}
