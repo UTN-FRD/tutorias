@@ -31,7 +31,6 @@ class EncuestasController extends AppController {
 		return $this->redirect(array('action' => 'index', $id));
 	}
 
-
 	public function save() {
 		$this->request->allowMethod('post', 'put');
 
@@ -55,9 +54,7 @@ class EncuestasController extends AppController {
 			));
 		}
 
-		if ($this->Encuesta->save()) {
-			$this->response->statusCode(200);
-		} else {
+		if (!$this->Encuesta->save()) {
 			$this->response->statusCode(400);
 		}
 	}

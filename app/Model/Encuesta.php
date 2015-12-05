@@ -53,18 +53,26 @@ class Encuesta extends AppModel {
 	public function validarTipo($check) {
 		$encuesta = $this->findById($this->id);
 		$respuesta = array_values($check)[0];
+		$valores = explode(',', $encuesta['Pregunta']['valores']);
 
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {
-			case 'number':
+			case 'number':		// Enteros positivos y negativos.
 				return preg_match('/^-?[0-9]+$/', $respuesta);
-			case 'select':	// Misma validación que para 'radio'.
-			case 'radio':
-				$valores = explode(',', $encuesta['Pregunta']['valores']);
+			case 'select':		// Misma validación que para 'radio'.
+			case 'radio':		// Enteros positivos menores a la cantidad de respuestas posibles.
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
-			case 'checkbox':
-				// TODO
-			case 'text':
+			case 'checkbox':	// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
+				$checkboxs = explode(',', $respuesta);
+				foreach ($checkboxs as $checkbox) {
+					if (!ctype_digit($checkbox) || (intval($checkbox) >= count($valores))) {
+						return false;
+					}
+				}
+
+				// Verifico que no existan valores repetidos en la respuesta.
+				return array_unique($checkboxs) === $checkboxs;
+			case 'text':		// Cualquier valor.
 				return true;
 		}
 
