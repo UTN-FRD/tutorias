@@ -10,7 +10,7 @@ class User extends AppModel {
             'notEmpty' => array(
                 'rule' => 'notEmpty',
                 'required' => true,
-                'message' => 'Por favor ingrese un nombre de usuario'
+                'message' => 'El nombre de usuario no puede estar vacio'
             ),
             'unique' => array(
                 'rule' => 'isUnique',
@@ -21,7 +21,7 @@ class User extends AppModel {
             'notEmpty' => array(
                 'rule' => 'notEmpty',
                 'required' => true,
-                'message' => 'Por favor ingrese una contraseña'
+                'message' => 'La contraseña no puede estar vacia'
             )
         ),
         'role' => array(

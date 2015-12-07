@@ -1,7 +1,15 @@
+<?php
+$this->Html->script('form-submit', array('inline' => false));
+?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="page-title">
-            <h2><?php echo $this->Form->create('Pregunta'); ?></h2>
+            <h2>
+                <?php
+                echo $this->Form->create('Pregunta', array('id' => 'form-submit'));
+                ?>
+            </h2>
         </div>
     </div>
 
@@ -52,14 +60,11 @@
                 ));
                 ?>
             </div>
+
+            <div class="form-group">
+                <a id="btn-submit" class="btn btn-success">Guardar</a>
+                <a id="btn-cancelar" class="btn btn-default" href="/tutorias/preguntas">Cancelar</a>
+            </div>
         </fieldset>
-
-        <div class="col-lg-1">
-            <?php echo $this->Form->end(__('Guardar')); ?>
-        </div>
-
-        <div class="col-lg-1">
-            <?php echo $this->Html->link(__('Cancelar'), array('action' => 'index'), array('class' => 'btn btn-default')); ?>
-        </div>
     </div>
 </div>
