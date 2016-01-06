@@ -68,9 +68,10 @@ $this->Html->css('encuesta', array('inline' => false));
 									'type'      => $tipo,
 									'label'     => false,
 									'legend'    => false,
-									'before'    => '<label>',
-									'after'     => '</label>',
-									'separator' => '</label></div><div class="radio"><label>',
+									'div'       => 'input select',
+									'before'    => '<div class="input radio">',
+									'after'     => '</div>',
+									'separator' => '</div><div class="input radio">',
 									'value'     => h($encuesta['Encuesta']['respuesta']),
 									'options'   => $valores
 								));
