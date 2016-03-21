@@ -30,22 +30,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php
     echo $this->Html->meta('icon');
 
-    echo $this->fetch('meta');
-
     echo $this->Html->css('cake.generic');
     echo $this->Html->css('bootstrap.min');
     echo $this->Html->css('styles');
-    echo $this->Html->script('jquery-1.11.2.min');
+
+    echo $this->Html->script('jquery-1.12.1.min');
+    echo $this->Html->script('jquery.form.min.js');
     echo $this->Html->script('bootstrap.min');
-    echo $this->Html->script('http://malsup.github.io/jquery.form.js');
 
-    echo $this->Html->css('bootstrap-switch.min');
-    echo $this->Html->script('bootstrap-switch.min');
-    echo $this->Html->script('app');
-    echo $this->Html->script('/funciones/switch');
-
-    echo $this->fetch('css');
+    echo $this->fetch('meta');    
     echo $this->fetch('script');
+    echo $this->fetch('css');
     ?>
 </head>
 

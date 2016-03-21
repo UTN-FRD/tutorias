@@ -1,6 +1,6 @@
 <?php
-$this->Html->script('encuesta', array('inline' => false));
-$this->Html->css('encuesta', array('inline' => false));
+$this->Html->css('encuesta/validacion', array('inline' => false));
+$this->Html->script('encuesta/regenerar', array('inline' => false));
 ?>
 
 <?php if($authUser['role'] === 'admin'): ?>

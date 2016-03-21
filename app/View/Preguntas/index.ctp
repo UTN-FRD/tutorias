@@ -1,3 +1,9 @@
+<?php
+$this->Html->css('bootstrap-switch.min', array('inline' => false));
+$this->Html->script('bootstrap-switch.min', array('inline' => false));
+$this->Html->script('pregunta/switch', array('inline' => false));
+?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="page-title">
@@ -31,6 +37,7 @@
                         <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
                         <td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
                         <td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
+
                         <td class="actions">
                             <?php
                             echo $this->Form->checkbox('activo', array(
@@ -64,11 +71,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(function() {
-        $('input[type="checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-            $.post("/tutorias/preguntas/activate/" + $(this).data('id') + "/" + (state === true ? 1 : 0));
-        });
-    });
-</script>

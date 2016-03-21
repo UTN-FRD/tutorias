@@ -1,3 +1,0 @@
-$(function() {
-    $(".checkbox-switch").bootstrapSwitch();
-});
