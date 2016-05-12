@@ -38,7 +38,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     echo $this->Html->script('jquery.form.min.js');
     echo $this->Html->script('bootstrap.min');
 
-    echo $this->fetch('meta');    
+    echo $this->fetch('meta');
     echo $this->fetch('script');
     echo $this->fetch('css');
     ?>
@@ -119,7 +119,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
     <nav class="navbar-bottom" id="footer">
         <?php echo $this->element('sql_dump'); ?>
-        <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
+        <span class="navbar-right">Desarrollado por &#x2192 UTN - FRD - LSI</span>
     </nav>
 </body>
 </html>

@@ -27,7 +27,7 @@ $this->Html->script('form-submit', array('inline' => false));
                 ));
                 ?>
             </div>
-            
+
             <div class="form-group">
                 <?php
                 echo $this->Form->input('nombre', array(

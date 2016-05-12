@@ -1,6 +1,6 @@
 <?php
-$this->Html->css('encuesta/validacion', array('inline' => false));
-$this->Html->script('encuesta/regenerar', array('inline' => false));
+$this->Html->css('encuesta/index', array('inline' => false));
+$this->Html->script('encuesta/index', array('inline' => false));
 ?>
 
 <?php if($authUser['role'] === 'admin'): ?>
@@ -55,6 +55,7 @@ $this->Html->script('encuesta/regenerar', array('inline' => false));
 
 						switch ($tipo) {
 							case 'select':
+								?> <div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group"> <?php
 								echo $this->Form->select('respuesta', $valores, array(
 									'class'   => 'form-control',
 									'label'   => false,
@@ -62,6 +63,7 @@ $this->Html->script('encuesta/regenerar', array('inline' => false));
 									'empty'   => false,
 									'value'   => h($encuesta['Encuesta']['respuesta'])
 								));
+								?> </div> <?php
 								break;
 							case 'radio':
 								echo $this->Form->input('respuesta', array(
@@ -69,9 +71,9 @@ $this->Html->script('encuesta/regenerar', array('inline' => false));
 									'label'     => false,
 									'legend'    => false,
 									'div'       => 'input select',
-									'before'    => '<div class="input radio">',
+									'before'    => '<div class="radio option">',
 									'after'     => '</div>',
-									'separator' => '</div><div class="input radio">',
+									'separator' => '</div><div class="radio option">',
 									'value'     => h($encuesta['Encuesta']['respuesta']),
 									'options'   => $valores
 								));
@@ -85,18 +87,31 @@ $this->Html->script('encuesta/regenerar', array('inline' => false));
 									'selected' => explode(',', h($encuesta['Encuesta']['respuesta']))
 								));
 								break;
-							default:
+							case 'text':
+								?>
+								<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
+									<textarea
+										id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>'
+										name='respuesta'
+										class='form-control'
+									><?php echo h($encuesta['Encuesta']['respuesta']) ?></textarea>
+								</div>
+								<?php
+								break;
+							case 'number':
 								?>
 								<div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
 									<input
 										id='respuesta-<?php echo $encuesta['Pregunta']['id'] ?>'
 										name='respuesta'
-										type='<?php echo $tipo ?>'
-										class="form-control"
+										type='number'
+										class='form-control'
 										value='<?php echo h($encuesta['Encuesta']['respuesta']) ?>'
 									/>
 								</div>
-						<?php } ?>
+								<?php
+								break;
+						} ?>
 
 						<span
 							id="span-<?php echo $encuesta['Pregunta']['id'] ?>"
