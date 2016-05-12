@@ -7,8 +7,8 @@ class User extends AppModel {
 
     public $validate = array(
         'username' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'required' => array(
+                'rule' => 'notBlank',
                 'required' => true,
                 'message' => 'El nombre de usuario no puede estar vacio'
             ),
@@ -18,8 +18,8 @@ class User extends AppModel {
             )
         ),
         'password' => array(
-            'notEmpty' => array(
-                'rule' => 'notEmpty',
+            'required' => array(
+                'rule' => 'notBlank',
                 'required' => true,
                 'message' => 'La contraseña no puede estar vacia'
             )

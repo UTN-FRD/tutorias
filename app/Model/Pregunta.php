@@ -34,14 +34,14 @@ class Pregunta extends AppModel {
 	public $validate = array(
 		'orden' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => 'notBlank',
 				'required' => true,
 				'message' => 'El orden no puede estar vacio'
 			)
 		),
 		'pregunta' => array(
 			'required' => array(
-				'rule' => 'notEmpty',
+				'rule' => 'notBlank',
 				'required' => true,
 				'message' => 'La pregunta no puede estar vacia'
 			)
