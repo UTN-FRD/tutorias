@@ -57,10 +57,10 @@ class Encuesta extends AppModel {
 
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {
-			case 'number':		// Enteros positivos y negativos.
-				return preg_match('/^-?[0-9]+$/', $respuesta);
+			case 'number':		// Numeros decimales con signo.
+				return preg_match('/^[+-]?[0-9]+(\.[0-9]+)?$/', $respuesta);
 			case 'select':		// Misma validación que para 'radio'.
-			case 'radio':		// Enteros positivos menores a la cantidad de respuestas posibles.
+			case 'radio':			// Enteros positivos menores a la cantidad de respuestas posibles.
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
 			case 'checkbox':	// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
 				$checkboxs = explode(',', $respuesta);
@@ -83,8 +83,8 @@ class Encuesta extends AppModel {
 		$preguntas = $this->Pregunta->find('list', array(
 			'conditions' => array('Pregunta.activo =' => '1')
 		));
-		
-		foreach($preguntas as $pregunta) {
+
+		foreach ($preguntas as $pregunta) {
 			$this->create();
 			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $pregunta);
 			$this->save($data);

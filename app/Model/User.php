@@ -15,6 +15,10 @@ class User extends AppModel {
             'unique' => array(
                 'rule' => 'isUnique',
                 'message' => 'El nombre de usuario debe ser único'
+            ),
+            'maximum' => array(
+                'rule' => array('maxLength', 50),
+                'message' => 'El nombre de usuario puede tener como máximo 50 caracteres'
             )
         ),
         'password' => array(
@@ -22,6 +26,10 @@ class User extends AppModel {
                 'rule' => 'notBlank',
                 'required' => true,
                 'message' => 'La contraseña no puede estar vacia'
+            ),
+            'minimum' => array(
+                'rule' => array('minLength', 6),
+                'message' => 'La contraseña debe tener como mínimo 6 caracteres'
             )
         ),
         'role' => array(
