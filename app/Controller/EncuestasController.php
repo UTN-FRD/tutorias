@@ -1,24 +1,22 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Encuestas Controller
- *
- * @property Encuesta $Encuesta
- * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
- */
-class EncuestasController extends AppController {
-	public function index($id = null) {
-		$estudiante = $this->Encuesta->Estudiante->findById($id);
-		if (!$estudiante) {
-			throw new NotFoundException(__('Estudiante invalido'));
-		}
 
-		$this->set(array(
-			'estudiante' => $estudiante['Estudiante'],
-			'encuestas' => $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden')
-		));
-	}
+class EncuestasController extends AppController {
+  public function index($id = null) {
+  	$this->Encuesta->Estudiante->recursive = 2;
+
+  	$this->Encuesta->Estudiante->id = $id;
+    if (!$this->Encuesta->Estudiante->exists()) {
+      throw new NotFoundException(__('Estudiante invalido'));
+    }
+
+    $estudiante = $this->Encuesta->Estudiante->read();
+    $encuestas = $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden');
+    $this->set(array(
+      'estudiante' => $estudiante['Estudiante'],
+      'encuestas'  => $encuestas
+    ));
+  }
 
 	public function regenerate($id = null) {
 		$this->request->allowMethod('post', 'put');
@@ -39,12 +37,12 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->id = $this->data['encuestaId'];
 
-		$encuesta = $this->Encuesta->findById($this->Encuesta->id);
-		if (!$encuesta) {
+		if (!$this->Encuesta->exists()) {
 			throw new NotFoundException(__('Encuesta invalida'));
 		}
 
-		if ($encuesta['Pregunta']['tipo'] === 'checkbox' && !empty($this->data['respuesta'])) {
+		$encuesta = $this->Encuesta->read();
+		if ($encuesta['Pregunta']['tipo'] == 'Check Box' && !empty($this->data['respuesta'])) {
 			$this->Encuesta->set(array(
 				'respuesta' => implode(",", $this->data['respuesta'])
 			));
@@ -60,21 +58,31 @@ class EncuestasController extends AppController {
 	}
 
 	public function isAuthorized($user) {
-		if (in_array($this->action, array('index', 'save'))) {
-			if ($this->action == 'index') {
-				$estudianteId = (int) $this->request->params['pass'][0];
-			} elseif ($this->action == 'save') {
-				$encuesta = $this->Encuesta->findById($this->request->data['encuestaId']);
-				if (!$encuesta) {
-					throw new NotFoundException(__('Encuesta invalida'));
+		switch ($this->action) {
+			case 'index':
+				if (!empty($this->request->params['pass'])) {
+					$estudiante = $this->request->params['pass'][0];
+
+					if ($this->Encuesta->Estudiante->isOwnedBy($estudiante, $user['id'])) {
+						return true;
+					}
 				}
 
-				$estudianteId = $encuesta['Encuesta']['estudiante_id'];
-			}
+				break;
+			case 'save':
+				$this->Encuesta->recursive = 2;
 
-			if ($this->Encuesta->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
-				return true;
-			}
+				$this->Encuesta->id = $this->request->data['encuestaId'];
+				if ($this->Encuesta->exists()) {
+					$encuesta = $this->Encuesta->read();
+					$tutor = $encuesta['Estudiante']['User'];
+
+					if (isset($tutor['id']) && ($tutor['id'] == $user['id'])) {
+						return true;
+					}
+				}
+
+				break;
 		}
 
 		return parent::isAuthorized($user);

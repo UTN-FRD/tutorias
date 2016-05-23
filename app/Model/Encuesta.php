@@ -1,51 +1,24 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Encuesta Model
- *
- * @property Estudiante $Estudiante
- * @property Pregunta $Pregunta
- */
+
 class Encuesta extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'respuesta';
-
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
 	public $belongsTo = array(
 		'Estudiante' => array(
-			'className' => 'Estudiante',
-			'foreignKey' => 'estudiante_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'className'  => 'Estudiante',
+			'foreignKey' => 'estudiante_id'
 		),
 		'Pregunta' => array(
-			'className' => 'Pregunta',
-			'foreignKey' => 'pregunta_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'className'  => 'Pregunta',
+			'foreignKey' => 'pregunta_id'
 		)
 	);
 
 	public $validate = array(
 		'respuesta' => array(
-			'required' => array(
-				'rule' => 'validarTipo',
+			'valid' => array(
+				'rule'       => 'validarTipo',
 				'allowEmpty' => true,
-				'message' => 'La respuesta es invalida'
+				'message'    => 'La respuesta es inválido'
 			)
 		)
 	);
@@ -57,12 +30,16 @@ class Encuesta extends AppModel {
 
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {
-			case 'number':		// Numeros decimales con signo.
+			case 'Numérico':
+				// Numeros decimales con signo.
 				return preg_match('/^[+-]?[0-9]+(\.[0-9]+)?$/', $respuesta);
-			case 'select':		// Misma validación que para 'radio'.
-			case 'radio':			// Enteros positivos menores a la cantidad de respuestas posibles.
+			case 'Menú Desplegable':
+				// Misma validación que para 'Radio Button'.
+			case 'Radio Button':
+				// Enteros positivos menores a la cantidad de respuestas posibles.
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
-			case 'checkbox':	// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
+			case 'Check Box':
+				// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
 				$checkboxs = explode(',', $respuesta);
 				foreach ($checkboxs as $checkbox) {
 					if (!ctype_digit($checkbox) || (intval($checkbox) >= count($valores))) {
@@ -72,7 +49,8 @@ class Encuesta extends AppModel {
 
 				// Verifico que no existan valores repetidos en la respuesta.
 				return array_unique($checkboxs) === $checkboxs;
-			case 'text':		// Cualquier valor.
+			case 'Texto':
+				// Cualquier valor.
 				return true;
 		}
 

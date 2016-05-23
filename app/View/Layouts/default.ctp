@@ -30,12 +30,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   <?php
   echo $this->Html->meta('icon');
 
-  echo $this->Html->css('cake.generic');
+  echo $this->Html->css('cake-generic.min');
   echo $this->Html->css('bootstrap.min');
   echo $this->Html->css('styles');
 
-  echo $this->Html->script('jquery-1.12.1.min');
-  echo $this->Html->script('jquery.form.min.js');
+  echo $this->Html->script('jquery/jquery-1.12.1.min');
   echo $this->Html->script('bootstrap.min');
 
   echo $this->fetch('meta');
@@ -61,13 +60,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <?php if ($loggedIn) { ?>
+          <?php if (AuthComponent::user()) { ?>
             <ul class="nav navbar-nav">
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?>>
                 <a href="/tutorias/estudiantes">Estudiantes</a>
               </li>
 
-              <?php if ($authUser['role'] === 'admin') { ?>
+              <?php if (AuthComponent::user('role') == 'admin') { ?>
                 <li <?php if ($this->request->params['controller'] == 'users') { echo 'class="active"'; } ?>>
                   <a href="/tutorias/users">Usuarios</a>
                 </li>
@@ -87,7 +86,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="/tutorias/users/edit/<?php echo AuthComponent::user('id'); ?>">
+                    <a href="/tutorias/settings">
                       <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Perfil</a>
                   </li>
 
@@ -108,7 +107,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <main>
     <div class="container">
-      <?php echo $this->Session->flash(); ?>
+      <?php echo $this->Flash->render(); ?>
       <div id="content">
         <?php echo $this->fetch('content'); ?>
       </div>

@@ -1,70 +1,78 @@
 <?php
+$this->Html->css('form', array('inline' => false));
+$this->Html->script('autosize.min', array('inline' => false));
+$this->Html->script('jquery/jquery.validate.min', array('inline' => false));
+$this->Html->script('pregunta/form', array('inline' => false));
 $this->Html->script('form-submit', array('inline' => false));
 ?>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="page-title">
-            <h2>
-                <?php
-                echo $this->Form->create('Pregunta', array('id' => 'form-submit'));
-                ?>
-            </h2>
+  <div class="col-lg-11 legend">
+    <legend>
+      <?php echo __('Agregar pregunta'); ?>
+    </legend>
+  </div>
+
+  <?php echo $this->Form->create('Pregunta', array(
+    'id' => 'form-submit',
+    'class' => 'form-horizontal',
+    'data-pregunta' => ''
+  )); ?>
+
+  <div class="col-lg-12">
+    <fieldset>
+      <div class="form-group">
+        <label for="orden" class="col-sm-3 control-label">Orden</label>
+        <div class="col-sm-8">
+          <input name="data[Pregunta][orden]" id="orden" autocomplete="off" class="form-control" type="number" autofocus required>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
-    </div>
+      </div>
 
-    <div class="col-lg-12">
-        <fieldset>
-            <legend>
-                <?php echo __('Agregar Pregunta'); ?>
-            </legend>
+      <div class="form-group">
+        <label for="pregunta" class="col-sm-3 control-label">Pregunta</label>
+        <div class="col-sm-8">
+          <input name="data[Pregunta][pregunta]" id="pregunta" autocomplete="off" class="form-control" type="text" required>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <?php
-                echo $this->Form->input('orden', array(
-                    'class'   => 'form-control'
-                ));
-                ?>
-            </div>
+      <div class="form-group">
+        <label for="ayuda" class="col-sm-3 control-label">Ayuda</label>
+        <div class="col-sm-8">
+          <textarea name="data[Pregunta][ayuda]" id="ayuda" autocomplete="off" class="form-control" type="text"></textarea>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <?php
-                echo $this->Form->input('pregunta', array(
-                    'class'   => 'form-control'
-                ));
-                ?>
-            </div>
+      <div class="form-group">
+        <label for="tipo" class="col-sm-3 control-label">Tipo</label>
+        <div class="col-sm-8">
+          <?php
+          echo $this->Form->input('tipo', array(
+            'id'    => 'tipo',
+            'label' => false,
+            'type'  => 'select',
+            'class' => 'form-control'
+          ));
+          ?>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <?php
-                echo $this->Form->input('ayuda', array(
-                    'class'   => 'form-control'
-                ));
-                ?>
-            </div>
+      <div class="form-group">
+        <label for="valores" class="col-sm-3 control-label">Valores</label>
+        <div class="col-sm-8">
+          <input name="data[Pregunta][valores]" id="valores" autocomplete="off" class="form-control" type="text">
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        </div>
+      </div>
 
-            <div class="form-group">
-                <?php
-                echo $this->Form->input('tipo', array(
-                    'type'    => 'select',
-                    'empty'   => false,
-                    'class'   => 'form-control'
-                ));
-                ?>
-            </div>
-
-            <div class="form-group">
-                <?php
-                echo $this->Form->input('valores', array(
-                    'class'   => 'form-control'
-                ));
-                ?>
-            </div>
-
-            <div class="form-group">
-                <a id="btn-submit" class="btn btn-success">Guardar</a>
-                <a id="btn-cancelar" class="btn btn-default" href="/tutorias/preguntas">Cancelar</a>
-            </div>
-        </fieldset>
-    </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+          <a id="btn-submit" class="btn btn-success">Guardar</a>
+          <a id="btn-cancelar" class="btn btn-default" href="/tutorias/preguntas">Cancelar</a>
+        </div>
+      </div>
+    </fieldset>
+  </div>
 </div>

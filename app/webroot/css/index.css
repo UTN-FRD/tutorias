@@ -1,0 +1,12 @@
+/* index.ctp */
+.btn-add {
+  min-width: 147px;
+}
+
+th a {
+  padding-left: 0px;
+}
+
+p.paginator {
+  font-weight: bold;
+}

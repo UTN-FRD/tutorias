@@ -1,0 +1,59 @@
+.form-group .col-sm-8 {
+  padding: 0px;
+  margin-left: 15px;
+}
+
+#content {
+  margin-top: 3%;
+}
+
+div.legend {
+  float: none;
+  margin: auto;
+}
+
+legend {
+  padding-left: 0.5%;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+form div {
+  clear: none;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.has-error div.error {
+  padding: 7px 0px 7px 4px;
+}
+
+select.form-control {
+  width: 250px;
+  max-width: 100%;
+  font-weight: normal;
+}
+
+.form-horizontal .form-group:last-child {
+  margin-top: 23px;
+}
+
+.form-horizontal .form-group a {
+  margin-right: 5px;
+}
+
+/* Elimino las flechas de la derecha en los 'number' en Firefox. */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Elimino las flechas de la derecha en los 'number' en Chrome. */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: textfield;
+}
+
+@media (max-width: 767px) {
+  select.form-control {
+    width: 100%;
+  }
+}

@@ -1,9 +1,9 @@
 $(function() {
-	$(".checkbox-switch").bootstrapSwitch();
+	$('.checkbox-switch').bootstrapSwitch();
 });
 
 $(function() {
 	$('input[type="checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-		$.post("/tutorias/preguntas/activate/" + $(this).data('id') + "/" + (state === true ? 1 : 0));
+		$.post("/tutorias/preguntas/activate/" + $(this).data('id') + "/" + (state ? 1 : 0));
 	});
 });

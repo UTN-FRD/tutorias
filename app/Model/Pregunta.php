@@ -1,62 +1,51 @@
 <?php
 App::uses('AppModel', 'Model');
-/**
- * Pregunta Model
- *
- * @property Encuesta $Encuesta
- */
+
 class Pregunta extends AppModel {
-
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * hasMany associations
- *
- * @var array
- */
 	public $hasMany = array(
 		'Encuesta' => array(
-			'className' => 'Encuesta',
+			'className'  => 'Encuesta',
 			'foreignKey' => 'pregunta_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'dependent'  => false
 		)
 	);
 
 	public $validate = array(
 		'orden' => array(
-			'required' => array(
-				'rule' => 'notBlank',
+			'range' => array(
+				'rule'     => array('range', -1, 1000000000),
 				'required' => true,
-				'message' => 'El orden no puede estar vacio'
-			)
+				'message'  => 'El orden debe ser un número entre 0 y 999.999.999'
+			),
 		),
 		'pregunta' => array(
-			'required' => array(
-				'rule' => 'notBlank',
+			'notBlank' => array(
+				'rule'     => 'notBlank',
 				'required' => true,
-				'message' => 'La pregunta no puede estar vacia'
+				'message'  => 'La pregunta no puede estar vacía'
+			),
+			'maxLength' => array(
+				'rule'    => array('maxLength', 75),
+				'message' => 'La pregunta puede tener como máximo 75 caracteres'
 			)
 		),
 		'tipo' => array(
-			'required' => array(
-				'rule' => array('inList', array(
-					'text',
-					'number',
-					'select',
-					'checkbox',
-					'radio'
+			'valid' => array(
+				'rule'     => array('inList', array(
+					'Texto',
+					'Numérico',
+					'Menú Desplegable',
+					'Check Box',
+					'Radio Button'
 				)),
 				'required' => true,
-				'message' => 'El tipo de pregunta es invalido'
+				'message'  => 'El tipo de pregunta es inválido'
+			)
+		),
+		'activo' => array(
+			'boolean' => array(
+				'rule'    => 'boolean',
+				'message' => 'El valor de activo debe ser booleano'
 			)
 		)
 	);

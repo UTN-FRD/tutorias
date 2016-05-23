@@ -26,6 +26,7 @@
  */
 
 	Router::connect('/', array('controller' => 'users', 'action' => 'login'));
+	Router::connect('/settings', array('controller' => 'users', 'action' => 'edit'));
 
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
