@@ -36,7 +36,7 @@ $this->Html->css('index', array('inline' => false));
         <tr>
           <td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
           <td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
-          <td><?php echo h($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
+          <td><?php echo Estudiante::carreras($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
           <td><?php echo h($estudiante['User']['username']); ?>&nbsp;</td>
           <td class="actions">
             <a class="btn btn-default" href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Encuesta</a>
@@ -62,9 +62,11 @@ $this->Html->css('index', array('inline' => false));
 
     <div class="paging text-center">
       <?php
-      echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-      echo $this->Paginator->numbers(array('separator' => ''));
-      echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+      if ($this->Paginator->hasPrev() || $this->Paginator->hasNext()) {
+        echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->numbers(array('separator' => ''));
+        echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+      }
       ?>
     </div>
   </div>

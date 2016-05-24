@@ -2,6 +2,22 @@
 App::uses('AppModel', 'Model');
 
 class Estudiante extends AppModel {
+	const CARRERA_SISTEMAS = 0;
+	const CARRERA_MECANICA = 1;
+	const CARRERA_ELECTRICA = 2;
+	const CARRERA_QUIMICA = 3;
+
+	public static function carreras($value = null) {
+		$options = array(
+			self::CARRERA_SISTEMAS  => __('Ingeniería en Sistemas'),
+			self::CARRERA_MECANICA  => __('Ingeniería Mecánica'),
+			self::CARRERA_ELECTRICA => __('Ingeniería Eléctrica'),
+			self::CARRERA_QUIMICA   => __('Ingeniería Química')
+		);
+
+		return parent::enum($value, $options);
+	}
+
 	public $belongsTo = array(
 		'User' => array(
 			'className'  => 'User',
@@ -43,17 +59,17 @@ class Estudiante extends AppModel {
 		),
 		'carrera' => array(
 			'valid' => array(
-				'rule'     => array('inList', array(
-					'Ingeniería en Sistemas',
-					'Ingeniería Mecánica',
-					'Ingeniería Eléctrica',
-					'Ingeniería Química'
-				)),
+				'rule'     => 'validarCarrera',
 				'required' => true,
 				'message'  => 'La carrera es invalida'
 			)
 		)
 	);
+
+	public function validarCarrera($check) {
+		$carrera = array_values($check)[0];
+		return array_key_exists($carrera, self::carreras());
+	}
 
 	/*
 	 * Devuelve si $estudiante tiene como tutor a $tutor.

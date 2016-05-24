@@ -2,6 +2,24 @@
 App::uses('AppModel', 'Model');
 
 class Pregunta extends AppModel {
+	const TIPO_TEXTO = 0;
+	const TIPO_NUMERICO = 1;
+	const TIPO_MENU = 2;
+	const TIPO_RADIO = 3;
+	const TIPO_CHECKBOX = 4;
+
+	public static function tipos($value = null) {
+		$options = array(
+			self::TIPO_TEXTO    => __('Texto'),
+			self::TIPO_NUMERICO => __('Numérico'),
+			self::TIPO_MENU     => __('Menú Desplegable'),
+			self::TIPO_RADIO    => __('Radio Button'),
+			self::TIPO_CHECKBOX => __('Check Box')
+		);
+
+		return parent::enum($value, $options);
+	}
+
 	public $hasMany = array(
 		'Encuesta' => array(
 			'className'  => 'Encuesta',
@@ -31,13 +49,7 @@ class Pregunta extends AppModel {
 		),
 		'tipo' => array(
 			'valid' => array(
-				'rule'     => array('inList', array(
-					'Texto',
-					'Numérico',
-					'Menú Desplegable',
-					'Check Box',
-					'Radio Button'
-				)),
+				'rule'     => 'validarTipo',
 				'required' => true,
 				'message'  => 'El tipo de pregunta es inválido'
 			)
@@ -49,4 +61,9 @@ class Pregunta extends AppModel {
 			)
 		)
 	);
+
+	public function validarTipo($check) {
+		$tipo = array_values($check)[0];
+		return array_key_exists($tipo, self::tipos());
+	}
 }

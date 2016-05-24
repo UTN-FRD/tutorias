@@ -52,10 +52,9 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
             <?php
             }
 
-            $tipo = h($encuesta['Pregunta']['tipo']);
             $valores = explode(',', h($encuesta['Pregunta']['valores']));
 
-            switch ($tipo) {
+            switch (Pregunta::tipos($encuesta['Pregunta']['tipo'])) {
               case 'Menú Desplegable':
                 ?> <div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group"> <?php
                 echo $this->Form->select('respuesta', $valores, array(

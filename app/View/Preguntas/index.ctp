@@ -38,7 +38,7 @@ $this->Html->script('pregunta/switch', array('inline' => false));
             <td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
             <td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
             <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
-            <td><?php echo h($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
+            <td><?php echo Pregunta::tipos($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
             <td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
 
             <td class="actions">
@@ -67,9 +67,11 @@ $this->Html->script('pregunta/switch', array('inline' => false));
 
     <div class="paging text-center">
       <?php
-      echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
-      echo $this->Paginator->numbers(array('separator' => ''));
-      echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+      if ($this->Paginator->hasPrev() || $this->Paginator->hasNext()) {
+        echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->numbers(array('separator' => ''));
+        echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+      }
       ?>
     </div>
   </div>

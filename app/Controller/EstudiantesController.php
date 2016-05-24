@@ -24,12 +24,7 @@ class EstudiantesController extends AppController {
 			'conditions' => array('User.role =' => 'tutor')
 		)));
 
-		$this->set('carreras', array(
-			'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
-			'Ingeniería Mecánica' => 'Ingeniería Mecánica',
-			'Ingeniería Eléctrica' => 'Ingeniería Eléctrica',
-			'Ingeniería Química' => 'Ingeniería Química'
-		));
+		$this->set('carreras', $this->Estudiante->carreras());
 
 		if ($this->request->is('post')) {
 			$this->Estudiante->create();
@@ -54,12 +49,7 @@ class EstudiantesController extends AppController {
 			'conditions' => array('User.role =' => 'tutor')
 		)));
 
-		$this->set('carreras', array(
-			'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
-			'Ingeniería Mecánica' => 'Ingeniería Mecánica',
-			'Ingeniería Eléctrica' => 'Ingeniería Eléctrica',
-			'Ingeniería Química' => 'Ingeniería Química'
-		));
+		$this->set('carreras', $this->Estudiante->carreras());
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Estudiante->save($this->request->data)) {

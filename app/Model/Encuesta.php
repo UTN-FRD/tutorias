@@ -30,15 +30,15 @@ class Encuesta extends AppModel {
 
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {
-			case 'Numérico':
+			case Pregunta::TIPO_NUMERICO:
 				// Numeros decimales con signo.
 				return preg_match('/^[+-]?[0-9]+(\.[0-9]+)?$/', $respuesta);
-			case 'Menú Desplegable':
+			case Pregunta::TIPO_MENU:
 				// Misma validación que para 'Radio Button'.
-			case 'Radio Button':
+			case Pregunta::TIPO_RADIO:
 				// Enteros positivos menores a la cantidad de respuestas posibles.
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
-			case 'Check Box':
+			case Pregunta::TIPO_CHECKBOX:
 				// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
 				$checkboxs = explode(',', $respuesta);
 				foreach ($checkboxs as $checkbox) {
@@ -49,7 +49,7 @@ class Encuesta extends AppModel {
 
 				// Verifico que no existan valores repetidos en la respuesta.
 				return array_unique($checkboxs) === $checkboxs;
-			case 'Texto':
+			case Pregunta::TIPO_TEXTO:
 				// Cualquier valor.
 				return true;
 		}

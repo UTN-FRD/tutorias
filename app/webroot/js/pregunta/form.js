@@ -2,7 +2,8 @@ $(document).ready(function() {
   autosize($('#ayuda'));
 
   $('#tipo').on('change', function() {
-    if ($(this).val() == 'Texto' || $(this).val() == 'Numérico') {
+    option = $(this).children("option").filter(":selected").text()
+    if (option == 'Texto' || option == 'Numérico') {
       $('#valores').parents('div.form-group:first').hide();
     } else {
       $('#valores').parents('div.form-group:first').show();

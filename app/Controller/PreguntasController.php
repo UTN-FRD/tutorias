@@ -15,13 +15,7 @@ class PreguntasController extends AppController {
 	}
 
 	public function add() {
-		$this->set('tipos', array(
-			'Texto' => 'Texto',
-			'Numérico' => 'Numérico',
-			'Menú Desplegable' => 'Menú Desplegable',
-			'Check Box' => 'Check Box',
-			'Radio Button' => 'Radio Button'
-		));
+		$this->set('tipos', $this->Pregunta->tipos());
 
 		if ($this->request->is('post')) {
 			$this->Pregunta->create();
@@ -41,13 +35,7 @@ class PreguntasController extends AppController {
 			throw new NotFoundException(__('Pregunta inválida'));
 		}
 
-		$this->set('tipos', array(
-			'Texto' => 'Texto',
-			'Numérico' => 'Numérico',
-			'Menú Desplegable' => 'Menú Desplegable',
-			'Check Box' => 'Check Box',
-			'Radio Button' => 'Radio Button'
-		));
+		$this->set('tipos', $this->Pregunta->tipos());
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
