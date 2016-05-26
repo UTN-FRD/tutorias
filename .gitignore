@@ -3,6 +3,10 @@
 /app/Test
 /app/tmp
 
+# Composer
+/app/Vendor
+/composer.lock
+
 # Editores
 .idea
 /*.sublime-project
