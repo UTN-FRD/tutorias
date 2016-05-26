@@ -36,8 +36,9 @@ $this->Html->css('index', array('inline' => false));
         <tr>
           <td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
           <td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
-          <td><?php echo Estudiante::carreras($estudiante['Estudiante']['carrera']); ?>&nbsp;</td>
+          <td><?php echo h($estudiante['Carrera']['descripcion']); ?>&nbsp;</td>
           <td><?php echo h($estudiante['User']['username']); ?>&nbsp;</td>
+
           <td class="actions">
             <a class="btn btn-default" href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Encuesta</a>
             <?php

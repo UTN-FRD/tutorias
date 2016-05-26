@@ -20,10 +20,15 @@ class Pregunta extends AppModel {
 		return parent::enum($value, $options);
 	}
 
+	public $belongsTo = array(
+		'Carrera' => array(
+			'className'  => 'Carrera'
+		)
+	);
+
 	public $hasMany = array(
 		'Encuesta' => array(
 			'className'  => 'Encuesta',
-			'foreignKey' => 'pregunta_id',
 			'dependent'  => false
 		)
 	);
@@ -59,8 +64,20 @@ class Pregunta extends AppModel {
 				'rule'    => 'boolean',
 				'message' => 'El valor de activo debe ser booleano'
 			)
+		),
+		'carrera_id' => array(
+			'valid' => array(
+				'rule'     => 'validarCarrera',
+				'required' => true,
+				'message'  => 'La carrera es invalida'
+			)
 		)
 	);
+
+	public function validarCarrera($check) {
+		$carrera = array_values($check)[0];
+		return ($this->Carrera->exists($carrera));
+	}
 
 	public function validarTipo($check) {
 		$tipo = array_values($check)[0];

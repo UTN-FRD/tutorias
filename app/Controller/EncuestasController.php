@@ -2,30 +2,33 @@
 App::uses('AppController', 'Controller');
 
 class EncuestasController extends AppController {
-  public function index($id = null) {
-  	$this->Encuesta->Estudiante->recursive = 2;
+	public function index($id = null) {
+		$this->Encuesta->Estudiante->recursive = 2;
 
-  	$this->Encuesta->Estudiante->id = $id;
-    if (!$this->Encuesta->Estudiante->exists()) {
-      throw new NotFoundException(__('Estudiante invalido'));
-    }
+		$this->Encuesta->Estudiante->id = $id;
+		if (!$this->Encuesta->Estudiante->exists()) {
+			throw new NotFoundException(__('Estudiante invalido'));
+		}
 
-    $estudiante = $this->Encuesta->Estudiante->read();
-    $encuestas = $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden');
-    $this->set(array(
-      'estudiante' => $estudiante['Estudiante'],
-      'encuestas'  => $encuestas
-    ));
-  }
+		$estudiante = $this->Encuesta->Estudiante->read();
+		$encuestas = $this->Encuesta->findAllByEstudiante_id($id, array(), 'orden');
+		$this->set(array(
+			'estudiante' => $estudiante['Estudiante'],
+			'encuestas'  => $encuestas
+		));
+	}
 
 	public function regenerate($id = null) {
 		$this->request->allowMethod('post', 'put');
 
-		if (!$this->Encuesta->Estudiante->exists($id)) {
+		$this->Encuesta->Estudiante->id = $id;
+		if (!$this->Encuesta->Estudiante->exists()) {
 			throw new NotFoundException(__('Estudiante invalido'));
 		}
 
-		$this->Encuesta->regenerarEncuesta($id);
+		$estudiante = $this->Encuesta->Estudiante->read();
+		$this->Encuesta->regenerarEncuesta($estudiante['Estudiante']);
+
 		return $this->redirect(array('action' => 'index', $id));
 	}
 

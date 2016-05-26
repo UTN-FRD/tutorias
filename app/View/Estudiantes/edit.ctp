@@ -40,7 +40,7 @@ $this->Html->script('form-submit', array('inline' => false));
         <label for="carrera" class="col-sm-3 control-label">Carrera</label>
         <div class="col-sm-8">
           <?php
-          echo $this->Form->input('carrera', array(
+          echo $this->Form->input('carrera_id', array(
             'id'    => 'carrera',
             'label' => false,
             'class' => 'form-control'

@@ -19,17 +19,19 @@ class EstudiantesController extends AppController {
 		}
 	}
 
-	public function add(){
+	public function add() {
 		$this->set('users', $this->Estudiante->User->find('list', array(
 			'conditions' => array('User.role =' => 'tutor')
 		)));
 
-		$this->set('carreras', $this->Estudiante->carreras());
+		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
+			'conditions' => array('Carrera.id <' => '128')
+		)));
 
 		if ($this->request->is('post')) {
 			$this->Estudiante->create();
 
-			if ($this->Estudiante->save($this->request->data)){
+			if ($this->Estudiante->save($this->request->data)) {
 				$this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
 				$this->Flash->success('El estudiante ha sido creado correctamente.');
 				return $this->redirect(array('action' => 'index'));
@@ -49,7 +51,9 @@ class EstudiantesController extends AppController {
 			'conditions' => array('User.role =' => 'tutor')
 		)));
 
-		$this->set('carreras', $this->Estudiante->carreras());
+		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
+			'conditions' => array('Carrera.id <' => '128')
+		)));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Estudiante->save($this->request->data)) {
@@ -111,7 +115,7 @@ class EstudiantesController extends AppController {
 				}
 
 				if (!empty($this->request->params['pass'])) {
-					$estudianteId = (int) $this->request->params['pass'][0];
+					$estudianteId = $this->request->params['pass'][0];
 					if ($this->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
 						return true;
 					}

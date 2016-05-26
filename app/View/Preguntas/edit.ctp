@@ -46,13 +46,12 @@ $this->Html->script('form-submit', array('inline' => false));
       </div>
 
       <div class="form-group">
-        <label for="tipo" class="col-sm-3 control-label">Tipo</label>
+        <label for="carrera" class="col-sm-3 control-label">Visible para</label>
         <div class="col-sm-8">
           <?php
-          echo $this->Form->input('tipo', array(
-            'id'    => 'tipo',
+          echo $this->Form->input('carrera_id', array(
+            'id'    => 'carrera',
             'label' => false,
-            'type'  => 'select',
             'class' => 'form-control'
           ));
           ?>
@@ -60,7 +59,20 @@ $this->Html->script('form-submit', array('inline' => false));
       </div>
 
       <div class="form-group">
-        <label for="valores" class="col-sm-3 control-label">Valores</label>
+        <label for="tipo" class="col-sm-3 control-label">Tipo</label>
+        <div class="col-sm-8">
+          <?php
+          echo $this->Form->input('tipo', array(
+            'id'    => 'tipo',
+            'label' => false,
+            'class' => 'form-control'
+          ));
+          ?>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="valores" class="col-sm-3 control-label">Opciones</label>
         <div class="col-sm-8">
           <input name="data[Pregunta][valores]" id="valores" autocomplete="off" class="form-control" type="text" value="<?php echo h($this->request->data['Pregunta']['valores']) ?>">
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

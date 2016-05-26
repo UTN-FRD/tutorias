@@ -26,9 +26,10 @@ $this->Html->script('pregunta/switch', array('inline' => false));
         <tr>
           <th><?php echo $this->Paginator->sort('orden'); ?></th>
           <th><?php echo $this->Paginator->sort('pregunta'); ?></th>
-          <th><?php echo $this->Paginator->sort('ayuda'); ?></th>
           <th><?php echo $this->Paginator->sort('tipo'); ?></th>
           <th><?php echo $this->Paginator->sort('valores'); ?></th>
+          <th><?php echo $this->Paginator->sort('visible'); ?></th>
+          <th class="actions"></th>
         </tr>
       </thead>
 
@@ -37,9 +38,9 @@ $this->Html->script('pregunta/switch', array('inline' => false));
           <tr>
             <td><?php echo h($pregunta['Pregunta']['orden']); ?>&nbsp;</td>
             <td><?php echo h($pregunta['Pregunta']['pregunta']); ?>&nbsp;</td>
-            <td><?php echo h($pregunta['Pregunta']['ayuda']); ?>&nbsp;</td>
-            <td><?php echo Pregunta::tipos($pregunta['Pregunta']['tipo']); ?>&nbsp;</td>
+            <td><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?>&nbsp;</td>
             <td><?php echo h($pregunta['Pregunta']['valores']); ?>&nbsp;</td>
+            <td><?php echo h($pregunta['Carrera']['descripcion']); ?>&nbsp;</td>
 
             <td class="actions">
               <?php

@@ -2,34 +2,19 @@
 App::uses('AppModel', 'Model');
 
 class Estudiante extends AppModel {
-	const CARRERA_SISTEMAS = 0;
-	const CARRERA_MECANICA = 1;
-	const CARRERA_ELECTRICA = 2;
-	const CARRERA_QUIMICA = 3;
-
-	public static function carreras($value = null) {
-		$options = array(
-			self::CARRERA_SISTEMAS  => __('Ingeniería en Sistemas'),
-			self::CARRERA_MECANICA  => __('Ingeniería Mecánica'),
-			self::CARRERA_ELECTRICA => __('Ingeniería Eléctrica'),
-			self::CARRERA_QUIMICA   => __('Ingeniería Química')
-		);
-
-		return parent::enum($value, $options);
-	}
-
 	public $belongsTo = array(
 		'User' => array(
 			'className'  => 'User',
-			'foreignKey' => 'user_id',
 			'conditions' => array('User.role' => 'tutor')
+		),
+		'Carrera' => array(
+			'className'  => 'Carrera'
 		)
 	);
 
 	public $hasMany = array(
 		'Encuesta' => array(
 			'className'  => 'Encuesta',
-			'foreignKey' => 'estudiante_id',
 			'dependent'  => true
 		)
 	);
@@ -57,7 +42,7 @@ class Estudiante extends AppModel {
 				'message' => 'El nombre puede tener como máximo 50 caracteres'
 			)
 		),
-		'carrera' => array(
+		'carrera_id' => array(
 			'valid' => array(
 				'rule'     => 'validarCarrera',
 				'required' => true,
@@ -68,7 +53,7 @@ class Estudiante extends AppModel {
 
 	public function validarCarrera($check) {
 		$carrera = array_values($check)[0];
-		return array_key_exists($carrera, self::carreras());
+		return ($this->Carrera->exists($carrera) && $carrera < 128);
 	}
 
 	/*
