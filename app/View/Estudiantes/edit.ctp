@@ -1,6 +1,6 @@
 <?php
 $this->Html->css('form', array('inline' => false));
-$this->Html->script('jquery/jquery.validate.min', array('inline' => false));
+$this->Html->script('lib/jquery.validate.min', array('inline' => false));
 $this->Html->script('estudiante/form', array('inline' => false));
 $this->Html->script('form-submit', array('inline' => false));
 ?>

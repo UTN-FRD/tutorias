@@ -55,34 +55,35 @@ class Encuesta extends AppModel {
 		return false;
 	}
 
-	public function crearEncuesta($estudiante) {
+	public function crear($estudiante_id) {
+		$this->Estudiante->id = $estudiante_id;
+
 		$preguntas = $this->Pregunta->find('list', array(
 			'conditions' => array(
 				'Pregunta.activo' => '1',
 				'Pregunta.carrera_id' => array(
-					$estudiante['carrera_id'],
-					$this->Pregunta->Carrera->findByNombre("todas")['Carrera']['id']
+					$this->Estudiante->field('carrera_id'),
+					$this->Pregunta->Carrera->findByNombre('todas')['Carrera']['id']
 				)
 			)
 		));
 
 		foreach ($preguntas as $pregunta) {
 			$this->create();
-			$data = array('estudiante_id' => $estudiante['id'], 'pregunta_id' => $pregunta);
+			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $pregunta);
 			$this->save($data);
 		}
 
 		return true;
 	}
 
-	public function eliminarEncuesta($estudiante) {
-		$this->deleteAll(array('estudiante_id' => $estudiante['id']));
-		return true;
+	public function eliminar($estudiante_id) {
+		return $this->deleteAll(array('estudiante_id' => $estudiante_id));
 	}
 
-	public function regenerarEncuesta($estudiante) {
-		$this->eliminarEncuesta($estudiante);
-		$this->crearEncuesta($estudiante);
+	public function regenerar($estudiante_id) {
+		$this->eliminar($estudiante_id);
+		$this->crear($estudiante_id);
 
 		return true;
 	}

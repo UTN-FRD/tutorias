@@ -31,11 +31,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   echo $this->Html->meta('icon');
 
   echo $this->Html->css('cake-generic.min');
-  echo $this->Html->css('bootstrap.min');
+  echo $this->Html->css('lib/bootstrap.min');
   echo $this->Html->css('styles');
 
-  echo $this->Html->script('jquery/jquery-1.12.1.min');
-  echo $this->Html->script('bootstrap.min');
+  echo $this->Html->script('lib/jquery-1.12.4.min');
+  echo $this->Html->script('lib/bootstrap.min');
 
   echo $this->fetch('meta');
   echo $this->fetch('script');

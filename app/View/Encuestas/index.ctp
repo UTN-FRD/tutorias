@@ -1,7 +1,7 @@
 <?php
 $this->Html->css('encuesta/index', array('inline' => false));
 $this->Html->script('encuesta/index', array('inline' => false));
-$this->Html->script('jquery/jquery.form.min', array('inline' => false));
+$this->Html->script('lib/jquery.form.min', array('inline' => false));
 ?>
 
 <div class="row">
