@@ -38,21 +38,34 @@ class Encuesta extends AppModel {
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
 			case Pregunta::TIPO_CHECKBOX:
 				// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
-				$checkboxs = explode(',', $respuesta);
-				foreach ($checkboxs as $checkbox) {
+				if (!is_array($respuesta)) {
+					return false;
+				}
+
+				foreach ($respuesta as $checkbox) {
 					if (!ctype_digit($checkbox) || (intval($checkbox) >= count($valores))) {
 						return false;
 					}
 				}
 
 				// Verifico que no existan valores repetidos en la respuesta.
-				return array_unique($checkboxs) === $checkboxs;
+				return array_unique($respuesta) === $respuesta;
 			case Pregunta::TIPO_TEXTO:
 				// Cualquier valor.
 				return true;
 		}
 
 		return false;
+	}
+
+	public function beforeSave($options = array()) {
+		$pregunta = $this->Pregunta->findById($this->data['Encuesta']['pregunta_id']);
+
+		if ($pregunta['Pregunta']['tipo'] == Pregunta::TIPO_CHECKBOX && !empty($this->data['Encuesta']['respuesta'])) {
+			$this->data['Encuesta']['respuesta'] = implode(",", $this->data['Encuesta']['respuesta']);
+		}
+
+		return true;
 	}
 
 	public function crear($estudiante_id) {

@@ -44,16 +44,9 @@ class EncuestasController extends AppController {
 			throw new NotFoundException(__('Encuesta invalida'));
 		}
 
-		$encuesta = $this->Encuesta->read();
-		if ($encuesta['Pregunta']['tipo'] == 'Check Box' && !empty($this->data['respuesta'])) {
-			$this->Encuesta->set(array(
-				'respuesta' => implode(",", $this->data['respuesta'])
-			));
-		} else {
-			$this->Encuesta->set(array(
-				'respuesta' => $this->data['respuesta']
-			));
-		}
+		$this->Encuesta->set(array(
+			'respuesta' => $this->data['respuesta']
+		));
 
 		if (!$this->Encuesta->save()) {
 			$this->response->statusCode(400);
