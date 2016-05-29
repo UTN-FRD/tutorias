@@ -1,5 +1,6 @@
 <?php
 $this->Html->css('index', array('inline' => false));
+$this->Html->script('index', array('inline' => false));
 ?>
 
 <div class="row">
@@ -44,14 +45,40 @@ $this->Html->css('index', array('inline' => false));
             <?php
             echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'));
             if (AuthComponent::user('role') == 'admin') {
-              echo $this->Form->postLink(__('Borrar'), array('action' => 'delete', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'), __('¿Está seguro que desea borrar a %s?', $estudiante['Estudiante']['nombre']));
-            }
             ?>
+              <a
+                type="button"
+                class="btn btn-default"
+                data-toggle="modal"
+                data-target="#confirmar-baja"
+                data-id=<?php echo $estudiante['Estudiante']['id'] ?>
+                data-nombre=<?php echo h($estudiante['Estudiante']['nombre']) ?>
+              >Borrar</a>
+            <?php } ?>
           </td>
         </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
+
+    <!-- Modal -->
+    <div id="confirmar-baja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Eliminar estudiante</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <form method="post">
+              <button type="button" id="btn-submit" class="btn btn-danger">Sí</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <p class="paginator">
       <?php
