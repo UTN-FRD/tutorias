@@ -1,7 +1,7 @@
 <?php
 $this->Html->css('encuesta/index', array('inline' => false));
 $this->Html->script('encuesta/index', array('inline' => false));
-$this->Html->script('jquery/jquery.form.min', array('inline' => false));
+$this->Html->script('lib/jquery.form.min', array('inline' => false));
 ?>
 
 <div class="row">
@@ -27,10 +27,10 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
 
     <?php foreach ($encuestas as $encuesta) { ?>
       <form
-        id="form-<?php echo $encuesta['Pregunta']['id'] ?>"
         class="form-group has-feedback"
         action="/tutorias/encuestas/save/"
         method="post"
+        data-encuesta="<?php echo $encuesta['Pregunta']['id'] ?>"
       >
         <fieldset>
           <div class="form-group">
@@ -56,7 +56,7 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
 
             switch (Pregunta::tipos($encuesta['Pregunta']['tipo'])) {
               case 'Menú Desplegable':
-                ?> <div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group"> <?php
+                ?> <div class="input-group"> <?php
                 echo $this->Form->select('respuesta', $valores, array(
                   'class'   => 'form-control',
                   'label'   => false,
@@ -90,9 +90,8 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
                 break;
               case 'Texto':
                 ?>
-                <div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
+                <div class="input-group">
                   <textarea
-                    id="respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"
                     name="respuesta"
                     class="form-control"
                   ><?php echo h($encuesta['Encuesta']['respuesta']) ?></textarea>
@@ -101,9 +100,8 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
                 break;
               case 'Numérico':
                 ?>
-                <div id="div-<?php echo $encuesta['Pregunta']['id'] ?>" class="input-group">
+                <div class="input-group">
                   <input
-                    id="respuesta-<?php echo $encuesta['Pregunta']['id'] ?>"
                     name="respuesta"
                     type="text"
                     class="form-control"
@@ -114,10 +112,7 @@ $this->Html->script('jquery/jquery.form.min', array('inline' => false));
                 break;
             } ?>
 
-            <span
-              id="span-<?php echo $encuesta['Pregunta']['id'] ?>"
-              class="form-control-feedback"
-            ></span>
+            <span class="form-control-feedback"></span>
           </div>
         </fieldset>
       </form>

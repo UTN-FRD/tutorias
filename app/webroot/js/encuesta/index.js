@@ -13,9 +13,8 @@ $(document).ready(function() {
   var timeoutId;
   $('textarea, input[type=text]').on('input propertychange change', function() {
     form = $(this).parents('form:first');
-    id = form.attr('id').slice(5);
 
-    $('#span-'.concat(id)).attr({
+    form.find('span.form-control-feedback').attr({
       title: 'guardando...',
       class: 'glyphicon glyphicon-circle-arrow-up form-control-feedback'
     });
@@ -32,9 +31,8 @@ $(document).ready(function() {
   */
   $('textarea, input, select').change(function() {
     form = $(this).parents('form:first');
-    id = form.attr('id').slice(5);
 
-    $('#span-'.concat(id)).attr({
+    form.find('span.form-control-feedback').attr({
       title: 'guardando...',
       class: 'glyphicon glyphicon-circle-arrow-up form-control-feedback'
     });
@@ -44,18 +42,14 @@ $(document).ready(function() {
 });
 
 function showResponse(responseText, statusText, xhr, $form) {
-  id = $form.attr('id').slice(5);
-
-  $('#span-'.concat(id)).attr({
+  $form.find('span.form-control-feedback').attr({
     title: statusText,
     class: 'glyphicon glyphicon-ok form-control-feedback'
   });
 }
 
 function showError(jqXHR, statusText, errorThrown, $form) {
-  id = $form.attr('id').slice(5);
-
-  $('#span-'.concat(id)).attr({
+  $form.find('span.form-control-feedback').attr({
     title: errorThrown,
     class: 'glyphicon glyphicon-remove form-control-feedback'
   });

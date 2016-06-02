@@ -10,3 +10,12 @@ th a {
 p.paginator {
   font-weight: bold;
 }
+
+.modal {
+  top: 128px;
+}
+
+.modal-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

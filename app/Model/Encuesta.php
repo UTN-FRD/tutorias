@@ -38,15 +38,18 @@ class Encuesta extends AppModel {
 				return (ctype_digit($respuesta)) && (intval($respuesta) < count($valores));
 			case Pregunta::TIPO_CHECKBOX:
 				// Vector cuyos elementos sean enteros positivos menores a la cantidad de respuestas posibles.
-				$checkboxs = explode(',', $respuesta);
-				foreach ($checkboxs as $checkbox) {
+				if (!is_array($respuesta)) {
+					return false;
+				}
+
+				foreach ($respuesta as $checkbox) {
 					if (!ctype_digit($checkbox) || (intval($checkbox) >= count($valores))) {
 						return false;
 					}
 				}
 
 				// Verifico que no existan valores repetidos en la respuesta.
-				return array_unique($checkboxs) === $checkboxs;
+				return array_unique($respuesta) === $respuesta;
 			case Pregunta::TIPO_TEXTO:
 				// Cualquier valor.
 				return true;
@@ -55,34 +58,45 @@ class Encuesta extends AppModel {
 		return false;
 	}
 
-	public function crearEncuesta($estudiante) {
+	public function beforeSave($options = array()) {
+		$pregunta = $this->Pregunta->findById($this->data['Encuesta']['pregunta_id']);
+
+		if ($pregunta['Pregunta']['tipo'] == Pregunta::TIPO_CHECKBOX && !empty($this->data['Encuesta']['respuesta'])) {
+			$this->data['Encuesta']['respuesta'] = implode(",", $this->data['Encuesta']['respuesta']);
+		}
+
+		return true;
+	}
+
+	public function crear($estudiante_id) {
+		$this->Estudiante->id = $estudiante_id;
+
 		$preguntas = $this->Pregunta->find('list', array(
 			'conditions' => array(
 				'Pregunta.activo' => '1',
 				'Pregunta.carrera_id' => array(
-					$estudiante['carrera_id'],
-					$this->Pregunta->Carrera->findByNombre("todas")['Carrera']['id']
+					$this->Estudiante->field('carrera_id'),
+					$this->Pregunta->Carrera->findByNombre('todas')['Carrera']['id']
 				)
 			)
 		));
 
 		foreach ($preguntas as $pregunta) {
 			$this->create();
-			$data = array('estudiante_id' => $estudiante['id'], 'pregunta_id' => $pregunta);
+			$data = array('estudiante_id' => $estudiante_id, 'pregunta_id' => $pregunta);
 			$this->save($data);
 		}
 
 		return true;
 	}
 
-	public function eliminarEncuesta($estudiante) {
-		$this->deleteAll(array('estudiante_id' => $estudiante['id']));
-		return true;
+	public function eliminar($estudiante_id) {
+		return $this->deleteAll(array('estudiante_id' => $estudiante_id));
 	}
 
-	public function regenerarEncuesta($estudiante) {
-		$this->eliminarEncuesta($estudiante);
-		$this->crearEncuesta($estudiante);
+	public function regenerar($estudiante_id) {
+		$this->eliminar($estudiante_id);
+		$this->crear($estudiante_id);
 
 		return true;
 	}

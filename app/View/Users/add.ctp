@@ -1,7 +1,7 @@
 <?php
 $this->assign('title', 'Usuarios');
 $this->Html->css('form', array('inline' => false));
-$this->Html->script('jquery/jquery.validate.min', array('inline' => false));
+$this->Html->script('lib/jquery.validate.min', array('inline' => false));
 $this->Html->script('user/form', array('inline' => false));
 $this->Html->script('form-submit', array('inline' => false));
 ?>

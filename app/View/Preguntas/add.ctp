@@ -1,7 +1,7 @@
 <?php
 $this->Html->css('form', array('inline' => false));
-$this->Html->script('autosize.min', array('inline' => false));
-$this->Html->script('jquery/jquery.validate.min', array('inline' => false));
+$this->Html->script('lib/autosize.min', array('inline' => false));
+$this->Html->script('lib/jquery.validate.min', array('inline' => false));
 $this->Html->script('pregunta/form', array('inline' => false));
 $this->Html->script('form-submit', array('inline' => false));
 ?>
