@@ -27,6 +27,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     <?php echo $this->fetch('title'); ?>
   </title>
 
+  <script type="text/javascript">
+    window.baseUrl = "<?php echo Router::url('/', true) ?>";
+  </script>
+
   <?php
   echo $this->Html->meta('icon');
 
@@ -55,7 +59,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/tutorias/">Tutorías</a>
+          <?php echo $this->Html->link('Tutorías', '/', array('class' => 'navbar-brand')) ?>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,16 +67,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
           <?php if (AuthComponent::user()) { ?>
             <ul class="nav navbar-nav">
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?>>
-                <a href="/tutorias/estudiantes">Estudiantes</a>
+                <?php echo $this->Html->link('Estudiantes', array('controller' => 'estudiantes', 'action' => 'index')) ?>
               </li>
 
               <?php if (AuthComponent::user('role') == 'admin') { ?>
                 <li <?php if ($this->request->params['controller'] == 'users') { echo 'class="active"'; } ?>>
-                  <a href="/tutorias/users">Usuarios</a>
+                  <?php echo $this->Html->link('Usuarios', array('controller' => 'users', 'action' => 'index')) ?>
                 </li>
 
                 <li <?php if ($this->request->params['controller'] == 'preguntas') { echo 'class="active"'; } ?>>
-                  <a href="/tutorias/preguntas">Preguntas</a>
+                  <?php echo $this->Html->link('Preguntas', array('controller' => 'preguntas', 'action' => 'index')) ?>
                 </li>
               <?php } ?>
             </ul>
@@ -86,15 +90,25 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="/tutorias/settings">
-                      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Perfil</a>
+                    <?php
+                    echo $this->Html->link(
+                      '<span class="glyphicon glyphicon-user"></span>Perfil</a>',
+                      array('controller' => 'users', 'action' => 'edit'),
+                      array('escape' => false)
+                    );
+                    ?>
                   </li>
 
                   <li class="divider"></li>
 
                   <li>
-                    <a href="/tutorias/users/logout">
-                      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Salir</a>
+                    <?php
+                    echo $this->Html->link(
+                        '<span class="glyphicon glyphicon-log-out"></span>Salir</a>',
+                        array('controller' => 'users', 'action' => 'logout'),
+                        array('escape' => false)
+                      );
+                    ?>
                   </li>
                 </ul>
               </li>

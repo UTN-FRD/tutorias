@@ -41,7 +41,13 @@ $this->Html->script('index', array('inline' => false));
           <td><?php echo h($estudiante['User']['username']); ?>&nbsp;</td>
 
           <td class="actions">
-            <a class="btn btn-default" href="/tutorias/encuestas/index/<?php echo h($estudiante['Estudiante']['id']); ?>">Encuesta</a>
+            <?php
+            echo $this->Html->link(
+                'Encuesta',
+                array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
+                array('class' => 'btn btn-default')
+              );
+            ?>
             <?php
             echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'));
             if (AuthComponent::user('role') == 'admin') {

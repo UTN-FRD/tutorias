@@ -2,7 +2,7 @@ function rules() {
   return {
     'data[User][username]': {
       remote: {
-        url: '/tutorias/users/check_username/' + $('#form-submit').data('user'),
+        url: window.baseUrl + 'users/check_username/' + $('#form-submit').data('user'),
         type: "post",
         async: false
       },
@@ -14,7 +14,7 @@ function rules() {
     confirmPassword: {
       equalTo: '#password'
     }
-  }
+  };
 }
 
 function messages() {
@@ -32,5 +32,5 @@ function messages() {
       required: 'Ingrese de nuevo la contraseña',
       equalTo: 'Las contraseñas no coinciden'
     }
-  }
+  };
 }

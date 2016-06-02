@@ -4,6 +4,6 @@ $(function() {
 
 $(function() {
 	$('input[type="checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
-		$.post('/tutorias/preguntas/activate/' + $(this).data('id') + '/' + (state ? 1 : 0));
+		$.post(window.baseUrl + 'preguntas/activate/' + $(this).data('id') + '/' + (state ? 1 : 0));
 	});
 });

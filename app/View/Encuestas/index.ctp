@@ -8,9 +8,12 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
   <div class="col-md-12">
     <h2>
       <?php echo __('Encuesta de '); ?>
-      <a href="/tutorias/estudiantes/edit/<?php echo $estudiante['id']; ?>">
-        <?php echo h($estudiante['nombre']); ?>
-      </a>
+      <?php
+      echo $this->Html->link(
+          $estudiante['nombre'],
+          array('controller' => 'estudiantes', 'action' => 'edit', $estudiante['id'])
+        );
+      ?>
     </h2>
   </div>
 
@@ -28,7 +31,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
     <?php foreach ($encuestas as $encuesta) { ?>
       <form
         class="form-group has-feedback"
-        action="/tutorias/encuestas/save/"
+        action="<?php echo Router::url(array('action' => 'save')) ?>"
         method="post"
         data-encuesta="<?php echo $encuesta['Pregunta']['id'] ?>"
       >

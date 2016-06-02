@@ -2,7 +2,7 @@ function rules() {
   return {
     'data[Estudiante][legajo]': {
       remote: {
-        url: '/tutorias/estudiantes/check_legajo/' + $('#form-submit').data('estudiante'),
+        url: window.baseUrl + 'estudiantes/check_legajo/' + $('#form-submit').data('estudiante'),
         type: "post",
         async: false
       },
@@ -11,7 +11,7 @@ function rules() {
     'data[Estudiante][nombre]': {
       maxlength: 50
     }
-  }
+  };
 }
 
 function messages() {
@@ -26,5 +26,5 @@ function messages() {
       required: 'Ingrese un nombre',
       maxlength: 'El nombre puede tener como máximo 50 caracteres'
     }
-  }
+  };
 }

@@ -82,7 +82,13 @@ $this->Html->script('form-submit', array('inline' => false));
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-4">
           <a id="btn-submit" class="btn btn-success">Guardar</a>
-          <a id="btn-cancelar" class="btn btn-default" href="/tutorias/preguntas">Cancelar</a>
+          <?php
+          echo $this->Html->link(
+            'Cancelar',
+            array('action' => 'index'),
+            array('id' => 'btn-cancelar', 'class' => 'btn btn-default')
+          );
+          ?>
         </div>
       </div>
     </fieldset>
