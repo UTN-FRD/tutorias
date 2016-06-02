@@ -130,7 +130,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <footer>
     <div class="row">
-      <?php echo $this->element('sql_dump'); ?>
       <p>Desarrollado por &#x2192 UTN - FRD - LSI</p>
     </div>
   </footer>
