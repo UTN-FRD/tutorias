@@ -62,7 +62,8 @@ class AppController extends Controller {
 			),
 			'authorize' => array('Controller'),
 			'authError' => false
-		)
+		),
+		'DebugKit.Toolbar'
 	);
 
 	/*

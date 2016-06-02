@@ -10,13 +10,19 @@
 	"support": {
 		"issues": "https://github.com/UTN-FRD/tutorias/issues"
 	},
+	"config": {
+		"vendor-dir": "app/Vendor"
+	},
+    "extra": {
+        "installer-paths": {
+            "plugins/{$name}/": ["cakephp/debug_kit"]
+        }
+    },
 	"require": {
 		"cakephp/cakephp": "~2.8"
 	},
 	"require-dev": {
+		"cakephp/debug_kit": "^2.2.0",
 		"cakephp/cakephp-codesniffer": "~1.0"
-	},
-    "config": {
-        "vendor-dir": "app/Vendor"
-    }
+	}
 }
