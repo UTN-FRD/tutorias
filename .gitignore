@@ -2,6 +2,8 @@
 /app/Config/database.php
 /app/Test
 /app/tmp
+/plugins
+/vendors
 
 # Composer
 /app/Vendor
