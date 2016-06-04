@@ -15,11 +15,12 @@
 	},
     "extra": {
         "installer-paths": {
-            "plugins/{$name}/": ["cakephp/debug_kit"]
+            "plugins/{$name}/": ["cakephp/debug_kit", "cakedc/migrations"]
         }
     },
 	"require": {
-		"cakephp/cakephp": "~2.8"
+		"cakephp/cakephp": "~2.8",
+		"cakedc/migrations": "~2.4"
 	},
 	"require-dev": {
 		"cakephp/debug_kit": "^2.2.0"

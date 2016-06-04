@@ -122,3 +122,6 @@ CakeLog::config('error', array(
  * Plugins
  */
 CakePlugin::load('DebugKit');
+if (PHP_SAPI === 'cli') {
+	CakePlugin::load('Migrations');
+}
