@@ -22,7 +22,6 @@
 		"cakephp/cakephp": "~2.8"
 	},
 	"require-dev": {
-		"cakephp/debug_kit": "^2.2.0",
-		"cakephp/cakephp-codesniffer": "~1.0"
+		"cakephp/debug_kit": "^2.2.0"
 	}
 }
