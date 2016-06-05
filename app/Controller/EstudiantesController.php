@@ -2,112 +2,128 @@
 App::uses('AppController', 'Controller');
 
 class EstudiantesController extends AppController {
-    public $paginate = [
-        'limit' => 25,
-        'order' => [
-            'Estudiante.nombre' => 'asc'
-        ]
-    ];
+	public $paginate = [
+		'limit' => 25,
+		'order' => [
+			'Estudiante.nombre' => 'asc'
+		]
+	];
 
-    public function index() {
-        if ($this->Auth->user('role') == 'admin') {
-            $this->set('estudiantes', $this->paginate('Estudiante'));
-        } else {
-            $this->set('estudiantes', $this->paginate('Estudiante',
-                array('Estudiante.user_id' => $this->Auth->user('id') )));
-        }
+	public function index() {
+		$this->Estudiante->recursive = 0;
+		if ($this->Auth->user('role') == 'admin') {
+			$this->set('estudiantes', $this->paginate('Estudiante'));
+		} else {
+			$this->set('estudiantes', $this->paginate('Estudiante',
+				array('Estudiante.user_id' => $this->Auth->user('id') )));
+		}
+	}
+
+	public function add() {
+		$this->set('users', $this->Estudiante->User->find('list', array(
+			'conditions' => array('User.role =' => 'tutor')
+		)));
+
+		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
+			'conditions' => array('Carrera.id <' => '128')
+		)));
+
+		if ($this->request->is('post')) {
+			$this->Estudiante->create();
+
+			if ($this->Estudiante->save($this->request->data)) {
+				$this->Estudiante->Encuesta->crear($this->Estudiante->id);
+				$this->Flash->success('El estudiante ha sido creado correctamente.');
+				return $this->redirect(array('action' => 'index'));
+			}
+
+			$this->Flash->error('No se ha podido crear el estudiante. Por favor, intente nuevamente.');
+		}
+	}
+
+	public function edit($id = null) {
+		$this->Estudiante->id = $id;
+		if (!$this->Estudiante->exists()) {
+			throw new NotFoundException(__('Estudiante inválido'));
+		}
+
+		$this->set('users', $this->Estudiante->User->find('list', array(
+			'conditions' => array('User.role =' => 'tutor')
+		)));
+
+		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
+			'conditions' => array('Carrera.id <' => '128')
+		)));
+
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Estudiante->save($this->request->data)) {
+				$this->Flash->success('El estudiante ha sido actualizado correctamente.');
+				return $this->redirect(array('action' => 'index'));
+			}
+
+			$this->Flash->error('No se ha podido actualizar el estudiante. Por favor, intente nuevamente.');
+		}
+
+		$this->request->data = $this->Estudiante->read();
+	}
+
+	public function delete($id = null) {
+		$this->request->allowMethod('post');
+
+		$this->Estudiante->id = $id;
+		if (!$this->Estudiante->exists()) {
+			throw new NotFoundException(__('Estudiante invalido'));
+		}
+
+		if ($this->Estudiante->delete()) {
+			$this->Flash->success('El estudiante se ha eliminado correctamente.');
+		} else {
+			$this->Flash->error('No se ha podido eliminar el estudiante. Por favor, intente nuevamente.');
+		}
+
+		return $this->redirect(array('action' => 'index'));
+	}
+
+	/**
+	 * Devuelve si un legajo esta disponible. Si se especifica un
+	 * estudiante se considerara valido su propio legajo.
+	 */
+  public function check_legajo($id = null) {
+    $this->request->allowMethod('post');
+    $this->layout = 'ajax';
+    $this->autoRender = false;
+
+    $estudiante = $this->Estudiante->findByLegajo($this->data['Estudiante']['legajo']);
+    if (empty($estudiante) || ($estudiante['Estudiante']['id'] == $id)) {
+      echo 'true';
+    } else {
+      echo 'false';
     }
+  }
 
-    public function add(){
-        $this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
+	public function isAuthorized($user) {
+		switch ($this->action) {
+			case 'index':
+			case 'check_legajo':
+				return true;
+				break;
 
-        $this->set('carreras',
-            array(
-                'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
-                'Ingeniería Mecanica' => 'Ingeniería Mecanica',
-                'Ingeniería Electrica' => 'Ingeniería Electrica',
-                'Ingeniería Química' => 'Ingeniería Química'
-            )
-        );
+			case 'edit':
+				// Evito que un tutor pueda modificar el tutor de un estudiante propio.
+				if ($user['role'] == 'tutor' && isset($this->request->data['Estudiante']['user_id'])) {
+					return false;
+				}
 
-        if ($this->request->is(array('post'))) {
-            $this->Estudiante->create($this->request->data);
+				if (!empty($this->request->params['pass'])) {
+					$estudianteId = $this->request->params['pass'][0];
+					if ($this->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
+						return true;
+					}
+				}
 
-            if ($this->Estudiante->save()){
-                $this->Estudiante->Encuesta->crearEncuesta($this->Estudiante->id);
-                $this->Session->setFlash('El estudiante ha sido creado correctamente.', 'success');
-                return $this->redirect(array('action' => 'index'));
-            }
+				break;
+		}
 
-            $this->Session->setFlash('No se ha podido crear el estudiante. Por favor, intente nuevamente.', 'error');
-        }
-    }
-
-    public function edit($id = null) {
-        $this->set('users', $this->Estudiante->User->find('list', array('conditions' => array('User.role =' => 'tutor'))));
-
-        $this->set('carreras',
-            array(
-                'Ingeniería en Sistemas' => 'Ingeniería en Sistemas',
-                'Ingeniería Mecanica' => 'Ingeniería Mecanica',
-                'Ingeniería Electrica' => 'Ingeniería Electrica',
-                'Ingeniería Química' => 'Ingeniería Química'
-            )
-        );
-
-        if (!$id) {
-            throw new NotFoundException(__('Tutor inválido'));
-        }
-
-        $estudiante = $this->Estudiante->findById($id);
-        if (!$estudiante) {
-            throw new NotFoundException(__('Estudiante inválido'));
-        }
-
-        if ($this->request->is(array('put'))) {
-            $this->Estudiante->id = $id;
-            if ($this->Estudiante->save($this->request->data)) {
-                $this->Session->setFlash('El estudiante ha sido actualizado.', 'success');
-                return $this->redirect(array('action' => 'index'));
-            }
-
-            $this->Session->setFlash('No se ha podido actualizar el estudiante. Por favor, intente nuevamente.', 'error');
-        }
-
-        if (!$this->request->data) {
-            $this->request->data = $estudiante;
-        }
-    }
-
-    public function delete($id = null) {
-        $this->request->allowMethod('post');
-
-        $this->Estudiante->id = $id;
-        if (!$this->Estudiante->exists()) {
-            throw new NotFoundException(__('Estudiante invalido'));
-        }
-
-        if ($this->Estudiante->delete() && $this->Estudiante->Encuesta->eliminarEncuesta($id)) {
-            $this->Session->setFlash('El estudiante se ha eliminado correctamente.', 'success');
-        } else {
-            $this->Session->setFlash('No se ha podido eliminar el estudiante. Por favor, intente nuevamente.', 'error');
-        }
-
-        return $this->redirect(array('action' => 'index'));
-    }
-
-    public function isAuthorized($user) {
-        if (in_array($this->action, array('index'))) {
-            return true;
-        }
-
-        if (in_array($this->action, array('edit'))) {
-            $estudianteId = (int) $this->request->params['pass'][0];
-            if ($this->Estudiante->isOwnedBy($estudianteId, $user['id'])) {
-                return true;
-            }
-        }
-
-        return parent::isAuthorized($user);
-    }
+		return parent::isAuthorized($user);
+	}
 }

@@ -31,45 +31,45 @@ App::uses('Controller', 'Controller');
  * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $helpers = array('Html', 'Form');
+	public $helpers = array('Html', 'Form');
 
-    public $paginate = [
-        'limit' => 25
-    ];
+	public $paginate = [
+		'limit' => 25
+	];
 
-    public $components = array(
-        'Session',
-        'Auth' => array(
-            'loginRedirect' => array(
-                'controller' => 'estudiantes',
-                'action' => 'index'
-            ),
-            'logoutRedirect' => array(
-                'controller' => 'users',
-                'action' => 'login'
-            ),
-            'unauthorizedRedirect' => array(
-                'controller' => 'estudiantes',
-                'action' => 'index'
-            ),
-            'authenticate' => array(
-                'Form' => array(
-                    'passwordHasher' => 'Blowfish'
-                )
-            ),
-            'authorize' => array('Controller'),
-            'authError' => 'Necesita acceso para continuar.'
-        )
-    );
+	public $components = array(
+		'Flash',
+		'Auth' => array(
+			'loginRedirect' => array(
+				'controller' => 'estudiantes',
+				'action' => 'index'
+			),
+			'logoutRedirect' => array(
+				'controller' => 'users',
+				'action' => 'login'
+			),
+			'unauthorizedRedirect' => array(
+				'controller' => 'estudiantes',
+				'action' => 'index'
+			),
+			'authenticate' => array(
+				'Form' => array(
+					'passwordHasher' => 'Blowfish'
+				)
+			),
+			'flash' => array(
+				'element' => 'error'
+			),
+			'authorize' => array('Controller'),
+			'authError' => false
+		),
+		'DebugKit.Toolbar'
+	);
 
-    public function isAuthorized($user) {
-        // Admin can access every action
-        return (isset($user['role']) && $user['role'] === 'admin');
-    }
-
-    public function beforeFilter() {
-        $this->set('authUser', $this->Auth->user());
-        $this->set('loggedIn', $this->Auth->loggedIn());
-    }
-
+	/*
+	 * Los administradores pueden acceder a todas las acciones.
+	 */
+	public function isAuthorized($user) {
+		return (isset($user['role']) && $user['role'] == 'admin');
+	}
 }

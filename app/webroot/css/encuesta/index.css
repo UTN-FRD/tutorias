@@ -1,0 +1,67 @@
+#content > .row {
+  width: 100%;
+  margin: 0px auto;
+}
+
+fieldset legend {
+  color: #000;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+textarea.form-control {
+  height: 100px;
+}
+
+/*
+.input-group input[type=text] {
+  width: 25%;
+}
+*/
+
+.select {
+  margin-left: 3%;
+}
+
+div.checkbox, div.radio {
+  margin: 0px;
+}
+
+div.checkbox label, div.radio label {
+  padding-left: 0px;
+}
+
+.form-group {
+  margin: 0px;
+  width: auto;
+}
+
+.form-group legend {
+  margin-bottom: 10px;
+}
+
+.form-group .alert {
+  margin: 10px 0px;
+}
+
+.form-group div.input {
+  padding: 0px;
+}
+
+span.glyphicon {
+  pointer-events: auto;
+}
+
+span.glyphicon-circle-arrow-up {
+  color: #87cefa;
+}
+
+span.glyphicon-ok {
+  color: #3C763D;
+}
+
+span.glyphicon-remove {
+  color: #A94442;
+}

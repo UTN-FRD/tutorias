@@ -1,105 +1,65 @@
 <?php
 App::uses('AppModel', 'Model');
 
-/**
- * Estudiante Model
- *
- * @property Tutor $Tutor
- * @property Encuesta $Encuesta
- */
-class Estudiante extends AppModel
-{
-    public $validate = array(
-        'legajo' => array(
-            'mayorCero' => array(
-                'rule' => array('comparison', '>', 0),
-                'required' => true,
-                'message' => 'El número de legajo debe ser mayor a cero'
-            ),
-            'unique' => array(
-                'rule' => 'isUnique',
-                'message' => 'El número de legajo debe ser único'
-            )
-        ),
-        'nombre' => array(
-            'required' => array(
-                'rule' => 'notBlank',
-                'required' => true,
-                'message' => 'El nombre no puede estar vacio'
-            )
-        ),
-        'carrera' => array(
-            'required' => array(
-                'rule' => array('inList', array(
-                    'Ingeniería en Sistemas',
-                    'Ingeniería Mecanica',
-                    'Ingeniería Electrica',
-                    'Ingeniería Química'
-                )),
-                'required' => true,
-                'message' => 'La carrera es invalida'
-            )
-        ),
-        'user_id' => array(
-            'required' => array(
-                'rule' => 'validarUser',
-                'allowEmpty' => true,
-                'message' => 'El tutor es invalido'
-            )
-        )
-    );
+class Estudiante extends AppModel {
+	public $belongsTo = array(
+		'User' => array(
+			'className'  => 'User',
+			'conditions' => array('User.role' => 'tutor')
+		),
+		'Carrera' => array(
+			'className'  => 'Carrera'
+		)
+	);
 
-    public function validarUser($check) {
-        $usuarios = $this->User->find('list', array(
-            'fields' => array('User.username', 'User.id'),
-            'conditions' => array('User.role =' => 'tutor')
-        ));
-        $respuesta = array_values($check)[0];
+	public $hasMany = array(
+		'Encuesta' => array(
+			'className'  => 'Encuesta',
+			'dependent'  => true
+		)
+	);
 
-        return in_array($respuesta, $usuarios);
-    }
+	public $validate = array(
+		'legajo' => array(
+			'range' => array(
+				'rule'     => array('range', -1, 1000000000),
+				'required' => true,
+				'message'  => 'El número de legajo debe estar entre 0 y 999.999.999'
+			),
+			'isUnique' => array(
+				'rule'    => 'isUnique',
+				'message' => 'El número de legajo debe ser único'
+			)
+		),
+		'nombre' => array(
+			'notBlank' => array(
+				'rule'     => 'notBlank',
+				'required' => true,
+				'message'  => 'El nombre no puede estar vacío'
+			),
+			'maxLength' => array(
+				'rule'    => array('maxLength', 50),
+				'message' => 'El nombre puede tener como máximo 50 caracteres'
+			)
+		),
+		'carrera_id' => array(
+			'valid' => array(
+				'rule'     => 'validarCarrera',
+				'required' => true,
+				'message'  => 'La carrera es invalida'
+			)
+		)
+	);
 
+	public function validarCarrera($check) {
+		$carrera = array_values($check)[0];
+		return ($this->Carrera->exists($carrera) && $carrera < 128);
+	}
 
-    //The Associations below have been created with all possible keys, those that are not needed can be removed
-
-    /**
-     * belongsTo associations
-     *
-     * @var array
-     */
-    public $belongsTo = array(
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'user_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
-
-    /**
-     * hasMany associations
-     *
-     * @var array
-     */
-    public $hasMany = array(
-        'Encuesta' => array(
-            'className' => 'Encuesta',
-            'foreignKey' => 'estudiante_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
-    );
-
-    public function isOwnedBy($estudiante, $user)
-    {
-        return $this->field('id', array('id' => $estudiante, 'user_id' => $user)) !== false;
-    }
+	/*
+	 * Devuelve si $estudiante tiene como tutor a $tutor.
+	 */
+	public function isOwnedBy($estudiante = null, $tutor = null) {
+		return !empty($this->field('id', array('id' => $estudiante, 'user_id' => $tutor)));
+	}
 }

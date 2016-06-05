@@ -21,105 +21,117 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <!DOCTYPE html>
 <html>
 <head>
-    <?php echo $this->Html->charset(); ?>
+  <?php echo $this->Html->charset(); ?>
 
-    <title>
-        <?php echo $this->fetch('title'); ?>
-    </title>
+  <title>
+    <?php echo $this->fetch('title'); ?>
+  </title>
 
-    <?php
-    echo $this->Html->meta('icon');
+  <script type="text/javascript">
+    window.baseUrl = "<?php echo Router::url('/', true) ?>";
+  </script>
 
-    echo $this->Html->css('cake.generic');
-    echo $this->Html->css('bootstrap.min');
-    echo $this->Html->css('styles');
+  <?php
+  echo $this->Html->meta('icon');
 
-    echo $this->Html->script('jquery-1.12.1.min');
-    echo $this->Html->script('jquery.form.min.js');
-    echo $this->Html->script('bootstrap.min');
+  echo $this->Html->css('cake-generic.min');
+  echo $this->Html->css('lib/bootstrap.min');
+  echo $this->Html->css('styles');
 
-    echo $this->fetch('meta');    
-    echo $this->fetch('script');
-    echo $this->fetch('css');
-    ?>
+  echo $this->Html->script('lib/jquery-1.12.4.min');
+  echo $this->Html->script('lib/bootstrap.min');
+
+  echo $this->fetch('meta');
+  echo $this->fetch('script');
+  echo $this->fetch('css');
+  ?>
 </head>
 
 <body>
+  <header>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/tutorias/">Tutorias</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <?php if($loggedIn): ?>
-                    <ul class="nav navbar-nav">
-                        <li <?php echo ($this->request->params['controller'] == 'estudiantes')? 'class="active"' : ''?>>
-                            <a href="/tutorias/estudiantes">Estudiantes</a>
-                        </li>
-
-                        <?php if($authUser['role'] === 'admin'): ?>
-                            <li <?php echo ($this->request->params['controller'] == 'users')? 'class="active"' : ''?>>
-                                <a href="/tutorias/users">Usuarios</a>
-                            </li>
-
-                            <li <?php echo ($this->request->params['controller'] == 'preguntas')? 'class="active"' : ''?>>
-                                <a href="/tutorias/preguntas">Preguntas</a>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                <?php endif; ?>
-
-                <?php if($loggedIn): ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <?php echo AuthComponent::user('username')?>
-                                <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="/tutorias/users/edit/<?php echo AuthComponent::user('id') ?>">Perfil</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a href="/tutorias/users/logout">Salir</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                <?php endif; ?>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?php echo $this->Session->flash();?>
-                <div id="content">
-                    <?php
-                    echo $this->fetch('content');
-                    ?>
-                </div>
-            </div>
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <?php echo $this->Html->link('Tutorías', '/', array('class' => 'navbar-brand')) ?>
         </div>
-    </div>
 
-    <nav class="navbar-bottom" id="footer">
-        <?php echo $this->element('sql_dump'); ?>
-        <span class="navbar-right">Desarrollado por -> UTN - FRD - LSI</span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <?php if (AuthComponent::user()) { ?>
+            <ul class="nav navbar-nav">
+              <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?>>
+                <?php echo $this->Html->link('Estudiantes', array('controller' => 'estudiantes', 'action' => 'index')) ?>
+              </li>
+
+              <?php if (AuthComponent::user('role') == 'admin') { ?>
+                <li <?php if ($this->request->params['controller'] == 'users') { echo 'class="active"'; } ?>>
+                  <?php echo $this->Html->link('Usuarios', array('controller' => 'users', 'action' => 'index')) ?>
+                </li>
+
+                <li <?php if ($this->request->params['controller'] == 'preguntas') { echo 'class="active"'; } ?>>
+                  <?php echo $this->Html->link('Preguntas', array('controller' => 'preguntas', 'action' => 'index')) ?>
+                </li>
+              <?php } ?>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <?php echo h(AuthComponent::user('username'))?>
+                  <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <?php
+                    echo $this->Html->link(
+                      '<span class="glyphicon glyphicon-user"></span>Perfil</a>',
+                      array('controller' => 'users', 'action' => 'edit'),
+                      array('escape' => false)
+                    );
+                    ?>
+                  </li>
+
+                  <li class="divider"></li>
+
+                  <li>
+                    <?php
+                    echo $this->Html->link(
+                        '<span class="glyphicon glyphicon-log-out"></span>Salir</a>',
+                        array('controller' => 'users', 'action' => 'logout'),
+                        array('escape' => false)
+                      );
+                    ?>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          <?php } ?>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <?php echo $this->Flash->render(); ?>
+      <div id="content">
+        <?php echo $this->fetch('content'); ?>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="row">
+      <p>Desarrollado por &#x2192 UTN - FRD - LSI</p>
+    </div>
+  </footer>
 </body>
 </html>
