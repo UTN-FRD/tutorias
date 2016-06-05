@@ -1,7 +1,7 @@
 <?php
 $this->assign('title', 'Usuarios');
 $this->Html->css('index', array('inline' => false));
-$this->Html->script('index', array('inline' => false));
+$this->Html->script('user/index', array('inline' => false));
 ?>
 
 <div class="row">

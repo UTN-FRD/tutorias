@@ -1,6 +1,6 @@
 <?php
 $this->Html->css('index', array('inline' => false));
-$this->Html->script('index', array('inline' => false));
+$this->Html->script('estudiante/index', array('inline' => false));
 ?>
 
 <div class="row">

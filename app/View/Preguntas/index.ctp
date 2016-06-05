@@ -2,7 +2,7 @@
 $this->Html->css('index', array('inline' => false));
 $this->Html->css('lib/bootstrap-switch.min', array('inline' => false));
 $this->Html->script('lib/bootstrap-switch.min', array('inline' => false));
-$this->Html->script('pregunta/switch', array('inline' => false));
+$this->Html->script('pregunta/index', array('inline' => false));
 ?>
 
 <div class="row">

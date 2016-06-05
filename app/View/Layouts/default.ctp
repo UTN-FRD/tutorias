@@ -130,7 +130,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <footer>
     <div class="row">
-      <p>Desarrollado por &#x2192 UTN - FRD - LSI</p>
+      <p>Desarrollado por &#x2192; UTN - FRD - LSI</p>
     </div>
   </footer>
 </body>

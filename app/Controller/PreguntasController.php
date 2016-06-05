@@ -17,8 +17,10 @@ class PreguntasController extends AppController {
 	public function add() {
 		$carreras = $this->Pregunta->Carrera->find('list');
 
-		$this->set('tipos', $this->Pregunta->tipos());
-		$this->set('carreras', array_reverse($carreras, true));
+		$this->set(array(
+			'tipos' => $this->Pregunta->tipos(),
+			'carreras' => array_reverse($carreras, true)
+		));
 
 		if ($this->request->is('post')) {
 			$this->Pregunta->create();
@@ -40,8 +42,11 @@ class PreguntasController extends AppController {
 
 		$carreras = $this->Pregunta->Carrera->find('list');
 
-		$this->set('tipos', $this->Pregunta->tipos());
-		$this->set('carreras', array_reverse($carreras, true));
+		$this->set(array(
+			'tipos' => $this->Pregunta->tipos(),
+			'carreras' => array_reverse($carreras, true),
+			'opciones' => explode(",", $this->Pregunta->field('valores'))
+		));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {

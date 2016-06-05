@@ -59,6 +59,13 @@ class Pregunta extends AppModel {
 				'message'  => 'El tipo de pregunta es inválido'
 			)
 		),
+		'valores' => array(
+			'maximum' => array(
+				'rule'     => 'validarOpciones',
+				'required' => true,
+				'message'  => 'La cantidad maxima de opciones es 20'
+			)
+		),
 		'activo' => array(
 			'boolean' => array(
 				'rule'    => 'boolean',
@@ -82,5 +89,27 @@ class Pregunta extends AppModel {
 	public function validarTipo($check) {
 		$tipo = array_values($check)[0];
 		return array_key_exists($tipo, self::tipos());
+	}
+
+	public function validarOpciones($check) {
+		$opciones = array_values($check)[0];
+		return (count($opciones) <= 20);
+	}
+
+	public function beforeSave($options = array()) {
+		// Elimina las opciones vacias.
+		foreach ($this->data['Pregunta']['valores'] as $key => $valor) {
+			if (empty(trim($valor))) {
+				unset($this->data['Pregunta']['valores'][$key]);
+			}
+		}
+
+		if (!empty($this->data['Pregunta']['valores'])) {
+			$this->data['Pregunta']['valores'] = implode(',', $this->data['Pregunta']['valores']);
+		} else {
+			$this->data['Pregunta']['valores'] = '';
+		}
+
+		return true;
 	}
 }

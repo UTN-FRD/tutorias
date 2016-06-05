@@ -32,6 +32,12 @@ div.submit {
   float: left;
 }
 
+a.desactivado {
+  color: gray;
+  pointer-events: none;
+  cursor: default;
+}
+
 footer {
   position: absolute;
   bottom: 0;

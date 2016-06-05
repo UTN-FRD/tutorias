@@ -109,7 +109,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                     type="text"
                     class="form-control"
                     value="<?php echo h($encuesta['Encuesta']['respuesta']) ?>"
-                  />
+                  >
                 </div>
                 <?php
                 break;
