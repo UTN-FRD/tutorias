@@ -13,6 +13,11 @@
 	"config": {
 		"vendor-dir": "app/Vendor"
 	},
+	"autoload": {
+		"psr-4": {
+			"App\\Console\\": "app/Console"
+		}
+	},
     "extra": {
         "installer-paths": {
             "plugins/{$name}/": ["cakephp/debug_kit", "cakedc/migrations"]
@@ -24,5 +29,8 @@
 	},
 	"require-dev": {
 		"cakephp/debug_kit": "^2.2.0"
+	},
+	"scripts": {
+		"post-install-cmd": "App\\Console\\Installer::postInstall"
 	}
 }

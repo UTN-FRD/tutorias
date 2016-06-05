@@ -1,4 +1,5 @@
 # Aplicación
+/app/Config/core.php
 /app/Config/database.php
 /app/Test
 /app/tmp
