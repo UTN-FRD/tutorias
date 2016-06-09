@@ -14,7 +14,11 @@ $this->Html->script('estudiante/index', array('inline' => false));
     <div class="col-lg-12">
       <div class="text-right">
         <?php
-        echo $this->Html->link(__('Agregar estudiante'), array('action' => 'add'), array('class' => 'btn btn-add btn-default'));
+        echo $this->Html->link(
+          __('Agregar estudiante'),
+          array('action' => 'add'),
+          array('class' => 'btn btn-add btn-default')
+        );
         ?>
       </div>
     </div>
@@ -33,37 +37,44 @@ $this->Html->script('estudiante/index', array('inline' => false));
       </thead>
 
       <tbody>
-        <?php foreach ($estudiantes as $estudiante): ?>
+        <?php foreach ($estudiantes as $estudiante) { ?>
         <tr>
-          <td><?php echo h($estudiante['Estudiante']['legajo']); ?>&nbsp;</td>
-          <td><?php echo h($estudiante['Estudiante']['nombre']); ?>&nbsp;</td>
-          <td><?php echo h($estudiante['Carrera']['descripcion']); ?>&nbsp;</td>
-          <td><?php echo h($estudiante['User']['username']); ?>&nbsp;</td>
+          <td><?php echo h($estudiante['Estudiante']['legajo']); ?></td>
+          <td><?php echo h($estudiante['Estudiante']['nombre']); ?></td>
+          <td><?php echo h($estudiante['Carrera']['descripcion']); ?></td>
+          <td><?php echo h($estudiante['User']['username']); ?></td>
 
           <td class="actions">
             <?php
             echo $this->Html->link(
-                'Encuesta',
-                array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
-                array('class' => 'btn btn-default')
-              );
-            ?>
-            <?php
-            echo $this->Html->link(__('Editar'), array('action' => 'edit', $estudiante['Estudiante']['id']), array('class' => 'btn btn-default'));
+              'Encuesta',
+              array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
+              array('class' => 'btn btn-default btn-sm')
+            );
+
+            echo $this->Html->link(
+              __('Editar'),
+              array('action' => 'edit', $estudiante['Estudiante']['id']),
+              array('class' => 'btn btn-default btn-sm')
+            );
+
             if (AuthComponent::user('role') == 'admin') {
+              echo $this->Html->link(
+                'Borrar',
+                '#',
+                array(
+                  'class' => 'btn btn-danger btn-sm',
+                  'data-toggle' => 'modal',
+                  'data-target' => '#confirmar-baja',
+                  'data-id' => $estudiante['Estudiante']['id'],
+                  'data-nombre' => h($estudiante['Estudiante']['nombre'])
+                )
+              );
+            }
             ?>
-              <a
-                type="button"
-                class="btn btn-default"
-                data-toggle="modal"
-                data-target="#confirmar-baja"
-                data-id=<?php echo $estudiante['Estudiante']['id'] ?>
-                data-nombre=<?php echo h($estudiante['Estudiante']['nombre']) ?>
-              >Borrar</a>
-            <?php } ?>
           </td>
         </tr>
-        <?php endforeach; ?>
+        <?php } ?>
       </tbody>
     </table>
 
@@ -88,18 +99,18 @@ $this->Html->script('estudiante/index', array('inline' => false));
 
     <p class="paginator">
       <?php
-      echo $this->Paginator->counter(array(
-        'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-      ));
+        echo $this->Paginator->counter(array(
+          'format' => __('Mostrando {:current} de {:count} resultados')
+        ));
       ?>
     </p>
 
     <div class="paging text-center">
       <?php
       if ($this->Paginator->hasPrev() || $this->Paginator->hasNext()) {
-        echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->prev('«', array(), null, array('class' => 'prev disabled'));
         echo $this->Paginator->numbers(array('separator' => ''));
-        echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+        echo $this->Paginator->next('»', array(), null, array('class' => 'next disabled'));
       }
       ?>
     </div>

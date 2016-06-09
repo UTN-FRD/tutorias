@@ -7,12 +7,12 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
 <div class="row">
   <div class="col-md-12">
     <h2>
-      <?php echo __('Encuesta de '); ?>
       <?php
+      echo __('Encuesta de ');
       echo $this->Html->link(
-          $estudiante['nombre'],
-          array('controller' => 'estudiantes', 'action' => 'edit', $estudiante['id'])
-        );
+        $estudiante['nombre'],
+        array('controller' => 'estudiantes', 'action' => 'edit', $estudiante['id'])
+      );
       ?>
     </h2>
   </div>
@@ -22,7 +22,11 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
       <div class="col-lg-12">
         <div class="text-right">
           <?php
-          echo $this->Form->postLink(__('Regenerar encuesta'), array('action' => 'regenerate', $estudiante['id']), array('class' => 'btn btn-default'));
+          echo $this->Form->postLink(
+            __('Regenerar encuesta'),
+            array('action' => 'regenerate', $estudiante['id']),
+            array('class' => 'btn btn-default')
+          );
           ?>
         </div>
       </div>
@@ -31,9 +35,9 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
     <?php foreach ($encuestas as $encuesta) { ?>
       <form
         class="form-group has-feedback"
-        action="<?php echo Router::url(array('action' => 'save')) ?>"
+        action="<?php echo Router::url(array('action' => 'save')); ?>"
         method="post"
-        data-encuesta="<?php echo $encuesta['Pregunta']['id'] ?>"
+        data-encuesta="<?php echo $encuesta['Pregunta']['id']; ?>"
       >
         <fieldset>
           <div class="form-group">
@@ -97,7 +101,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                   <textarea
                     name="respuesta"
                     class="form-control"
-                  ><?php echo h($encuesta['Encuesta']['respuesta']) ?></textarea>
+                  ><?php echo h($encuesta['Encuesta']['respuesta']); ?></textarea>
                 </div>
                 <?php
                 break;
@@ -108,7 +112,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                     name="respuesta"
                     type="text"
                     class="form-control"
-                    value="<?php echo h($encuesta['Encuesta']['respuesta']) ?>"
+                    value="<?php echo h($encuesta['Encuesta']['respuesta']); ?>"
                   >
                 </div>
                 <?php

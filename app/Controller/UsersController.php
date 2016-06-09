@@ -91,18 +91,18 @@ class UsersController extends AppController {
 	 * Devuelve si un nombre de usuario esta disponible. Si se especifica
 	 * un usuario se considerara valido su propio nombre de usuario.
 	 */
-  public function check_username($id = null) {
-    $this->request->allowMethod('post');
-    $this->layout = 'ajax';
-    $this->autoRender = false;
+	public function check_username($id = null) {
+		$this->request->allowMethod('post');
+		$this->layout = 'ajax';
+		$this->autoRender = false;
 
-    $user = $this->User->findByUsername($this->data['User']['username']);
-    if (empty($user) || ($user['User']['id'] == $id)) {
-      echo 'true';
-    } else {
-      echo 'false';
-    }
-  }
+		$user = $this->User->findByUsername($this->data['User']['username']);
+		if (empty($user) || ($user['User']['id'] == $id)) {
+			echo 'true';
+		} else {
+			echo 'false';
+		}
+	}
 
 	public function login() {
 		if ($this->Auth->loggedIn()) {

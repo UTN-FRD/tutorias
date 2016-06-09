@@ -14,11 +14,13 @@ $this->Html->script('form-submit', array('inline' => false));
     </legend>
   </div>
 
-  <?php echo $this->Form->create('Pregunta', array(
+  <?php
+  echo $this->Form->create('Pregunta', array(
     'id' => 'form-submit',
     'class' => 'form-horizontal',
     'data-pregunta' => ''
-  )); ?>
+  ));
+  ?>
 
   <div class="col-lg-12">
     <fieldset>
@@ -65,11 +67,11 @@ $this->Html->script('form-submit', array('inline' => false));
       </div>
 
       <div class="form-group">
-        <label for="carrera" class="col-sm-3 control-label">Visible para</label>
+        <label for="carrera" class="col-sm-3 control-label">Visible en</label>
         <div class="col-sm-8">
           <?php
           echo $this->Form->input('carrera_id', array(
-            'id'    => 'carrera',
+            'id' => 'carrera',
             'label' => false,
             'class' => 'form-control'
           ));
@@ -82,7 +84,7 @@ $this->Html->script('form-submit', array('inline' => false));
         <div class="col-sm-8">
           <?php
           echo $this->Form->input('tipo', array(
-            'id'    => 'tipo',
+            'id' => 'tipo',
             'label' => false,
             'class' => 'form-control'
           ));
@@ -100,16 +102,16 @@ $this->Html->script('form-submit', array('inline' => false));
                 autocomplete="off"
                 class="form-control"
                 type="text"
-              ><a href="#" class="eliminar" title="Eliminar opción">&times;</a>
+              ><a href="#" tabindex="-1" class="eliminar" title="Eliminar opción">&times;</a>
             </div>
           </div>
-          <a id="agregarOpcion" href="#">Agregar Campo</a>
+          <a id="agregarOpcion" href="#">Agregar opción</a>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-4">
-          <a id="btn-submit" class="btn btn-success">Guardar</a>
+          <a href="#" id="btn-submit" class="btn btn-success">Guardar</a>
           <?php
           echo $this->Html->link(
             'Cancelar',

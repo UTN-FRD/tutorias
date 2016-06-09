@@ -14,19 +14,21 @@ class EstudiantesController extends AppController {
 		if ($this->Auth->user('role') == 'admin') {
 			$this->set('estudiantes', $this->paginate('Estudiante'));
 		} else {
-			$this->set('estudiantes', $this->paginate('Estudiante',
-				array('Estudiante.user_id' => $this->Auth->user('id') )));
+			$this->set('estudiantes', $this->paginate('Estudiante', array(
+				'Estudiante.user_id' => $this->Auth->user('id')
+			)));
 		}
 	}
 
 	public function add() {
-		$this->set('users', $this->Estudiante->User->find('list', array(
-			'conditions' => array('User.role =' => 'tutor')
-		)));
-
-		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
-			'conditions' => array('Carrera.id <' => '128')
-		)));
+		$this->set(array(
+			'users' => $this->Estudiante->User->find('list', array(
+				'conditions' => array('User.role' => 'tutor')
+			)),
+			'carreras' => $this->Estudiante->Carrera->find('list', array(
+				'conditions' => array('Carrera.id <' => '128')
+			))
+		));
 
 		if ($this->request->is('post')) {
 			$this->Estudiante->create();
@@ -47,13 +49,14 @@ class EstudiantesController extends AppController {
 			throw new NotFoundException(__('Estudiante inválido'));
 		}
 
-		$this->set('users', $this->Estudiante->User->find('list', array(
-			'conditions' => array('User.role =' => 'tutor')
-		)));
-
-		$this->set('carreras', $this->Estudiante->Carrera->find('list', array(
-			'conditions' => array('Carrera.id <' => '128')
-		)));
+		$this->set(array(
+			'users' => $this->Estudiante->User->find('list', array(
+				'conditions' => array('User.role' => 'tutor')
+			)),
+			'carreras' => $this->Estudiante->Carrera->find('list', array(
+				'conditions' => array('Carrera.id <' => '128')
+			))
+		));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Estudiante->save($this->request->data)) {
@@ -88,18 +91,18 @@ class EstudiantesController extends AppController {
 	 * Devuelve si un legajo esta disponible. Si se especifica un
 	 * estudiante se considerara valido su propio legajo.
 	 */
-  public function check_legajo($id = null) {
-    $this->request->allowMethod('post');
-    $this->layout = 'ajax';
-    $this->autoRender = false;
+	public function check_legajo($id = null) {
+		$this->request->allowMethod('post');
+		$this->layout = 'ajax';
+		$this->autoRender = false;
 
-    $estudiante = $this->Estudiante->findByLegajo($this->data['Estudiante']['legajo']);
-    if (empty($estudiante) || ($estudiante['Estudiante']['id'] == $id)) {
-      echo 'true';
-    } else {
-      echo 'false';
-    }
-  }
+		$estudiante = $this->Estudiante->findByLegajo($this->data['Estudiante']['legajo']);
+		if (empty($estudiante) || ($estudiante['Estudiante']['id'] == $id)) {
+			echo 'true';
+		} else {
+			echo 'false';
+		}
+	}
 
 	public function isAuthorized($user) {
 		switch ($this->action) {

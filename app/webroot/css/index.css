@@ -3,19 +3,119 @@
   min-width: 147px;
 }
 
-th a {
-  padding-left: 0px;
+table.table {
+  margin: 20px 0 15px 0;
 }
 
-p.paginator {
-  font-weight: bold;
+table.table .auto-width {
+  width: 1px;
+}
+
+table.table thead {
+  background: #337AB7;
+  border: 1px solid #337AB7;
+}
+
+table.table thead tr {
+  height: 50px;
+}
+
+table.table thead tr th {
+  height: 30px;
+  vertical-align: middle;
+  position: relative;
+  top: 2px;
+  font-weight: 700;
+  border-bottom: initial;
+}
+
+table.table thead tr th * {
+  color: #ffffff;
+}
+
+table.table thead tr th a.asc:after {
+  content: ' ↓';
+  position: relative;
+  bottom: 1px;
+}
+
+table.table thead tr th a.desc:after {
+  content: ' ↑';
+  position: relative;
+  bottom: 2px;
+}
+
+table.table tbody {
+  border: 1px solid #DDDDDD;
+}
+
+table.table tbody tr td {
+  vertical-align: middle;
 }
 
 .modal {
   top: 128px;
 }
 
+.modal-content {
+  background-color: #D43F3A;
+  overflow: hidden;
+}
+
+.modal-header h4 {
+  color: #fff;
+  font-size: 1.15em;
+}
+
+.modal-body {
+  background-color: #fff;
+}
+
+.modal-footer {
+  background-color: #fff;
+}
+
 .modal-body {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+p.paginator {
+  font-weight: bold;
+}
+
+.paging {
+  font-size: 1.15em;
+  padding: 9px 8px;
+}
+
+.paging .prev, .paging .next {
+  position: relative;
+  bottom: 1px;
+}
+
+.paging span {
+  border: initial;
+  border-radius: 16px;
+  font-weight: bold;
+  margin-right: 6px;
+  padding: 5px 6px;
+}
+
+.paging span a {
+  text-decoration: none;
+}
+
+.paging span a:active {
+  box-shadow: 1px 1px 3px -1px rgba(0,0,0, .55);
+}
+
+.paging span:hover {
+  background: #efefef;
+}
+
+.paging span.current {
+  padding: 7px 10px;
+  color: #fff;
+  background: #505362;
 }

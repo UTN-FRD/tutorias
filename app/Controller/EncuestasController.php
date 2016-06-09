@@ -44,9 +44,7 @@ class EncuestasController extends AppController {
 			throw new NotFoundException(__('Encuesta invalida'));
 		}
 
-		$this->Encuesta->set(array(
-			'respuesta' => $this->data['respuesta']
-		));
+		$this->Encuesta->set('respuesta', $this->data['respuesta']);
 
 		if (!$this->Encuesta->save()) {
 			$this->response->statusCode(400);

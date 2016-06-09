@@ -19,7 +19,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <?php echo $this->Html->charset(); ?>
 
@@ -28,11 +28,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   </title>
 
   <script type="text/javascript">
-    window.baseUrl = "<?php echo Router::url('/', true) ?>";
+    window.baseUrl = "<?php echo Router::url('/') ?>";
   </script>
 
   <?php
   echo $this->Html->meta('icon');
+  echo $this->Html->meta(array(
+    'name' => 'viewport',
+    'content' => 'width=device-width'
+  ));
 
   echo $this->Html->css('cake-generic.min');
   echo $this->Html->css('lib/bootstrap.min');
@@ -53,30 +57,52 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <?php echo $this->Html->link('Tutorías', '/', array('class' => 'navbar-brand')) ?>
+
+          <?php
+          echo $this->Html->link(
+            'Tutorías',
+            '/',
+            array('class' => 'navbar-brand')
+          );
+          ?>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbar-collapse">
           <?php if (AuthComponent::user()) { ?>
             <ul class="nav navbar-nav">
-              <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?>>
-                <?php echo $this->Html->link('Estudiantes', array('controller' => 'estudiantes', 'action' => 'index')) ?>
+              <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?> >
+                <?php
+                echo $this->Html->link(
+                  'Estudiantes',
+                  array('controller' => 'estudiantes', 'action' => 'index')
+                );
+                ?>
               </li>
 
               <?php if (AuthComponent::user('role') == 'admin') { ?>
-                <li <?php if ($this->request->params['controller'] == 'users') { echo 'class="active"'; } ?>>
-                  <?php echo $this->Html->link('Usuarios', array('controller' => 'users', 'action' => 'index')) ?>
+                <li <?php if ($this->request->params['controller'] == 'users') { echo 'class="active"'; } ?> >
+                  <?php
+                  echo $this->Html->link(
+                    'Usuarios',
+                    array('controller' => 'users', 'action' => 'index')
+                  );
+                  ?>
                 </li>
 
-                <li <?php if ($this->request->params['controller'] == 'preguntas') { echo 'class="active"'; } ?>>
-                  <?php echo $this->Html->link('Preguntas', array('controller' => 'preguntas', 'action' => 'index')) ?>
+                <li <?php if ($this->request->params['controller'] == 'preguntas') { echo 'class="active"'; } ?> >
+                  <?php
+                  echo $this->Html->link(
+                    'Preguntas',
+                    array('controller' => 'preguntas', 'action' => 'index')
+                  );
+                  ?>
                 </li>
               <?php } ?>
             </ul>
@@ -84,31 +110,24 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  <?php echo h(AuthComponent::user('username'))?>
+                  <?php echo h(AuthComponent::user('username')); ?>
                   <span class="caret"></span>
                 </a>
 
+
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <?php
-                    echo $this->Html->link(
-                      '<span class="glyphicon glyphicon-user"></span>Perfil</a>',
-                      array('controller' => 'users', 'action' => 'edit'),
-                      array('escape' => false)
-                    );
-                    ?>
+                    <a href="<?php echo Router::url(array('controller' => 'users', 'action' => 'edit')); ?>">
+                      <span class="glyphicon glyphicon-user"></span>Perfil
+                    </a>
                   </li>
 
                   <li class="divider"></li>
 
                   <li>
-                    <?php
-                    echo $this->Html->link(
-                        '<span class="glyphicon glyphicon-log-out"></span>Salir</a>',
-                        array('controller' => 'users', 'action' => 'logout'),
-                        array('escape' => false)
-                      );
-                    ?>
+                    <a href="<?php echo Router::url(array('controller' => 'users', 'action' => 'logout')); ?>">
+                      <span class="glyphicon glyphicon-log-out"></span>Salir
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -122,6 +141,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   <main>
     <div class="container">
       <?php echo $this->Flash->render(); ?>
+
       <div id="content">
         <?php echo $this->fetch('content'); ?>
       </div>

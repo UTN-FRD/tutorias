@@ -8,8 +8,10 @@ header .dropdown-menu a {
   padding: 3px 0px;
 }
 
-header .dropdown-menu .glyphicon {
-  margin: 0px 7px 0px 5px;
+header .dropdown-menu a .glyphicon {
+  padding: 0px 7px 0px 5px;
+  position: relative;
+  top: 2px;
 }
 
 body {

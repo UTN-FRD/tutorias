@@ -33,6 +33,7 @@ $(document).ready(function() {
         href: '#',
         class: 'eliminar',
         title: 'Eliminar opción',
+        tabindex: '-1',
         html: '&times;'
       });
 

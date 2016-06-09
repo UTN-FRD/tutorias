@@ -14,7 +14,11 @@ $this->Html->script('user/index', array('inline' => false));
   <div class="col-lg-12">
     <div class="text-right">
       <?php
-      echo $this->Html->link(__('Agregar usuario'), array('action' => 'add'), array('class' => 'btn btn-add btn-default'));
+      echo $this->Html->link(
+        __('Agregar usuario'),
+        array('action' => 'add'),
+        array('class' => 'btn btn-add btn-default')
+      );
       ?>
     </div>
   </div>
@@ -33,29 +37,38 @@ $this->Html->script('user/index', array('inline' => false));
       <tbody>
         <?php foreach ($users as $user) { ?>
           <tr>
-            <td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-            <td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-            <td><?php echo h($user['User']['role']); ?>&nbsp;</td>
+            <td><?php echo h($user['User']['id']); ?></td>
+            <td><?php echo h($user['User']['username']); ?></td>
+            <td><?php echo h($user['User']['role']); ?></td>
 
             <td class="actions">
               <?php
-              echo $this->Html->link(__('Editar'), array('action' => 'edit', $user['User']['id']), array('class' => 'btn btn-default'));
+              echo $this->Html->link(
+                __('Editar'),
+                array('action' => 'edit', $user['User']['id']),
+                array('class' => 'btn btn-default btn-sm', 'role' => 'button')
+              );
+
               if (AuthComponent::user('id') <> $user['User']['id']) {
+                echo $this->Html->link(
+                  'Borrar',
+                  '#',
+                  array(
+                    'class' => 'btn btn-danger btn-sm',
+                    'data-toggle' => 'modal',
+                    'data-target' => '#confirmar-baja',
+                    'data-id' => $user['User']['id'],
+                    'data-nombre' => $user['User']['username']
+                  )
+                );
+              } else {
+                echo $this->Html->link(
+                  'Borrar',
+                  '#',
+                  array('class' => 'btn btn-danger btn-sm disabled')
+                );
+              }
               ?>
-                <a
-                  type="button"
-                  class="btn btn-default"
-                  data-toggle="modal"
-                  data-target="#confirmar-baja"
-                  data-id=<?php echo $user['User']['id'] ?>
-                  data-nombre=<?php echo h($user['User']['username']) ?>
-                >Borrar</a>
-              <?php } else { ?>
-                <a
-                  type="button"
-                  class="btn btn-default disabled"
-                >Borrar</a>
-              <?php } ?>
             </td>
           </tr>
         <?php } ?>
@@ -84,7 +97,7 @@ $this->Html->script('user/index', array('inline' => false));
     <p class="paginator">
       <?php
       echo $this->Paginator->counter(array(
-        'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+        'format' => __('Mostrando {:current} de {:count} resultados')
       ));
       ?>
     </p>
@@ -92,9 +105,9 @@ $this->Html->script('user/index', array('inline' => false));
     <div class="paging text-center">
       <?php
       if ($this->Paginator->hasPrev() || $this->Paginator->hasNext()) {
-        echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->prev('«', array(), null, array('class' => 'prev disabled'));
         echo $this->Paginator->numbers(array('separator' => ''));
-        echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+        echo $this->Paginator->next('»', array(), null, array('class' => 'next disabled'));
       }
       ?>
     </div>
