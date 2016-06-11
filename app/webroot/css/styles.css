@@ -4,6 +4,24 @@ html {
   padding-top: 70px;
 }
 
+header .container-fluid .navbar-header .navbar-brand {
+  padding-left: 0;
+  padding-right: 15px;
+  margin-left: 0;
+  float: none;
+}
+
+header .container-fluid .navbar-brand .logo {
+  height: 50px;
+  padding: 10px 5px 10px 0;
+  display: inline;
+}
+
+header .container-fluid .navbar-brand span {
+  position: relative;
+  top: 1px;
+}
+
 header .dropdown-menu a {
   padding: 3px 0px;
 }
@@ -24,10 +42,6 @@ body {
 
 .page-title .buttons {
   float: right;
-}
-
-.input-group {
-  width: 100%;
 }
 
 div.submit {

@@ -64,13 +64,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <span class="icon-bar"></span>
           </button>
 
-          <?php
-          echo $this->Html->link(
-            'Tutorías',
-            '/',
-            array('class' => 'navbar-brand')
-          );
-          ?>
+          <a class="navbar-brand" href="<?php echo Router::url('/'); ?>">
+            <?php
+            echo $this->Html->image('utn-logo.png', array(
+              'class' => 'logo'
+            ));
+            ?>
+            <span>Tutorías</span>
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
