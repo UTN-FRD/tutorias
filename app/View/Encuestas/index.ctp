@@ -1,7 +1,11 @@
 <?php
 $this->Html->css('encuesta/index', array('inline' => false));
+$this->Html->css('lib/daterangepicker.min', array('inline' => false));
 $this->Html->script('encuesta/index', array('inline' => false));
 $this->Html->script('lib/jquery.form.min', array('inline' => false));
+$this->Html->script('lib/moment.min', array('inline' => false));
+$this->Html->script('lib/daterangepicker.min', array('inline' => false));
+$this->Html->script('lib/autosize.min', array('inline' => false));
 ?>
 
 <div class="row">
@@ -19,7 +23,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
 
   <div class="col-md-12">
     <?php if (AuthComponent::user('role') == 'admin') { ?>
-      <div class="col-lg-12">
+      <div id="btn-regenerar" class="col-lg-12">
         <div class="text-right">
           <?php
           echo $this->Form->postLink(
@@ -54,16 +58,16 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
 
             <?php if ($encuesta['Pregunta']['ayuda']) { ?>
               <div class="alert alert-warning" role="alert">
-                <?php echo h($encuesta['Pregunta']['ayuda']); ?>
+                <?php echo nl2br(h($encuesta['Pregunta']['ayuda'])); ?>
               </div>
             <?php
             }
 
             $valores = explode(',', h($encuesta['Pregunta']['valores']));
 
-            switch (Pregunta::tipos($encuesta['Pregunta']['tipo'])) {
-              case 'Menú Desplegable':
-                ?> <div class="input-group"> <?php
+            switch ($encuesta['Pregunta']['tipo']) {
+              case Pregunta::TIPO_MENU:
+                ?> <div class="form-group"> <?php
                 echo $this->Form->select('respuesta', $valores, array(
                   'class'   => 'form-control',
                   'label'   => false,
@@ -73,7 +77,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                 ));
                 ?> </div> <?php
                 break;
-              case 'Radio Button':
+              case Pregunta::TIPO_RADIO:
                 echo $this->Form->input('respuesta', array(
                   'type'      => 'radio',
                   'label'     => false,
@@ -86,7 +90,7 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                   'options'   => $valores
                 ));
                 break;
-              case 'Check Box':
+              case Pregunta::TIPO_CHECKBOX:
                 echo $this->Form->input('respuesta', array(
                   'multiple' => 'checkbox',
                   'label'    => false,
@@ -95,9 +99,9 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                   'selected' => explode(',', h($encuesta['Encuesta']['respuesta']))
                 ));
                 break;
-              case 'Texto':
+              case Pregunta::TIPO_TEXTO:
                 ?>
-                <div class="input-group">
+                <div class="form-group">
                   <textarea
                     name="respuesta"
                     class="form-control"
@@ -105,15 +109,27 @@ $this->Html->script('lib/jquery.form.min', array('inline' => false));
                 </div>
                 <?php
                 break;
-              case 'Numérico':
+              case Pregunta::TIPO_NUMERICO:
                 ?>
-                <div class="input-group">
+                <div class="form-group">
                   <input
                     name="respuesta"
                     type="text"
-                    class="form-control"
+                    class="number form-control"
                     value="<?php echo h($encuesta['Encuesta']['respuesta']); ?>"
                   >
+                </div>
+                <?php
+                break;
+              case Pregunta::TIPO_FECHA:
+                ?>
+                <div class="form-group">
+                  <input
+                    name="respuesta"
+                    type="text"
+                    class="daterange form-control"
+                    value="<?php echo h($encuesta['Encuesta']['respuesta']); ?>"
+                  ><span class="glyphicon glyphicon-calendar"></span>
                 </div>
                 <?php
                 break;

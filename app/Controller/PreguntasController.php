@@ -5,6 +5,7 @@ class PreguntasController extends AppController {
 	public $paginate = [
 		'limit' => 25,
 		'order' => [
+			'Pregunta.activo' => 'desc',
 			'Pregunta.orden' => 'asc'
 		]
 	];

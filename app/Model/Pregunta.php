@@ -7,6 +7,7 @@ class Pregunta extends AppModel {
 	const TIPO_MENU = 2;
 	const TIPO_RADIO = 3;
 	const TIPO_CHECKBOX = 4;
+	const TIPO_FECHA = 5;
 
 	public static function tipos($value = null) {
 		$options = array(
@@ -14,7 +15,8 @@ class Pregunta extends AppModel {
 			self::TIPO_NUMERICO => __('Numérico'),
 			self::TIPO_MENU     => __('Menú Desplegable'),
 			self::TIPO_RADIO    => __('Radio Button'),
-			self::TIPO_CHECKBOX => __('Check Box')
+			self::TIPO_CHECKBOX => __('Check Box'),
+			self::TIPO_FECHA    => __('Fecha')
 		);
 
 		return parent::enum($value, $options);
@@ -70,6 +72,12 @@ class Pregunta extends AppModel {
 			'boolean' => array(
 				'rule'    => 'boolean',
 				'message' => 'El valor de activo debe ser booleano'
+			)
+		),
+		'ayuda' => array(
+			'maxLength' => array(
+				'rule'    => array('maxLength', 65535),
+				'message' => 'La ayuda puede tener como máximo 65535 caracteres'
 			)
 		),
 		'carrera_id' => array(

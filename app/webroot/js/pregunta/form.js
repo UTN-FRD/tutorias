@@ -6,7 +6,7 @@ $(document).ready(function() {
   // Oculta las opciones si la pregunta no es de opciones multiples.
   $('#tipo').on('change', function() {
     option = $(this).children("option").filter(":selected").text()
-    if (option == 'Texto' || option == 'Numérico') {
+    if (['Menú Desplegable', 'Radio Button', 'Check Box'].indexOf(option) == -1) {
       $('#div-opciones').hide();
     } else {
       $('#div-opciones').show();
@@ -86,6 +86,9 @@ function rules() {
     },
     'data[Pregunta][pregunta]': {
       maxlength: 75
+    },
+    'data[Pregunta][ayuda]': {
+      maxlength: 65535
     }
   };
 }
@@ -100,6 +103,9 @@ function messages() {
     'data[Pregunta][pregunta]': {
       required: 'Ingrese una pregunta',
       maxlength: 'La pregunta puede tener como máximo 75 caracteres'
+    },
+    'data[Pregunta][ayuda]': {
+      maxlength: 'La ayuda puede tener como máximo 65535 caracteres'
     }
   };
 }

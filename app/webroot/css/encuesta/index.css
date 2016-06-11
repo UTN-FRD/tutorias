@@ -3,6 +3,11 @@
   margin: 0px auto;
 }
 
+#btn-regenerar {
+  margin-bottom: 15px;
+  padding-right: .5em;
+}
+
 fieldset legend {
   color: #000;
 }
@@ -11,15 +16,38 @@ h2 {
   margin-bottom: 20px;
 }
 
-textarea.form-control {
-  height: 100px;
+h2 a {
+  font-weight: 500;
 }
 
-/*
-.input-group input[type=text] {
-  width: 25%;
+.form-group {
+  margin: 0px;
+  width: auto;
 }
-*/
+
+.form-group legend {
+  margin-bottom: 10px;
+  font-weight: initial;
+}
+
+.form-group .alert {
+  margin: 10px 0px;
+}
+
+.form-group div.input {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+form.form-group {
+ margin-bottom: 15px;
+}
+
+/* Según el tipo de pregunta */
+textarea.form-control {
+  height: 100px;
+  width: 100%;
+}
 
 .select {
   margin-left: 3%;
@@ -33,23 +61,20 @@ div.checkbox label, div.radio label {
   padding-left: 0px;
 }
 
-.form-group {
-  margin: 0px;
-  width: auto;
+input.number, input.daterange {
+  width: 17vw;
 }
 
-.form-group legend {
-  margin-bottom: 10px;
+span.glyphicon-calendar {
+  position: absolute;
+  bottom: 24px;
+  left: 16vw;
+  top: auto;
+  cursor: pointer;
+  z-index: 10;
 }
 
-.form-group .alert {
-  margin: 10px 0px;
-}
-
-.form-group div.input {
-  padding: 0px;
-}
-
+/* Glyphicons */
 span.glyphicon {
   pointer-events: auto;
 }
@@ -65,3 +90,24 @@ span.glyphicon-ok {
 span.glyphicon-remove {
   color: #A94442;
 }
+
+@media (max-width: 991px) {
+  input.number, input.daterange {
+    width: 22vw;
+  }
+
+  span.glyphicon-calendar {
+    left: 21vw;
+  }
+}
+
+@media (max-width: 767px) {
+  input.number, input.daterange {
+    width: 100%;
+  }
+
+  span.glyphicon-calendar {
+    display: none;
+  }
+}
+
