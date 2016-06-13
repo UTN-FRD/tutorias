@@ -33,6 +33,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <?php
   echo $this->Html->meta('icon');
+  echo $this->Html->meta('description',
+    'Sistema de administración de tutorías para alumnos de la UTN Facultad Regional Delta.'
+  );
+  echo $this->Html->meta(array(
+    'name' => 'author',
+    'content' => 'Laboratorío de Sistemas de Información de la UTN Facultad Regional Delta'
+  ));
   echo $this->Html->meta(array(
     'name' => 'viewport',
     'content' => 'width=device-width'
@@ -151,7 +158,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <footer>
     <div class="row">
-      <p>Desarrollado por &#x2192; UTN - FRD - LSI</p>
+      <p>Desarrollado en el Laboratorío de Sistemas de la UTN FRD</p>
     </div>
   </footer>
 </body>

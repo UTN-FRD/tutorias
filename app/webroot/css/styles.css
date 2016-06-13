@@ -5,8 +5,8 @@ html {
 }
 
 header .container-fluid .navbar-header .navbar-brand {
-  padding-left: 0;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 27px;
   margin-left: 0;
   float: none;
 }

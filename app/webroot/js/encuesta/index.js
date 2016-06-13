@@ -70,6 +70,8 @@ function showResponse(responseText, statusText, xhr, $form) {
     title: statusText,
     class: 'glyphicon glyphicon-ok form-control-feedback'
   });
+
+  $form.find("div[class*='input-']").removeClass('has-error');
 }
 
 function showError(jqXHR, statusText, errorThrown, $form) {
@@ -77,4 +79,6 @@ function showError(jqXHR, statusText, errorThrown, $form) {
     title: errorThrown,
     class: 'glyphicon glyphicon-remove form-control-feedback'
   });
+
+  $form.find("div[class*='input-']").addClass('has-error');
 }

@@ -46,7 +46,7 @@ class Estudiante extends AppModel {
 			'valid' => array(
 				'rule'     => 'validarCarrera',
 				'required' => true,
-				'message'  => 'La carrera es invalida'
+				'message'  => 'La carrera es inválida'
 			)
 		)
 	);

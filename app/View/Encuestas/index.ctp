@@ -72,7 +72,6 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                   'class'   => 'form-control',
                   'label'   => false,
                   'legend'  => false,
-                  'empty'   => false,
                   'value'   => h($encuesta['Encuesta']['respuesta'])
                 ));
                 ?> </div> <?php
@@ -111,7 +110,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                 break;
               case Pregunta::TIPO_NUMERICO:
                 ?>
-                <div class="form-group">
+                <div class="form-group input-number">
                   <input
                     name="respuesta"
                     type="text"
@@ -123,7 +122,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                 break;
               case Pregunta::TIPO_FECHA:
                 ?>
-                <div class="form-group">
+                <div class="form-group input-date">
                   <input
                     name="respuesta"
                     type="text"

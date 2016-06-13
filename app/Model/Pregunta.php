@@ -65,7 +65,7 @@ class Pregunta extends AppModel {
 			'maximum' => array(
 				'rule'     => 'validarOpciones',
 				'required' => true,
-				'message'  => 'La cantidad maxima de opciones es 20'
+				'message'  => 'La cantidad máxima de opciones es 20'
 			)
 		),
 		'activo' => array(
@@ -84,7 +84,7 @@ class Pregunta extends AppModel {
 			'valid' => array(
 				'rule'     => 'validarCarrera',
 				'required' => true,
-				'message'  => 'La carrera es invalida'
+				'message'  => 'La carrera es inválida'
 			)
 		)
 	);

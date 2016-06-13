@@ -16,7 +16,7 @@ class Encuesta extends AppModel {
 			'valid' => array(
 				'rule'       => 'validarTipo',
 				'allowEmpty' => true,
-				'message'    => 'La respuesta es inválido'
+				'message'    => 'La respuesta es inválida'
 			)
 		)
 	);
@@ -55,7 +55,7 @@ class Encuesta extends AppModel {
 				$dateTime = DateTime::createFromFormat('d/m/Y', $respuesta);
 
 				$errors = DateTime::getLastErrors();
-				if (!empty($errors['warning_count'])) {
+				if (!$dateTime || !empty($errors['warning_count'])) {
 					return false;
 				}
 

@@ -45,7 +45,7 @@ form.form-group {
 
 /* Según el tipo de pregunta */
 textarea.form-control {
-  height: 100px;
+  min-height: 100px;
   width: 100%;
 }
 
@@ -74,6 +74,45 @@ span.glyphicon-calendar {
   z-index: 10;
 }
 
+/* Mensajes de error */
+.has-error::after {
+  position: absolute;
+  bottom: 14px;
+  left: calc(17.7vw + 15.8px);
+  background: #d43f3a;
+  padding: 7px 14px;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+
+.has-error::before {
+  content: '';
+  position: absolute;
+  bottom: 24px;
+  left: 17.7vw;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #d43f3a;
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+
+.has-error.input-date::after {
+  content: 'Ingrese una fecha válida';
+}
+
+.has-error.input-number::after {
+  content: 'Ingrese un número válido';
+}
+
+.has-error[class*='input-']:hover::after,
+.has-error[class*='input-']:hover::before {
+  opacity: 1;
+}
+
 /* Glyphicons */
 span.glyphicon {
   pointer-events: auto;
@@ -99,8 +138,17 @@ span.glyphicon-remove {
   span.glyphicon-calendar {
     left: 21vw;
   }
+
+  .has-error::after {
+    left: calc(23vw + 15.8px);
+  }
+
+  .has-error::before {
+    left: 23vw;
+  }
 }
 
+/* Responsive design */
 @media (max-width: 767px) {
   input.number, input.daterange {
     width: 100%;
@@ -109,5 +157,9 @@ span.glyphicon-remove {
   span.glyphicon-calendar {
     display: none;
   }
-}
 
+  .has-error[class*='input-']:hover::after,
+  .has-error[class*='input-']:hover::before {
+    opacity: 0;
+  }
+}
