@@ -6,6 +6,10 @@ form {
   width: 100%;
 }
 
+.input * {
+  color: #333;
+}
+
 input {
   width: 100%;
 }
