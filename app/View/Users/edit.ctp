@@ -7,10 +7,8 @@ $this->Html->script('form-submit', array('inline' => false));
 ?>
 
 <div class="row">
-  <div class="col-lg-11 legend">
-    <legend>
-      <?php echo __('Editar usuario'); ?>
-    </legend>
+  <div class="col-md-11 page-title">
+    <h3>Editar usuario</h3>
   </div>
 
   <?php
@@ -21,7 +19,7 @@ $this->Html->script('form-submit', array('inline' => false));
   ));
   ?>
 
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <fieldset>
       <div class="form-group">
         <label for="username" class="col-sm-3 control-label">Nombre de usuario</label>

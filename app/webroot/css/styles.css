@@ -36,14 +36,6 @@ body {
   margin-bottom: 60px;
 }
 
-.page-title h2 {
-  float: left;
-}
-
-.page-title .buttons {
-  float: right;
-}
-
 div.submit {
   float: left;
 }

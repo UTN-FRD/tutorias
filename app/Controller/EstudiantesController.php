@@ -46,7 +46,7 @@ class EstudiantesController extends AppController {
 	public function edit($id = null) {
 		$this->Estudiante->id = $id;
 		if (!$this->Estudiante->exists()) {
-			throw new NotFoundException(__('Estudiante inválido'));
+			throw new NotFoundException('Estudiante inválido');
 		}
 
 		$this->set(array(
@@ -75,7 +75,7 @@ class EstudiantesController extends AppController {
 
 		$this->Estudiante->id = $id;
 		if (!$this->Estudiante->exists()) {
-			throw new NotFoundException(__('Estudiante invalido'));
+			throw new NotFoundException('Estudiante inválido');
 		}
 
 		if ($this->Estudiante->delete()) {

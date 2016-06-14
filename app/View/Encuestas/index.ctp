@@ -9,10 +9,9 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
 ?>
 
 <div class="row">
-  <div class="col-md-12">
-    <h2>
+  <div class="col-md-12 page-title">
+    <h2>Encuesta de
       <?php
-      echo __('Encuesta de ');
       echo $this->Html->link(
         $estudiante['nombre'],
         array('controller' => 'estudiantes', 'action' => 'edit', $estudiante['id'])
@@ -21,21 +20,19 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
     </h2>
   </div>
 
-  <div class="col-md-12">
-    <?php if (AuthComponent::user('role') == 'admin') { ?>
-      <div id="btn-regenerar" class="col-lg-12">
-        <div class="text-right">
-          <?php
-          echo $this->Form->postLink(
-            __('Regenerar encuesta'),
-            array('action' => 'regenerate', $estudiante['id']),
-            array('class' => 'btn btn-default')
-          );
-          ?>
-        </div>
-      </div>
-    <?php } ?>
+  <?php if (AuthComponent::user('role') == 'admin') { ?>
+    <div class="col-md-12 text-right">
+      <?php
+      echo $this->Form->postLink(
+        'Regenerar encuesta',
+        array('action' => 'regenerate', $estudiante['id']),
+        array('class' => 'btn btn-default')
+      );
+      ?>
+    </div>
+  <?php } ?>
 
+  <div class="col-md-12">
     <?php foreach ($encuestas as $encuesta) { ?>
       <form
         class="form-group has-feedback"
@@ -44,7 +41,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
         data-encuesta="<?php echo $encuesta['Pregunta']['id']; ?>"
       >
         <fieldset>
-          <div class="form-group">
+          <div class="form-group encuesta">
             <legend>
               <?php echo h($encuesta['Pregunta']['pregunta']); ?>
             </legend>
@@ -52,7 +49,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
             <input
               type="hidden"
               name="encuestaId"
-              id="encuestaId"
+              class="input-hidden"
               value="<?php echo h($encuesta['Encuesta']['id']); ?>"
             />
 
@@ -69,7 +66,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
               case Pregunta::TIPO_MENU:
                 ?> <div class="form-group"> <?php
                 echo $this->Form->select('respuesta', $valores, array(
-                  'class'   => 'form-control',
+                  'class'   => 'input form-control',
                   'label'   => false,
                   'legend'  => false,
                   'value'   => h($encuesta['Encuesta']['respuesta'])
@@ -103,7 +100,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                 <div class="form-group">
                   <textarea
                     name="respuesta"
-                    class="form-control"
+                    class="input form-control"
                   ><?php echo h($encuesta['Encuesta']['respuesta']); ?></textarea>
                 </div>
                 <?php
@@ -114,7 +111,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                   <input
                     name="respuesta"
                     type="text"
-                    class="number form-control"
+                    class="input number form-control"
                     value="<?php echo h($encuesta['Encuesta']['respuesta']); ?>"
                   >
                 </div>
@@ -126,7 +123,7 @@ $this->Html->script('lib/autosize.min', array('inline' => false));
                   <input
                     name="respuesta"
                     type="text"
-                    class="daterange form-control"
+                    class="input daterange form-control"
                     value="<?php echo h($encuesta['Encuesta']['respuesta']); ?>"
                   ><span class="glyphicon glyphicon-calendar"></span>
                 </div>

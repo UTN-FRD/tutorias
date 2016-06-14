@@ -6,10 +6,8 @@ $this->Html->script('form-submit', array('inline' => false));
 ?>
 
 <div class="row">
-  <div class="col-lg-11 legend">
-    <legend>
-      <?php echo __('Agregar estudiante'); ?>
-    </legend>
+  <div class="col-md-11 page-title">
+    <h3>Agregar estudiante</h3>
   </div>
 
   <?php
@@ -20,7 +18,7 @@ $this->Html->script('form-submit', array('inline' => false));
   ));
   ?>
 
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <fieldset>
       <div class="form-group">
         <label for="legajo" class="col-sm-3 control-label">Legajo</label>

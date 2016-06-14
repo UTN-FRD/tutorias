@@ -6,22 +6,18 @@ $this->Html->script('pregunta/index', array('inline' => false));
 ?>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="page-title">
-      <h2><?php echo __('Preguntas'); ?></h2>
-    </div>
+  <div class="col-md-12 page-title">
+    <h2>Preguntas</h2>
   </div>
 
-  <div class="col-lg-12">
-    <div class="text-right">
-      <?php
-      echo $this->Html->link(
-        __('Agregar pregunta'),
-        array('action' => 'add'),
-        array('class' => 'btn btn-add btn-default')
-      );
-      ?>
-    </div>
+  <div class="col-md-12 text-right">
+    <?php
+    echo $this->Html->link(
+      'Agregar pregunta',
+      array('action' => 'add'),
+      array('class' => 'btn btn-add btn-default')
+    );
+    ?>
   </div>
 
   <div class="col-md-12">
@@ -61,7 +57,7 @@ $this->Html->script('pregunta/index', array('inline' => false));
             <td class="actions">
               <?php
               echo $this->Html->link(
-                __('Editar'),
+                'Editar',
                 array('action' => 'edit', $pregunta['Pregunta']['id']),
                 array('class' => 'btn btn-default btn-sm')
               );
@@ -75,7 +71,7 @@ $this->Html->script('pregunta/index', array('inline' => false));
     <p class="paginator">
       <?php
       echo $this->Paginator->counter(array(
-        'format' => __('Mostrando {:current} de {:count} resultados')
+        'format' => 'Mostrando {:current} de {:count} resultados'
       ));
       ?>
     </p>

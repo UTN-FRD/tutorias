@@ -36,7 +36,7 @@ class UsersController extends AppController {
 
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario invalido'));
+			throw new NotFoundException('Usuario inválido');
 		}
 
 		if ($this->request->is(array('post', 'put'))) {
@@ -71,7 +71,7 @@ class UsersController extends AppController {
 
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario invalido'));
+			throw new NotFoundException('Usuario inválido');
 		}
 
 		if ($this->User->id == AuthComponent::user('id')) {

@@ -38,7 +38,7 @@ class PreguntasController extends AppController {
 	public function edit($id = null) {
 		$this->Pregunta->id = $id;
 		if (!$this->Pregunta->exists()) {
-			throw new NotFoundException(__('Pregunta inválida'));
+			throw new NotFoundException('Pregunta inválida');
 		}
 
 		$carreras = $this->Pregunta->Carrera->find('list');
@@ -62,12 +62,12 @@ class PreguntasController extends AppController {
 	}
 
 	public function activate($id = null, $value = 0) {
-		$this->request->allowMethod('post', 'put');
+		$this->request->allowMethod('post');
 		$this->autoRender = false;
 
 		$this->Pregunta->id = $id;
 		if (!$this->Pregunta->exists()) {
-			throw new NotFoundException(__('Pregunta inválida'));
+			throw new NotFoundException('Pregunta inválida');
 		}
 
 		$estado = $this->Pregunta->field('activo');

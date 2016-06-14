@@ -11,12 +11,12 @@ class Pregunta extends AppModel {
 
 	public static function tipos($value = null) {
 		$options = array(
-			self::TIPO_TEXTO    => __('Texto'),
-			self::TIPO_NUMERICO => __('Numérico'),
-			self::TIPO_MENU     => __('Menú Desplegable'),
-			self::TIPO_RADIO    => __('Radio Button'),
-			self::TIPO_CHECKBOX => __('Check Box'),
-			self::TIPO_FECHA    => __('Fecha')
+			self::TIPO_TEXTO    => 'Texto',
+			self::TIPO_NUMERICO => 'Numérico',
+			self::TIPO_MENU     => 'Menú Desplegable',
+			self::TIPO_RADIO    => 'Radio Button',
+			self::TIPO_CHECKBOX => 'Check Box',
+			self::TIPO_FECHA    => 'Fecha'
 		);
 
 		return parent::enum($value, $options);
