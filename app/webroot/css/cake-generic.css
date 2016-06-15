@@ -106,10 +106,10 @@ p {
 	float: left;
 	background: #D4F7FF;
 	padding: 5px;
-	margin:1px;	
+	margin:1px;
 }
 #nav-menu li>a{
-	text-decoration: none;	
+	text-decoration: none;
 }
 #content{
 	background: #fff;
@@ -189,7 +189,6 @@ td.actions {
 }
 table td.actions a {
 	margin: 0px 6px;
-	padding:2px 5px;
 }
 
 /* SQL log */
@@ -203,50 +202,6 @@ table td.actions a {
 }
 .cake-sql-log caption {
 	color:#fff;
-}
-
-/** Paging **/
-.paging {
-	background:#fff;
-	color: #ccc;
-	margin-top: 1em;
-	clear:both;
-}
-.paging .current,
-.paging .disabled,
-.paging a {
-	text-decoration: none;
-	padding: 5px 8px;
-	display: inline-block
-}
-.paging > span {
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-left: 0;
-}
-.paging > span:hover {
-	background: #efefef;
-}
-.paging .prev {
-	border-left: 1px solid #ccc;
-	-moz-border-radius: 4px 0 0 4px;
-	-webkit-border-radius: 4px 0 0 4px;
-	border-radius: 4px 0 0 4px;
-}
-.paging .next {
-	-moz-border-radius: 0 4px 4px 0;
-	-webkit-border-radius: 0 4px 4px 0;
-	border-radius: 0 4px 4px 0;
-}
-.paging .disabled {
-	color: #ddd;
-}
-.paging .disabled:hover {
-	background: transparent;
-}
-.paging .current {
-	background: #efefef;
-	color: #c73e14;
 }
 
 /** Scaffold View **/
@@ -305,9 +260,6 @@ form div {
 	margin-bottom: 1em;
 	padding: .5em;
 	vertical-align: text-top;
-}
-form .input {
-	color: #444;
 }
 form .required {
 	font-weight: bold;
@@ -523,8 +475,7 @@ p.error em {
 
 /* Buttons and button links */
 input[type=submit],
-.actions ul li a,
-.actions a {
+.actions ul li a {
 	font-weight:normal;
 	padding: 4px 8px;
 	background: #dcdcdc;
@@ -548,15 +499,13 @@ input[type=submit],
 	-webkit-user-select: none;
 	user-select: none;
 }
-.actions ul li a:hover,
-.actions a:hover {
+.actions ul li a:hover {
 	background: #ededed;
 	border-color: #acacac;
 	text-decoration: none;
 }
 input[type=submit]:active,
-.actions ul li a:active,
-.actions a:active {
+.actions ul li a:active {
 	background: #eee;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#eee));
 	background-image: -webkit-linear-gradient(top, #dfdfdf, #eee);

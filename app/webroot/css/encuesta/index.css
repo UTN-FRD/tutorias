@@ -1,61 +1,130 @@
-#content > .row {
-  width: 100%;
-  margin: 0px auto;
-}
-
-fieldset legend {
-  color: #000;
-}
-
 h2 {
   margin-bottom: 20px;
 }
 
-textarea.form-control {
-  height: 100px;
+h2 a {
+  font-weight: 500;
 }
 
-/*
-.input-group input[type=text] {
-  width: 25%;
-}
-*/
-
-.select {
-  margin-left: 3%;
+.text-right a.btn {
+  margin-bottom: 15px;
 }
 
-div.checkbox, div.radio {
-  margin: 0px;
-}
-
-div.checkbox label, div.radio label {
-  padding-left: 0px;
+.encuesta {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .form-group {
-  margin: 0px;
+  margin: 0;
   width: auto;
 }
 
 .form-group legend {
   margin-bottom: 10px;
+  font-weight: initial;
 }
 
 .form-group .alert {
-  margin: 10px 0px;
+  margin: 10px 0;
 }
 
 .form-group div.input {
-  padding: 0px;
+  padding: 0;
+  margin-bottom: 0;
 }
 
+form.form-group {
+ margin-bottom: 15px;
+}
+
+.has-feedback .form-control {
+  padding-right: 12px;
+}
+
+/* Según el tipo de pregunta */
+.input-hidden ~ .form-group[class*='input-'] {
+  width: auto;
+  display: inline-block;
+}
+
+textarea.form-control {
+  min-height: 100px;
+  width: 100%;
+}
+
+div.checkbox, div.radio {
+  margin: 0;
+}
+
+div.checkbox label, div.radio label {
+  padding-left: 0;
+}
+
+select.form-control, input.number, input.daterange {
+  width: 17vw;
+}
+
+select.form-control {
+  padding-left: 9px;
+}
+
+div.select {
+  margin-left: 1.5em;
+}
+
+.has-feedback .daterange {
+  padding-right: 34px;
+}
+
+span.glyphicon-calendar {
+  position: absolute;
+  bottom: 24px;
+  left: calc(17vw - 15px);
+  top: auto;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Mensajes de error */
+.has-error::after {
+  position: absolute;
+  bottom: 14px;
+  left: calc(17.3vw + 15.8px);
+  background: #D43F3A;
+  padding: 7px 14px;
+  color: #fff;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.has-error::before {
+  content: '';
+  position: absolute;
+  bottom: 24px;
+  left: 17.3vw;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-right-color: #D43F3A;
+  opacity: 1;
+}
+
+.has-error.input-date::after {
+  content: 'Ingrese una fecha válida';
+}
+
+.has-error.input-number::after {
+  content: 'Ingrese un número válido';
+}
+
+/* Glyphicons */
 span.glyphicon {
   pointer-events: auto;
 }
 
 span.glyphicon-circle-arrow-up {
-  color: #87cefa;
+  color: #87CEFA;
 }
 
 span.glyphicon-ok {
@@ -64,4 +133,46 @@ span.glyphicon-ok {
 
 span.glyphicon-remove {
   color: #A94442;
+}
+
+/* Responsive design */
+@media (max-width: 991px) {
+  select.form-control, input.number, input.daterange {
+    width: 22vw;
+  }
+
+  span.glyphicon-calendar {
+    left: calc(22vw - 15px);
+  }
+
+  .has-error::after {
+    left: calc(22.5vw + 15.8px);
+  }
+
+  .has-error::before {
+    left: 22.5vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .input-hidden ~ .form-group[class*='input-'] {
+    width: 100%;
+    display: inline-block;
+  }
+
+  select.form-control, input.number, input.daterange {
+    width: 100%;
+  }
+
+  span.glyphicon-calendar {
+    display: none;
+  }
+
+  .has-feedback .daterange {
+    padding-right: 12px;
+  }
+
+  .has-error::after, .has-error::before {
+    opacity: 0;
+  }
 }

@@ -1,0 +1,14 @@
+#opciones .opcion .eliminar {
+  font-size: 1.5em;
+  margin: 0 0 0 1%;
+}
+
+#opciones .opcion .form-control {
+  display: inline;
+  width: calc(100% - 1.5em);
+  margin-bottom: 7.5px;
+}
+
+#agregarOpcion {
+  margin-left: 0.5%;
+}

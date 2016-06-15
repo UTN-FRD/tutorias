@@ -16,7 +16,7 @@ class Encuesta extends AppModel {
 			'valid' => array(
 				'rule'       => 'validarTipo',
 				'allowEmpty' => true,
-				'message'    => 'La respuesta es inválido'
+				'message'    => 'La respuesta es inválida'
 			)
 		)
 	);
@@ -29,7 +29,7 @@ class Encuesta extends AppModel {
 		$tipo = $encuesta['Pregunta']['tipo'];
 		switch ($tipo) {
 			case Pregunta::TIPO_NUMERICO:
-				// Numeros decimales con signo.
+				// Números decimales con signo.
 				return preg_match('/^[+-]?[0-9]+(\.[0-9]+)?$/', $respuesta);
 			case Pregunta::TIPO_MENU:
 				// Misma validación que para 'Radio Button'.
@@ -50,9 +50,21 @@ class Encuesta extends AppModel {
 
 				// Verifico que no existan valores repetidos en la respuesta.
 				return array_unique($respuesta) === $respuesta;
+			case Pregunta::TIPO_FECHA:
+				// Fecha valida y que se encuentre entre el 1/1/1900 y el 31/12/2099.
+				$dateTime = DateTime::createFromFormat('d/m/Y', $respuesta);
+
+				$errors = DateTime::getLastErrors();
+				if (!$dateTime || !empty($errors['warning_count'])) {
+					return false;
+				}
+
+				$year = $dateTime->format('Y');
+
+				return ($year >= 1900) && ($year <= 2099);
 			case Pregunta::TIPO_TEXTO:
-				// Cualquier valor.
-				return true;
+				// String de hasta 65535 caracteres.
+				return (strlen($respuesta) <= 65535);
 		}
 
 		return false;

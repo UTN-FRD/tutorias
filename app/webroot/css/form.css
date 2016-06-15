@@ -1,37 +1,19 @@
-.form-group .col-sm-8 {
-  padding: 0px;
-  margin-left: 15px;
-}
-
-#content {
-  margin-top: 3%;
-}
-
-div.legend {
+.page-title {
   float: none;
   margin: auto;
 }
 
-legend {
-  padding-left: 0.5%;
+h3 {
+  border-bottom: 1px solid #E5E5E5;
   margin-bottom: 30px;
-  font-weight: bold;
+  padding-bottom: 3px;
+  padding-left: 0.1em
 }
 
 form div {
   clear: none;
-  margin-bottom: 0px;
-  padding: 0px;
-}
-
-.has-error div.error {
-  padding: 7px 0px 7px 4px;
-}
-
-select.form-control {
-  width: 250px;
-  max-width: 100%;
-  font-weight: normal;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .form-horizontal .form-group:last-child {
@@ -40,6 +22,25 @@ select.form-control {
 
 .form-horizontal .form-group a {
   margin-right: 5px;
+}
+
+.form-group .col-sm-8 {
+  padding: 0;
+  margin-left: 15px;
+}
+
+.has-error div.error {
+  padding: 7px 0 7px 4px;
+}
+
+input.form-control, textarea.form-control {
+  padding-right: 31px;
+}
+
+select.form-control {
+  width: 250px;
+  max-width: 100%;
+  font-weight: normal;
 }
 
 /* Elimino las flechas de la derecha en los 'number' en Firefox. */

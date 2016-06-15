@@ -7,14 +7,16 @@ class Pregunta extends AppModel {
 	const TIPO_MENU = 2;
 	const TIPO_RADIO = 3;
 	const TIPO_CHECKBOX = 4;
+	const TIPO_FECHA = 5;
 
 	public static function tipos($value = null) {
 		$options = array(
-			self::TIPO_TEXTO    => __('Texto'),
-			self::TIPO_NUMERICO => __('Numérico'),
-			self::TIPO_MENU     => __('Menú Desplegable'),
-			self::TIPO_RADIO    => __('Radio Button'),
-			self::TIPO_CHECKBOX => __('Check Box')
+			self::TIPO_TEXTO    => 'Texto',
+			self::TIPO_NUMERICO => 'Numérico',
+			self::TIPO_MENU     => 'Menú Desplegable',
+			self::TIPO_RADIO    => 'Radio Button',
+			self::TIPO_CHECKBOX => 'Check Box',
+			self::TIPO_FECHA    => 'Fecha'
 		);
 
 		return parent::enum($value, $options);
@@ -48,8 +50,8 @@ class Pregunta extends AppModel {
 				'message'  => 'La pregunta no puede estar vacía'
 			),
 			'maxLength' => array(
-				'rule'    => array('maxLength', 75),
-				'message' => 'La pregunta puede tener como máximo 75 caracteres'
+				'rule'    => array('maxLength', 150),
+				'message' => 'La pregunta puede tener como máximo 150 caracteres'
 			)
 		),
 		'tipo' => array(
@@ -59,17 +61,30 @@ class Pregunta extends AppModel {
 				'message'  => 'El tipo de pregunta es inválido'
 			)
 		),
+		'valores' => array(
+			'maximum' => array(
+				'rule'     => 'validarOpciones',
+				'required' => true,
+				'message'  => 'La cantidad máxima de opciones es 20'
+			)
+		),
 		'activo' => array(
 			'boolean' => array(
 				'rule'    => 'boolean',
 				'message' => 'El valor de activo debe ser booleano'
 			)
 		),
+		'ayuda' => array(
+			'maxLength' => array(
+				'rule'    => array('maxLength', 65535),
+				'message' => 'La ayuda puede tener como máximo 65535 caracteres'
+			)
+		),
 		'carrera_id' => array(
 			'valid' => array(
 				'rule'     => 'validarCarrera',
 				'required' => true,
-				'message'  => 'La carrera es invalida'
+				'message'  => 'La carrera es inválida'
 			)
 		)
 	);
@@ -82,5 +97,27 @@ class Pregunta extends AppModel {
 	public function validarTipo($check) {
 		$tipo = array_values($check)[0];
 		return array_key_exists($tipo, self::tipos());
+	}
+
+	public function validarOpciones($check) {
+		$opciones = array_values($check)[0];
+		return (count($opciones) <= 20);
+	}
+
+	public function beforeSave($options = array()) {
+		// Elimina las opciones vacias.
+		foreach ($this->data['Pregunta']['valores'] as $key => $valor) {
+			if (empty(trim($valor))) {
+				unset($this->data['Pregunta']['valores'][$key]);
+			}
+		}
+
+		if (!empty($this->data['Pregunta']['valores'])) {
+			$this->data['Pregunta']['valores'] = implode(',', $this->data['Pregunta']['valores']);
+		} else {
+			$this->data['Pregunta']['valores'] = '';
+		}
+
+		return true;
 	}
 }

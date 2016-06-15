@@ -5,6 +5,7 @@ class PreguntasController extends AppController {
 	public $paginate = [
 		'limit' => 25,
 		'order' => [
+			'Pregunta.activo' => 'desc',
 			'Pregunta.orden' => 'asc'
 		]
 	];
@@ -17,8 +18,10 @@ class PreguntasController extends AppController {
 	public function add() {
 		$carreras = $this->Pregunta->Carrera->find('list');
 
-		$this->set('tipos', $this->Pregunta->tipos());
-		$this->set('carreras', array_reverse($carreras, true));
+		$this->set(array(
+			'tipos' => $this->Pregunta->tipos(),
+			'carreras' => array_reverse($carreras, true)
+		));
 
 		if ($this->request->is('post')) {
 			$this->Pregunta->create();
@@ -35,13 +38,16 @@ class PreguntasController extends AppController {
 	public function edit($id = null) {
 		$this->Pregunta->id = $id;
 		if (!$this->Pregunta->exists()) {
-			throw new NotFoundException(__('Pregunta inválida'));
+			throw new NotFoundException('Pregunta inválida');
 		}
 
 		$carreras = $this->Pregunta->Carrera->find('list');
 
-		$this->set('tipos', $this->Pregunta->tipos());
-		$this->set('carreras', array_reverse($carreras, true));
+		$this->set(array(
+			'tipos' => $this->Pregunta->tipos(),
+			'carreras' => array_reverse($carreras, true),
+			'opciones' => explode(",", $this->Pregunta->field('valores'))
+		));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Pregunta->save($this->request->data)) {
@@ -56,12 +62,12 @@ class PreguntasController extends AppController {
 	}
 
 	public function activate($id = null, $value = 0) {
-		$this->request->allowMethod('post', 'put');
+		$this->request->allowMethod('post');
 		$this->autoRender = false;
 
 		$this->Pregunta->id = $id;
 		if (!$this->Pregunta->exists()) {
-			throw new NotFoundException(__('Pregunta inválida'));
+			throw new NotFoundException('Pregunta inválida');
 		}
 
 		$estado = $this->Pregunta->field('activo');

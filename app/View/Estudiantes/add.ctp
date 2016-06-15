@@ -6,33 +6,45 @@ $this->Html->script('form-submit', array('inline' => false));
 ?>
 
 <div class="row">
-  <div class="col-lg-11 legend">
-    <legend>
-      <?php echo __('Agregar estudiante'); ?>
-    </legend>
+  <div class="col-md-11 page-title">
+    <h3>Agregar estudiante</h3>
   </div>
 
-  <?php echo $this->Form->create('Estudiante', array(
+  <?php
+  echo $this->Form->create('Estudiante', array(
     'id' => 'form-submit',
     'class' => 'form-horizontal',
     'data-estudiante' => ''
-  )); ?>
+  ));
+  ?>
 
-  <div class="col-lg-12">
+  <div class="col-md-12">
     <fieldset>
       <div class="form-group">
         <label for="legajo" class="col-sm-3 control-label">Legajo</label>
         <div class="col-sm-8">
-          <input name="data[Estudiante][legajo]" id="legajo" autocomplete="off" class="form-control" type="number" autofocus required>
-          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <input
+            name="data[Estudiante][legajo]"
+            id="legajo"
+            autocomplete="off"
+            class="form-control"
+            type="number"
+            autofocus required
+          ><span class="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
 
       <div class="form-group">
         <label for="nombre" class="col-sm-3 control-label">Nombre</label>
         <div class="col-sm-8">
-          <input name="data[Estudiante][nombre]" id="nombre" autocomplete="off" class="form-control" type="text" required>
-          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <input
+            name="data[Estudiante][nombre]"
+            id="nombre"
+            autocomplete="off"
+            class="form-control"
+            type="text"
+            required
+          ><span class="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
       </div>
 
@@ -41,9 +53,9 @@ $this->Html->script('form-submit', array('inline' => false));
         <div class="col-sm-8">
           <?php
           echo $this->Form->input('carrera_id', array(
-            'id'    => 'carrera',
+            'id' => 'carrera',
             'label' => false,
-            'class' => 'form-control'
+            'class' => 'form-control',
           ));
           ?>
         </div>
@@ -54,7 +66,7 @@ $this->Html->script('form-submit', array('inline' => false));
         <div class="col-sm-8">
           <?php
           echo $this->Form->input('user_id', array(
-            'id'    => 'tutor',
+            'id' => 'tutor',
             'label' => false,
             'class' => 'form-control'
           ));
@@ -64,7 +76,7 @@ $this->Html->script('form-submit', array('inline' => false));
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-4">
-          <a id="btn-submit" class="btn btn-success">Guardar</a>
+          <a href="#" id="btn-submit" class="btn btn-success">Guardar</a>
           <?php
           echo $this->Html->link(
             'Cancelar',

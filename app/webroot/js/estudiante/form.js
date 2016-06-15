@@ -9,7 +9,7 @@ function rules() {
       range: [0, 999999999]
     },
     'data[Estudiante][nombre]': {
-      maxlength: 50
+      maxlength: 75
     }
   };
 }
@@ -24,7 +24,7 @@ function messages() {
     },
     'data[Estudiante][nombre]': {
       required: 'Ingrese un nombre',
-      maxlength: 'El nombre puede tener como máximo 50 caracteres'
+      maxlength: 'El nombre puede tener como máximo 75 caracteres'
     }
   };
 }
