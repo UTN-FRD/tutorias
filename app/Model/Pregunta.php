@@ -50,8 +50,8 @@ class Pregunta extends AppModel {
 				'message'  => 'La pregunta no puede estar vacía'
 			),
 			'maxLength' => array(
-				'rule'    => array('maxLength', 75),
-				'message' => 'La pregunta puede tener como máximo 75 caracteres'
+				'rule'    => array('maxLength', 150),
+				'message' => 'La pregunta puede tener como máximo 150 caracteres'
 			)
 		),
 		'tipo' => array(

@@ -23,11 +23,11 @@ header .container-fluid .navbar-brand span {
 }
 
 header .dropdown-menu a {
-  padding: 3px 0px;
+  padding: 3px 0;
 }
 
 header .dropdown-menu a .glyphicon {
-  padding: 0px 7px 0px 5px;
+  padding: 0 7px 0 5px;
   position: relative;
   top: 2px;
 }
@@ -50,19 +50,19 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
   display: flex;
   justify-content: center;
   flex-direction: column-reverse;
 }
 
 footer div.row {
-  margin: 0px;
+  margin: 0;
 }
 
 footer p {
   text-align: right;
-  margin: 0px;
+  margin: 0;
   height: auto;
   padding: 7px 20px;
 }

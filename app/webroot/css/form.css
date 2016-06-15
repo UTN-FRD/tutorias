@@ -12,8 +12,8 @@ h3 {
 
 form div {
   clear: none;
-  margin-bottom: 0px;
-  padding: 0px;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .form-horizontal .form-group:last-child {
@@ -25,12 +25,16 @@ form div {
 }
 
 .form-group .col-sm-8 {
-  padding: 0px;
+  padding: 0;
   margin-left: 15px;
 }
 
 .has-error div.error {
-  padding: 7px 0px 7px 4px;
+  padding: 7px 0 7px 4px;
+}
+
+input.form-control, textarea.form-control {
+  padding-right: 31px;
 }
 
 select.form-control {

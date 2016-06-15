@@ -85,7 +85,7 @@ function rules() {
       range: [0, 999999999]
     },
     'data[Pregunta][pregunta]': {
-      maxlength: 75
+      maxlength: 150
     },
     'data[Pregunta][ayuda]': {
       maxlength: 65535
@@ -102,7 +102,7 @@ function messages() {
     },
     'data[Pregunta][pregunta]': {
       required: 'Ingrese una pregunta',
-      maxlength: 'La pregunta puede tener como máximo 75 caracteres'
+      maxlength: 'La pregunta puede tener como máximo 150 caracteres'
     },
     'data[Pregunta][ayuda]': {
       maxlength: 'La ayuda puede tener como máximo 65535 caracteres'

@@ -38,8 +38,8 @@ class Estudiante extends AppModel {
 				'message'  => 'El nombre no puede estar vacío'
 			),
 			'maxLength' => array(
-				'rule'    => array('maxLength', 50),
-				'message' => 'El nombre puede tener como máximo 50 caracteres'
+				'rule'    => array('maxLength', 75),
+				'message' => 'El nombre puede tener como máximo 75 caracteres'
 			)
 		),
 		'carrera_id' => array(

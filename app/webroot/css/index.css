@@ -1,8 +1,8 @@
-/* index.ctp */
 .btn-add {
   min-width: 147px;
 }
 
+/* Tabla */
 table.table {
   margin: 20px 0 15px 0;
 }
@@ -31,7 +31,7 @@ table.table thead tr th {
 }
 
 table.table thead tr th * {
-  color: #ffffff;
+  color: #FFFFFF;
   padding-left: 0;
 }
 
@@ -56,6 +56,7 @@ table.table tbody tr td {
   padding-left: 10px;
 }
 
+/* Modal */
 .modal {
   top: 128px;
 }
@@ -66,16 +67,16 @@ table.table tbody tr td {
 }
 
 .modal-header h4 {
-  color: #fff;
+  color: #FFF;
   font-size: 1.15em;
 }
 
 .modal-body {
-  background-color: #fff;
+  background-color: #FFF;
 }
 
 .modal-footer {
-  background-color: #fff;
+  background-color: #FFF;
 }
 
 .modal-body {
@@ -83,6 +84,7 @@ table.table tbody tr td {
   padding-bottom: 20px;
 }
 
+/* Paginator */
 p.paginator {
   font-weight: bold;
 }
@@ -114,11 +116,11 @@ p.paginator {
 }
 
 .paging span:hover {
-  background: #efefef;
+  background: #EFEFEF;
 }
 
 .paging span.current {
   padding: 7px 10px;
-  color: #fff;
+  color: #FFF;
   background: #505362;
 }
