@@ -71,7 +71,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="<?php echo Router::url('/'); ?>">
+          <a id="navbar-brand" class="navbar-brand" href="<?php echo Router::url('/'); ?>">
             <?php
             echo $this->Html->image('utn-logo.png', array(
               'class' => 'logo'
@@ -82,7 +82,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <div id="navbar-collapse" class="collapse navbar-collapse">
           <?php if (AuthComponent::user()) { ?>
             <ul class="nav navbar-nav">
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?> >
@@ -123,7 +123,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </a>
 
 
-                <ul class="dropdown-menu" role="menu">
+                <ul id="dropdown-menu" class="dropdown-menu" role="menu">
                   <li>
                     <a href="<?php echo Router::url(array('controller' => 'users', 'action' => 'edit')); ?>">
                       <span class="glyphicon glyphicon-user"></span>Perfil

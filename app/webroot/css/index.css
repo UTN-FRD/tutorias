@@ -94,7 +94,8 @@ p.paginator {
   padding: 9px 8px;
 }
 
-.paging .prev, .paging .next {
+.paging .prev,
+.paging .next {
   position: relative;
   bottom: 1px;
 }

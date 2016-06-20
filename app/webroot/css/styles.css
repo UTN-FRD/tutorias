@@ -4,29 +4,35 @@ html {
   padding-top: 70px;
 }
 
-header .container-fluid .navbar-header .navbar-brand {
+#navbar-brand {
   padding-left: 10px;
   padding-right: 27px;
   margin-left: 0;
   float: none;
 }
 
-header .container-fluid .navbar-brand .logo {
+#navbar-brand .logo {
   height: 50px;
   padding: 10px 5px 10px 0;
   display: inline;
+  transition: all 1s ease;
 }
 
-header .container-fluid .navbar-brand span {
+#navbar-brand:hover .logo {
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+
+#navbar-brand span {
   position: relative;
   top: 1px;
 }
 
-header .dropdown-menu a {
+#dropdown-menu a {
   padding: 3px 0;
 }
 
-header .dropdown-menu a .glyphicon {
+#dropdown-menu a .glyphicon {
   padding: 0 7px 0 5px;
   position: relative;
   top: 2px;

@@ -53,15 +53,19 @@ textarea.form-control {
   width: 100%;
 }
 
-div.checkbox, div.radio {
+div.checkbox,
+div.radio {
   margin: 0;
 }
 
-div.checkbox label, div.radio label {
+div.checkbox label,
+div.radio label {
   padding-left: 0;
 }
 
-select.form-control, input.number, input.daterange {
+select.form-control,
+input.number,
+input.daterange {
   width: 17vw;
 }
 
@@ -137,7 +141,9 @@ span.glyphicon-remove {
 
 /* Responsive design */
 @media (max-width: 991px) {
-  select.form-control, input.number, input.daterange {
+  select.form-control,
+  input.number,
+  input.daterange {
     width: 22vw;
   }
 
@@ -160,7 +166,9 @@ span.glyphicon-remove {
     display: inline-block;
   }
 
-  select.form-control, input.number, input.daterange {
+  select.form-control,
+  input.number,
+  input.daterange {
     width: 100%;
   }
 
@@ -172,7 +180,8 @@ span.glyphicon-remove {
     padding-right: 12px;
   }
 
-  .has-error::after, .has-error::before {
+  .has-error::after,
+  .has-error::before {
     opacity: 0;
   }
 }

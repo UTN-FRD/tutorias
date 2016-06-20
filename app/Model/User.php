@@ -13,6 +13,10 @@ class User extends AppModel {
 				'required' => true,
 				'message' => 'El nombre de usuario no puede estar vacío'
 			),
+			'noWhiteSpace' => array(
+				'rule' => array('custom', '/^\S*\z/'),
+				'message' => 'El nombre de usuario no puede tener espacios'
+			),
 			'isUnique' => array(
 				'rule' => 'isUnique',
 				'message' => 'El nombre de usuario debe ser único'

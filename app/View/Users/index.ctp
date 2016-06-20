@@ -82,7 +82,7 @@ $this->Html->script('user/index', array('inline' => false));
           <div class="modal-body"></div>
           <div class="modal-footer">
             <form method="post">
-              <button type="button" id="btn-submit" class="btn btn-danger">Sí</button>
+              <button type="submit" id="btn-submit" class="btn btn-danger">Sí</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </form>
           </div>

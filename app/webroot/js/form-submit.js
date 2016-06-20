@@ -1,7 +1,18 @@
 $(document).ready(function() {
-  $('#btn-submit').click(function() {
-    $('#form-submit').submit();
-  });
+  /*
+    Redefinición del método required para que no tome como válido un string compuesto únicamente
+    por espacios en blanco (tal como hace CakePHP).
+  */
+  $.validator.methods.required = function(value, element) {
+    return !(/^\s*$/.test(value));
+  };
+
+  /*
+    Método que valida que un string no contenga uno o más espacios en blanco.
+  */
+  $.validator.addMethod('nowhitespace', function(value, element) {
+    return this.optional(element) || /^\S+$/.test(value);
+  }, 'No white space please');
 
   $('#form-submit').validate({
     rules: rules(),

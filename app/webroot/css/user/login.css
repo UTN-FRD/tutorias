@@ -1,17 +1,18 @@
-#login {
-  padding: 18px;
-}
-
 form {
   width: 100%;
+  padding: 3px;
 }
 
-.input * {
+form * {
   color: #333;
 }
 
 input {
   width: 100%;
+}
+
+#password {
+  font-weight: bolder;
 }
 
 #submit {

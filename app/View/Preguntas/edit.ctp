@@ -114,7 +114,7 @@ $this->Html->script('form-submit', array('inline' => false));
 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-4">
-          <a href="#" id="btn-submit" class="btn btn-success">Guardar</a>
+          <button class="btn btn-success" type="submit">Guardar</button>
           <?php
           echo $this->Html->link(
             'Cancelar',
@@ -126,4 +126,6 @@ $this->Html->script('form-submit', array('inline' => false));
       </div>
     </fieldset>
   </div>
+
+  <?php echo $this->Form->end(); ?>
 </div>

@@ -5,8 +5,4 @@ $(document).ready(function() {
     $(this).find('form').attr('action', window.baseUrl + 'estudiantes/delete/' + button.data('id'));
     $(this).find('.modal-body').text('¿Está seguro que desea borrar a ' + button.data('nombre') + '?');
   });
-
-  $('#btn-submit').click(function() {
-    $(this).parents('form:first').submit();
-  });
 });
