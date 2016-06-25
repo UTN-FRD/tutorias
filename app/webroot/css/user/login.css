@@ -15,6 +15,6 @@ input {
   font-weight: bolder;
 }
 
-#submit {
+fieldset .form-group:last-child {
   margin-bottom: 0;
 }

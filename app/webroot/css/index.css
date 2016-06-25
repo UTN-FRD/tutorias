@@ -7,10 +7,6 @@ table.table {
   margin: 20px 0 15px 0;
 }
 
-table.table .auto-width {
-  width: 1px;
-}
-
 table.table thead {
   background: #337AB7;
   border: 1px solid #337AB7;
@@ -47,6 +43,15 @@ table.table thead tr th a.desc:after {
   bottom: 2px;
 }
 
+table.table thead tr th.toggle a {
+  display: flex;
+}
+
+table.table thead tr th.toggle a.asc:after,
+table.table thead tr th.toggle a.desc:after {
+  left: 4px;
+}
+
 table.table tbody {
   border: 1px solid #DDDDDD;
 }
@@ -54,6 +59,10 @@ table.table tbody {
 table.table tbody tr td {
   vertical-align: middle;
   padding-left: 10px;
+}
+
+table.table tbody tr td.toggle {
+  width: 1px;
 }
 
 /* Modal */

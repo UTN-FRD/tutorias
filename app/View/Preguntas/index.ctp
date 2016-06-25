@@ -1,7 +1,7 @@
 <?php
 $this->Html->css('index', array('inline' => false));
-$this->Html->css('lib/bootstrap-switch.min', array('inline' => false));
-$this->Html->script('lib/bootstrap-switch.min', array('inline' => false));
+$this->Html->css('lib/bootstrap-toggle.min', array('inline' => false));
+$this->Html->script('lib/bootstrap-toggle.min', array('inline' => false));
 $this->Html->script('pregunta/index', array('inline' => false));
 ?>
 
@@ -29,7 +29,7 @@ $this->Html->script('pregunta/index', array('inline' => false));
           <th><?php echo $this->Paginator->sort('tipo'); ?></th>
           <th><?php echo $this->Paginator->sort('valores'); ?></th>
           <th><?php echo $this->Paginator->sort('visible', 'Visible en'); ?></th>
-          <th><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
+          <th class="toggle"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
           <th class="actions"></th>
         </tr>
       </thead>
@@ -43,12 +43,14 @@ $this->Html->script('pregunta/index', array('inline' => false));
             <td><?php echo h($pregunta['Pregunta']['valores']); ?></td>
             <td><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
 
-            <td class="auto-width">
+            <td class="toggle">
               <?php
               echo $this->Form->checkbox('activo', array(
                 'data-id' => $pregunta['Pregunta']['id'],
+                'data-toggle' => 'toggle',
+                'data-size' => 'small',
                 'checked' => $pregunta['Pregunta']['activo'],
-                'class' => 'checkbox-switch',
+                'class' => 'checkbox-toggle',
                 'label' => false
               ));
               ?>

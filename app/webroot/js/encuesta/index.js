@@ -7,11 +7,11 @@ $(document).ready(function() {
   $('form').ajaxForm(options);
 
   /*
-    Si es un number o un text, voy guardando el formulario luego de que haya pasado
-    250 milisegundos del ultimo cambio.
+    Para los textarea, number y daterange se guarda la respuesta luego de que hayan
+    pasado 250 milisegundos del último cambio.
   */
   var timeoutId;
-  $('textarea, input[type=text]').on('input propertychange change', function() {
+  $('textarea, input:text').on('input propertychange change', function() {
     var form = $(this).parents('form:first');
 
     form.find('span.form-control-feedback').attr({
@@ -26,10 +26,11 @@ $(document).ready(function() {
   });
 
   /*
-    Para el radio, checkbox y select guardo apenas se realiza el cambio. Para el number
-    y text guardo otra vez cuando se abandona el campo del formulario.
+    Para los radio, checkbox y select se guarda la respuesta apenas se realiza un cambio.
+    Para los textarea, number o daterange se guarda otra vez al abandonar el campo del
+    formulario.
   */
-  $('textarea, input, select').change(function() {
+  $(':input').change(function() {
     var form = $(this).parents('form:first');
 
     form.find('span.form-control-feedback').attr({
@@ -40,12 +41,18 @@ $(document).ready(function() {
     form.submit();
   });
 
+  /*
+    Ajusta la altura de los textarea según su contenido.
+  */
   autosize($('textarea'));
 
   $('input.daterange').daterangepicker({
     locale: {
       format: 'DD/MM/YYYY',
-      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      monthNames: [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      ],
       daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     },
 
@@ -60,6 +67,9 @@ $(document).ready(function() {
     $(this).val(picker.startDate.format('DD/MM/YYYY')).trigger('change');
   });
 
+  /*
+    Permite que el glyphicon de los input.daterange sea clickeable.
+  */
   $('span.glyphicon-calendar').click(function() {
     $(this).siblings('input.daterange').click();
   });

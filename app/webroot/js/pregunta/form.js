@@ -1,9 +1,13 @@
 $(document).ready(function() {
-  // Ajusta la altura del textarea del campo ayuda según el contenido para que no aparezca
-  // la barra de desplazamiento y oculte el span.
+  /*
+    Ajusta la altura del textarea del campo ayuda según su contenido para que no aparezca
+    la barra de desplazamiento y oculte el span.
+  */
   autosize($('#ayuda'));
 
-  // Oculta las opciones si la pregunta no es de opciones multiples.
+  /*
+    Oculta los inputs de opciones si la pregunta no es de opciones multiples.
+  */
   $('#tipo').on('change', function() {
     option = $(this).children("option").filter(":selected").text()
     if (['Menú Desplegable', 'Radio Button', 'Check Box'].indexOf(option) == -1) {
@@ -19,7 +23,9 @@ $(document).ready(function() {
 
   desactivarLinks(cantOpciones, maxOpciones);
 
-  // Agrega las opciones.
+  /*
+    Agrega una opción al hacer click en el botón de 'Agregar opción'.
+  */
   $('#agregarOpcion').click(function() {
     if (cantOpciones < maxOpciones) {
       var inputOpcion = $('<input>', {
@@ -50,7 +56,10 @@ $(document).ready(function() {
     return false;
   });
 
-  // Elimina las opciones.
+  /*
+    Elimina una opción a elección al hacer click en los botones en forma de cruz que se
+    encuentran a la derecha de los inputs de opciones.
+  */
   $('#div-opciones').on('click', '.eliminar', function() {
     if (cantOpciones > 0) {
       --cantOpciones;
