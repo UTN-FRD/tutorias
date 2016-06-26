@@ -1,0 +1,35 @@
+#th-orden {
+  width: 7%;
+}
+
+#th-tipo {
+  width: 10%;
+}
+
+#th-visible {
+  width: 16%;
+}
+
+#th-activo {
+  width: 7%;
+}
+
+#th-actions {
+  width: 10%;
+}
+
+.td-tipo,
+.td-visible,
+.td-activo,
+.td-actions {
+  white-space: nowrap;
+}
+
+#th-activo,
+table.table tbody tr td.td-activo {
+  padding-left: 2%;
+}
+
+.td-actions {
+  text-align: center;
+}

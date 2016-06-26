@@ -26,8 +26,8 @@ $this->Html->script('estudiante/index', array('inline' => false));
         <tr>
           <th><?php echo $this->Paginator->sort('legajo'); ?></th>
           <th><?php echo $this->Paginator->sort('nombre'); ?></th>
-          <th><?php echo $this->Paginator->sort('carrera'); ?></th>
-          <th><?php echo $this->Paginator->sort('tutor'); ?></th>
+          <th><?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?></th>
+          <th><?php echo $this->Paginator->sort('User.username', 'Tutor'); ?></th>
           <th class="actions"></th>
         </tr>
       </thead>

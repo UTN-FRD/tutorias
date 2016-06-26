@@ -1,5 +1,6 @@
 <?php
 $this->Html->css('index', array('inline' => false));
+$this->Html->css('pregunta/index', array('inline' => false));
 $this->Html->css('lib/bootstrap-toggle.min', array('inline' => false));
 $this->Html->script('lib/bootstrap-toggle.min', array('inline' => false));
 $this->Html->script('pregunta/index', array('inline' => false));
@@ -24,26 +25,26 @@ $this->Html->script('pregunta/index', array('inline' => false));
     <table class="table">
       <thead>
         <tr>
-          <th><?php echo $this->Paginator->sort('orden'); ?></th>
-          <th><?php echo $this->Paginator->sort('pregunta'); ?></th>
-          <th><?php echo $this->Paginator->sort('tipo'); ?></th>
-          <th><?php echo $this->Paginator->sort('valores'); ?></th>
-          <th><?php echo $this->Paginator->sort('visible', 'Visible en'); ?></th>
-          <th class="toggle"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
-          <th class="actions"></th>
+          <th id="th-orden"><?php echo $this->Paginator->sort('orden'); ?></th>
+          <th id="th-pregunta"><?php echo $this->Paginator->sort('pregunta'); ?></th>
+          <th id="th-tipo"><?php echo $this->Paginator->sort('tipo'); ?></th>
+          <th id="th-valores"><?php echo $this->Paginator->sort('valores'); ?></th>
+          <th id="th-visible"><?php echo $this->Paginator->sort('Carrera.descripcion', 'Visible en'); ?></th>
+          <th id="th-activo"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
+          <th id="th-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($preguntas as $pregunta) { ?>
           <tr>
-            <td><?php echo h($pregunta['Pregunta']['orden']); ?></td>
-            <td><?php echo h($pregunta['Pregunta']['pregunta']); ?></td>
-            <td><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?></td>
-            <td><?php echo h($pregunta['Pregunta']['valores']); ?></td>
-            <td><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
+            <td class="td-orden"><?php echo h($pregunta['Pregunta']['orden']); ?></td>
+            <td class="td-pregunta"><?php echo h($pregunta['Pregunta']['pregunta']); ?></td>
+            <td class="td-tipo"><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?></td>
+            <td class="td-valores"><?php echo h($pregunta['Pregunta']['valores']); ?></td>
+            <td class="td-visible"><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
 
-            <td class="toggle">
+            <td class="td-activo">
               <?php
               echo $this->Form->checkbox('activo', array(
                 'data-id' => $pregunta['Pregunta']['id'],
@@ -56,7 +57,7 @@ $this->Html->script('pregunta/index', array('inline' => false));
               ?>
             </td>
 
-            <td class="actions">
+            <td class="td-actions">
               <?php
               echo $this->Html->link(
                 'Editar',

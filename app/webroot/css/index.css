@@ -31,24 +31,21 @@ table.table thead tr th * {
   padding-left: 0;
 }
 
+table.table thead tr th a {
+  display: flex;
+}
+
 table.table thead tr th a.asc:after {
   content: ' ↓';
   position: relative;
   bottom: 1px;
+  left: 4px;
 }
 
 table.table thead tr th a.desc:after {
   content: ' ↑';
   position: relative;
   bottom: 2px;
-}
-
-table.table thead tr th.toggle a {
-  display: flex;
-}
-
-table.table thead tr th.toggle a.asc:after,
-table.table thead tr th.toggle a.desc:after {
   left: 4px;
 }
 
@@ -59,10 +56,6 @@ table.table tbody {
 table.table tbody tr td {
   vertical-align: middle;
   padding-left: 10px;
-}
-
-table.table tbody tr td.toggle {
-  width: 1px;
 }
 
 /* Modal */
