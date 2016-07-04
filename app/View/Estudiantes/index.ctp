@@ -28,48 +28,48 @@ $this->Html->script('estudiante/index', array('inline' => false));
           <th><?php echo $this->Paginator->sort('nombre'); ?></th>
           <th><?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?></th>
           <th><?php echo $this->Paginator->sort('User.username', 'Tutor'); ?></th>
-          <th class="actions"></th>
+          <th class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($estudiantes as $estudiante) { ?>
-        <tr>
-          <td><?php echo h($estudiante['Estudiante']['legajo']); ?></td>
-          <td><?php echo h($estudiante['Estudiante']['nombre']); ?></td>
-          <td><?php echo h($estudiante['Carrera']['descripcion']); ?></td>
-          <td><?php echo h($estudiante['User']['username']); ?></td>
+          <tr>
+            <td class="no-wrap"><?php echo h($estudiante['Estudiante']['legajo']); ?></td>
+            <td><?php echo h($estudiante['Estudiante']['nombre']); ?></td>
+            <td class="no-wrap"><?php echo h($estudiante['Carrera']['descripcion']); ?></td>
+            <td><?php echo h($estudiante['User']['username']); ?></td>
 
-          <td class="actions">
-            <?php
-            echo $this->Html->link(
-              'Encuesta',
-              array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
-              array('class' => 'btn btn-default btn-sm')
-            );
-
-            echo $this->Html->link(
-              'Editar',
-              array('action' => 'edit', $estudiante['Estudiante']['id']),
-              array('class' => 'btn btn-default btn-sm')
-            );
-
-            if (AuthComponent::user('role') == 'admin') {
+            <td class="tx-actions">
+              <?php
               echo $this->Html->link(
-                'Borrar',
-                '#',
-                array(
-                  'class' => 'btn btn-danger btn-sm',
-                  'data-toggle' => 'modal',
-                  'data-target' => '#confirmar-baja',
-                  'data-id' => $estudiante['Estudiante']['id'],
-                  'data-nombre' => h($estudiante['Estudiante']['nombre'])
-                )
+                'Encuesta',
+                array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
+                array('class' => 'btn btn-default btn-sm')
               );
-            }
-            ?>
-          </td>
-        </tr>
+
+              echo $this->Html->link(
+                'Editar',
+                array('action' => 'edit', $estudiante['Estudiante']['id']),
+                array('class' => 'btn btn-default btn-sm')
+              );
+
+              if (AuthComponent::user('role') == 'admin') {
+                echo $this->Html->link(
+                  'Borrar',
+                  '#',
+                  array(
+                    'class' => 'btn btn-danger btn-sm',
+                    'data-toggle' => 'modal',
+                    'data-target' => '#confirmar-baja',
+                    'data-id' => $estudiante['Estudiante']['id'],
+                    'data-nombre' => h($estudiante['Estudiante']['nombre'])
+                  )
+                );
+              }
+              ?>
+            </td>
+          </tr>
         <?php } ?>
       </tbody>
     </table>

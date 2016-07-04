@@ -26,18 +26,18 @@ $this->Html->script('user/index', array('inline' => false));
           <th><?php echo $this->Paginator->sort('id'); ?></th>
           <th><?php echo $this->Paginator->sort('username', 'Nombre de usuario'); ?></th>
           <th><?php echo $this->Paginator->sort('role', 'Rol'); ?></th>
-          <th class="actions"></th>
+          <th class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($users as $user) { ?>
           <tr>
-            <td><?php echo h($user['User']['id']); ?></td>
+            <td class="no-wrap"><?php echo h($user['User']['id']); ?></td>
             <td><?php echo h($user['User']['username']); ?></td>
-            <td><?php echo h($user['User']['role']); ?></td>
+            <td class="no-wrap"><?php echo h($user['User']['role']); ?></td>
 
-            <td class="actions">
+            <td class="tx-actions">
               <?php
               echo $this->Html->link(
                 'Editar',

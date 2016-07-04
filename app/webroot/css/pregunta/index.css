@@ -1,35 +1,20 @@
-#th-orden {
+table.table .tx-orden {
   width: 7%;
 }
 
-#th-tipo {
+table.table .tx-tipo {
   width: 10%;
 }
 
-#th-visible {
+table.table .tx-visible {
   width: 16%;
 }
 
-#th-activo {
+table.table .tx-activo {
   width: 7%;
-}
-
-#th-actions {
-  width: 10%;
-}
-
-.td-tipo,
-.td-visible,
-.td-activo,
-.td-actions {
-  white-space: nowrap;
-}
-
-#th-activo,
-table.table tbody tr td.td-activo {
   padding-left: 2%;
 }
 
-.td-actions {
-  text-align: center;
+table.table .tx-actions {
+  width: 10%;
 }

@@ -25,26 +25,26 @@ $this->Html->script('pregunta/index', array('inline' => false));
     <table class="table">
       <thead>
         <tr>
-          <th id="th-orden"><?php echo $this->Paginator->sort('orden'); ?></th>
-          <th id="th-pregunta"><?php echo $this->Paginator->sort('pregunta'); ?></th>
-          <th id="th-tipo"><?php echo $this->Paginator->sort('tipo'); ?></th>
-          <th id="th-valores"><?php echo $this->Paginator->sort('valores'); ?></th>
-          <th id="th-visible"><?php echo $this->Paginator->sort('Carrera.descripcion', 'Visible en'); ?></th>
-          <th id="th-activo"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
-          <th id="th-actions"></th>
+          <th class="tx-orden"><?php echo $this->Paginator->sort('orden'); ?></th>
+          <th><?php echo $this->Paginator->sort('pregunta'); ?></th>
+          <th class="tx-tipo"><?php echo $this->Paginator->sort('tipo'); ?></th>
+          <th><?php echo $this->Paginator->sort('valores'); ?></th>
+          <th class="tx-visible"><?php echo $this->Paginator->sort('Carrera.descripcion', 'Visible en'); ?></th>
+          <th class="tx-activo"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
+          <th class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($preguntas as $pregunta) { ?>
           <tr>
-            <td class="td-orden"><?php echo h($pregunta['Pregunta']['orden']); ?></td>
-            <td class="td-pregunta"><?php echo h($pregunta['Pregunta']['pregunta']); ?></td>
-            <td class="td-tipo"><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?></td>
-            <td class="td-valores"><?php echo h($pregunta['Pregunta']['valores']); ?></td>
-            <td class="td-visible"><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
+            <td class="tx-orden no-wrap"><?php echo h($pregunta['Pregunta']['orden']); ?></td>
+            <td><?php echo h($pregunta['Pregunta']['pregunta']); ?></td>
+            <td class="tx-tipo no-wrap"><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?></td>
+            <td><?php echo h($pregunta['Pregunta']['valores']); ?></td>
+            <td class="tx-visible no-wrap"><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
 
-            <td class="td-activo">
+            <td class="tx-activo no-wrap">
               <?php
               echo $this->Form->checkbox('activo', array(
                 'data-id' => $pregunta['Pregunta']['id'],
@@ -57,7 +57,7 @@ $this->Html->script('pregunta/index', array('inline' => false));
               ?>
             </td>
 
-            <td class="td-actions">
+            <td class="tx-actions">
               <?php
               echo $this->Html->link(
                 'Editar',

@@ -7,6 +7,19 @@ table.table {
   margin: 20px 0 15px 0;
 }
 
+table.table .no-wrap {
+  white-space: nowrap;
+}
+
+table.table .tx-actions {
+  white-space: nowrap;
+  text-align: center;
+}
+
+table.table .tx-actions a {
+  margin: 0 6px;
+}
+
 table.table thead {
   background: #337AB7;
   border: 1px solid #337AB7;

@@ -5,27 +5,26 @@ html {
 }
 
 #navbar-brand {
-  padding-left: 10px;
-  padding-right: 27px;
+  padding: 5px 27px 5px 10px;
   margin-left: 0;
   float: none;
+  display: inline-block;
 }
 
 #navbar-brand .logo {
-  height: 50px;
-  padding: 10px 5px 10px 0;
+  height: 100%;
+  padding: 5px 5px 5px 0;
   display: inline;
   transition: all 1s ease;
 }
 
 #navbar-brand:hover .logo {
-  padding-bottom: 7px;
-  padding-top: 7px;
+  padding-bottom: 2px;
+  padding-top: 2px;
 }
 
 #navbar-brand span {
-  position: relative;
-  top: 1px;
+  vertical-align: middle;
 }
 
 #dropdown-menu a {
