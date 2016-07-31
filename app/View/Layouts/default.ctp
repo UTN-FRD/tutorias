@@ -45,12 +45,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
     'content' => 'width=device-width'
   ));
 
-  echo $this->Html->css('cake-generic.min');
-  echo $this->Html->css('lib/bootstrap.min');
-  echo $this->Html->css('styles');
+  echo $this->Html->css('bootstrap');
+  echo $this->Html->css('tutorias');
 
-  echo $this->Html->script('lib/jquery-2.2.4.min');
-  echo $this->Html->script('lib/bootstrap.min');
+  echo $this->Html->script('jquery');
+  echo $this->Html->script('bootstrap');
 
   echo $this->fetch('meta');
   echo $this->fetch('script');
@@ -62,14 +61,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   <header>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+          <?php if (AuthComponent::user()) { ?>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          <?php } ?>
 
           <a id="navbar-brand" class="navbar-brand" href="<?php echo Router::url('/'); ?>">
             <?php
@@ -84,7 +85,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="navbar-collapse" class="collapse navbar-collapse">
           <?php if (AuthComponent::user()) { ?>
-            <ul class="nav navbar-nav">
+            <ul id="navbar-nav" class="nav navbar-nav">
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?> >
                 <?php
                 echo $this->Html->link(
@@ -115,7 +116,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               <?php } ?>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="navbar-right" class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <?php echo h(AuthComponent::user('username')); ?>
@@ -123,7 +124,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </a>
 
 
-                <ul id="dropdown-menu" class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu" role="menu">
                   <li>
                     <a href="<?php echo Router::url(array('controller' => 'users', 'action' => 'edit')); ?>">
                       <span class="glyphicon glyphicon-user"></span>Perfil
@@ -141,8 +142,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               </li>
             </ul>
           <?php } ?>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
     </nav>
   </header>
 

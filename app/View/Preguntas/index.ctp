@@ -1,12 +1,13 @@
 <?php
-$this->Html->css('index', array('inline' => false));
-$this->Html->css('pregunta/index', array('inline' => false));
-$this->Html->css('lib/bootstrap-toggle.min', array('inline' => false));
-$this->Html->script('lib/bootstrap-toggle.min', array('inline' => false));
-$this->Html->script('pregunta/index', array('inline' => false));
+$this->Html->css('bootstrap-toggle', array('inline' => false));
+$this->Html->css('footable.core.bootstrap', array('inline' => false));
+$this->Html->css('pregunta', array('inline' => false));
+$this->Html->script('bootstrap-toggle', array('inline' => false));
+$this->Html->script('footable.core', array('inline' => false));
+$this->Html->script('pregunta.index', array('inline' => false));
 ?>
 
-<div class="row">
+<div class="row index">
   <div class="col-md-12 page-title">
     <h2>Preguntas</h2>
   </div>
@@ -25,29 +26,53 @@ $this->Html->script('pregunta/index', array('inline' => false));
     <table class="table">
       <thead>
         <tr>
-          <th class="tx-orden"><?php echo $this->Paginator->sort('orden'); ?></th>
-          <th><?php echo $this->Paginator->sort('pregunta'); ?></th>
-          <th class="tx-tipo"><?php echo $this->Paginator->sort('tipo'); ?></th>
-          <th><?php echo $this->Paginator->sort('valores'); ?></th>
-          <th class="tx-visible"><?php echo $this->Paginator->sort('Carrera.descripcion', 'Visible en'); ?></th>
-          <th class="tx-activo"><?php echo $this->Paginator->sort('activo', 'Activa'); ?></th>
-          <th class="tx-actions"></th>
+          <th>
+            <?php echo $this->Paginator->sort('orden'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('pregunta'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('tipo'); ?>
+          </th>
+          <th data-breakpoints="xs sm" data-type="html">
+            <?php echo $this->Paginator->sort('valores', 'Opciones'); ?>
+          </th>
+          <th data-breakpoints="xs" data-type="html">
+            <?php echo $this->Paginator->sort('Carrera.descripcion', 'Visible en'); ?>
+          </th>
+          <th data-breakpoints="xs sm" data-type="html" class="tx-activo">
+            <?php echo $this->Paginator->sort('activo', 'Activa'); ?>
+          </th>
+          <th data-breakpoints="xs sm" data-type="html" class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($preguntas as $pregunta) { ?>
           <tr>
-            <td class="tx-orden no-wrap"><?php echo h($pregunta['Pregunta']['orden']); ?></td>
-            <td><?php echo h($pregunta['Pregunta']['pregunta']); ?></td>
-            <td class="tx-tipo no-wrap"><?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?></td>
-            <td><?php echo h($pregunta['Pregunta']['valores']); ?></td>
-            <td class="tx-visible no-wrap"><?php echo h($pregunta['Carrera']['descripcion']); ?></td>
-
+            <td class="no-wrap">
+              <?php echo h($pregunta['Pregunta']['orden']); ?>
+            </td>
+            <td>
+              <?php echo h($pregunta['Pregunta']['pregunta']); ?>
+            </td>
+            <td class="no-wrap">
+              <?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?>
+            </td>
+            <td class="td-opciones">
+              <span class="footable-title">Opciones:</span>
+              <?php echo h($pregunta['Pregunta']['valores']); ?>
+            </td>
+            <td class="no-wrap">
+              <span class="footable-title">Visible en:</span>
+              <?php echo h($pregunta['Carrera']['descripcion']); ?>
+            </td>
             <td class="tx-activo no-wrap">
+              <span class="footable-title">Activa:</span>
               <?php
               echo $this->Form->checkbox('activo', array(
-                'data-id' => $pregunta['Pregunta']['id'],
+                'id' => $pregunta['Pregunta']['id'],
                 'data-toggle' => 'toggle',
                 'data-size' => 'small',
                 'checked' => $pregunta['Pregunta']['activo'],
@@ -56,7 +81,6 @@ $this->Html->script('pregunta/index', array('inline' => false));
               ));
               ?>
             </td>
-
             <td class="tx-actions">
               <?php
               echo $this->Html->link(

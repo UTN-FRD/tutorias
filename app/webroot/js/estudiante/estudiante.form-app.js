@@ -1,8 +1,13 @@
+/*
+  Funciones para jQuery Validation.
+*/
 function rules() {
+  var legajo = $('.form-validate').data('estudiante') || '';
+
   return {
     'data[Estudiante][legajo]': {
       remote: {
-        url: window.baseUrl + 'estudiantes/check_legajo/' + $('#form-submit').data('estudiante'),
+        url: window.baseUrl + 'estudiantes/check_legajo/' + legajo,
         type: "post",
         async: false
       },

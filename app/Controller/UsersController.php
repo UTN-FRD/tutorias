@@ -88,8 +88,8 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * Devuelve si un nombre de usuario esta disponible. Si se especifica
-	 * un usuario se considerara valido su propio nombre de usuario.
+	 * Devuelve si un nombre de usuario está disponible. Si se especifica un usuario, se
+	 * considerará válido su propio nombre de usuario.
 	 */
 	public function check_username($id = null) {
 		$this->request->allowMethod('post');

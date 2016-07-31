@@ -14,14 +14,22 @@ $(document).ready(function() {
     return this.optional(element) || /^\S+$/.test(value);
   }, 'No white space please');
 
-  $('#form-submit').validate({
+  $('.form-validate').validate({
     rules: rules(),
     messages: messages(),
 
     ignore: 'select',
     errorElement: 'div',
 
-    onkeyup: function(element) {
+    /* Valida el campo al oprimir una tecla, a menos que sea tab o reverse tab. */
+    onkeyup: function(element, event) {
+      if (event.key !== 'Tab' && event.key !== 'Shift') {
+        $(element).valid();
+      }
+    },
+
+    /* Valida el campo al abandonarlo. */
+    onfocusout: function(element, event) {
       $(element).valid();
     },
 

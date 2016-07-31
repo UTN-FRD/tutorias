@@ -1,0 +1,116 @@
+/* Add y edit */
+@label-sm-width: 22.5%;
+@label-xs-width: 100%;
+
+.form-app {
+  margin: 0;
+  padding: 0 15px;
+
+  /* Título del formulario */
+  .page-title {
+    padding: 0;
+
+    h3 {
+      border-bottom: 1px solid #e5e5e5;
+      margin-bottom: 30px;
+      padding-bottom: 3px;
+      padding-left: 0.1em;
+    }
+  }
+
+  /* Formulario */
+  .form-validate {
+    float: left;
+    width: 100%;
+    padding-right: 10%;
+
+    fieldset {
+      padding: 0;
+
+      & > .form-group {
+        width: 100%;
+        margin: 0 0 15px;
+      }
+    }
+  }
+
+  /* Inputs */
+  .control-label {
+    font-size: 110%;
+    white-space: nowrap;
+    float: left;
+    width: @label-sm-width;
+    padding-right: 15px;
+  }
+
+  .col-sm-8 {
+    padding: 0;
+    width: (100% - @label-sm-width);
+  }
+
+  input.form-control,
+  textarea.form-control {
+    padding-right: 31px;
+  }
+
+  select.form-control {
+    width: 250px;
+    max-width: 100%;
+    font-weight: normal;
+
+    option {
+      font-size: 115%;
+    }
+  }
+
+  /* Elimina las flechas de la derecha en los 'number' en Firefox. */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  /* Elimina las flechas de la derecha en los 'number' en Chrome. */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: textfield;
+  }
+
+  /* Mensajes de error */
+  .has-error .error {
+    color: #9e2424;
+    padding: 7px 0 7px 4px;
+    background-color: #ffdacc;
+    border-radius: 4px;
+  }
+
+  /* Botonera */
+  .btn-toolbar {
+    margin-top: 23px;
+    margin-left: @label-sm-width;
+
+    .btn {
+      margin-left: 0;
+      margin-right: 5px;
+    }
+  }
+
+  /* Responsive design */
+  @media (max-width: @screen-xs-max) {
+    .form-validate {
+      padding-right: 0;
+    }
+
+    .control-label,
+    .col-sm-8,
+    select.form-control {
+      width: @label-xs-width;
+    }
+
+    .glyphicon {
+      top: 25px;
+    }
+
+    .btn-toolbar {
+      margin-left: 0;
+    }
+  }
+}

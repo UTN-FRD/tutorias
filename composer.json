@@ -1,36 +1,47 @@
 {
-	"name": "utn-frd/tutorias",
-	"description": "Proyecto de Administración de Tutorías",
-	"authors": [
-		{
-			"name": "Universidad Tecnológica Nacional - Facultad Regional Delta",
-			"homepage": "http://www.frd.utn.edu.ar/"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/UTN-FRD/tutorias/issues"
-	},
-	"config": {
-		"vendor-dir": "app/Vendor"
-	},
-	"autoload": {
-		"psr-4": {
-			"App\\Console\\": "app/Console"
-		}
-	},
-    "extra": {
-        "installer-paths": {
-            "plugins/{$name}/": ["cakephp/debug_kit", "cakedc/migrations"]
-        }
-    },
-	"require": {
-		"cakephp/cakephp": "~2.8",
-		"cakedc/migrations": "~2.4"
-	},
-	"require-dev": {
-		"cakephp/debug_kit": "^2.2.0"
-	},
-	"scripts": {
-		"post-install-cmd": "App\\Console\\Installer::postInstall"
-	}
+  "name": "utn-frd-tutorias",
+  "version": "1.0.0",
+  "description": "Proyecto de Administración de Tutorías",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Laboratorio de Sistemas de Información de la UTN Facultad Regional Delta",
+      "homepage": "http://lsi.no-ip.org/"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/UTN-FRD/tutorias",
+    "issues": "https://github.com/UTN-FRD/tutorias/issues"
+  },
+  "config": {
+    "vendor-dir": "app/Vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Console\\": "app/Console"
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "plugins/{$name}/": ["cakephp/debug_kit", "cakedc/migrations"]
+    }
+  },
+  "require": {
+    "cakephp/cakephp": "~2.8",
+    "cakedc/migrations": "~2.4"
+  },
+  "require-dev": {
+    "cakephp/debug_kit": "^2.2.0"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "App\\Console\\Installer::postInstall",
+      "npm install --production",
+      "grunt prod"
+    ],
+    "post-update-cmd": [
+      "npm update --production",
+      "grunt prod"
+    ]
+  }
 }

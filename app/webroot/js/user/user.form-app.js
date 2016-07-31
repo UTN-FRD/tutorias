@@ -1,8 +1,13 @@
+/*
+  Funciones para jQuery Validation.
+*/
 function rules() {
+  var username = $('.form-validate').data('user') || '';
+
   return {
     'data[User][username]': {
       remote: {
-        url: window.baseUrl + 'users/check_username/' + $('#form-submit').data('user'),
+        url: window.baseUrl + 'users/check_username/' + username,
         type: "post",
         async: false
       },
@@ -12,7 +17,7 @@ function rules() {
     'data[User][password]': {
       minlength: 6
     },
-    confirmPassword: {
+    'confirm-password': {
       equalTo: '#password'
     }
   };
@@ -30,7 +35,7 @@ function messages() {
       required: 'Ingrese una contraseña',
       minlength: 'La contraseña debe tener como mínimo 6 caracteres'
     },
-    confirmPassword: {
+    'confirm-password': {
       required: 'Ingrese de nuevo la contraseña',
       equalTo: 'Las contraseñas no coinciden'
     }

@@ -1,10 +1,9 @@
 $(document).ready(function() {
-  var options = {
+  $('form').ajaxForm({
+    error: showError,
     success: showResponse,
-    error:   showError,
     timeout: 5000
-  };
-  $('form').ajaxForm(options);
+  });
 
   /*
     Para los textarea, number y daterange se guarda la respuesta luego de que hayan
@@ -81,7 +80,7 @@ function showResponse(responseText, statusText, xhr, $form) {
     class: 'glyphicon glyphicon-ok form-control-feedback'
   });
 
-  $form.find("div[class*='input-']").removeClass('has-error');
+  $form.removeClass('has-error');
 }
 
 function showError(jqXHR, statusText, errorThrown, $form) {
@@ -90,5 +89,5 @@ function showError(jqXHR, statusText, errorThrown, $form) {
     class: 'glyphicon glyphicon-remove form-control-feedback'
   });
 
-  $form.find("div[class*='input-']").addClass('has-error');
+  $form.addClass('has-error');
 }

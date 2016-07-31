@@ -1,0 +1,192 @@
+/* Index */
+.index {
+  /* Botón 'Agregar' */
+  .btn-add {
+    min-width: 147px;
+  }
+
+  /* Tablas */
+  table.table {
+    margin: 20px 0 15px 0;
+
+    .no-wrap {
+      white-space: nowrap;
+    }
+
+    .tx-actions {
+      white-space: nowrap;
+      text-align: center;
+
+      a {
+        margin: 0 6px;
+      }
+    }
+
+    thead {
+      background-color: @color-primary;
+      border: 1px solid @color-primary;
+
+      tr {
+        height: 50px;
+
+        th {
+          height: 30px;
+          vertical-align: middle;
+          position: relative;
+          top: 2px;
+          font-weight: 700;
+          border-bottom: initial;
+          padding-left: 10px;
+          padding-right: 10px;
+
+          * {
+            color: #fff;
+            padding-left: 0;
+          }
+
+          a {
+            display: flex;
+
+            &.asc::after {
+              content: ' ↓';
+              position: relative;
+              bottom: 1px;
+              left: 4px;
+            }
+
+            &.desc::after {
+              content: ' ↑';
+              position: relative;
+              bottom: 2px;
+              left: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      border: 1px solid #ddd;
+
+      tr {
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        td {
+          vertical-align: middle;
+          padding-left: 10px;
+          padding-right: 10px;
+
+          .fooicon {
+            margin: 8px 4px 8px 0;
+          }
+
+          span.footable-title {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  table.footable-details {
+    margin: 0;
+
+    tbody tr {
+      th {
+        display: none;
+      }
+
+      td {
+        padding: 8px 15px;
+
+        span.footable-title {
+          display: inline-block;
+          font-weight: bold;
+          padding-right: 1em;
+          width: 100px;
+        }
+      }
+    }
+  }
+
+  /* Modal */
+  .modal {
+    top: 25vh;
+
+    .modal-content {
+      background-color: @color-danger;
+      overflow: hidden;
+
+      .modal-header h4 {
+        color: #fff;
+        font-size: 1.15em;
+      }
+
+      .modal-body {
+        background-color: #fff;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      .modal-footer {
+        background-color: #fff;
+
+        form {
+          width: 98%;
+        }
+      }
+    }
+  }
+
+  /* Paginator */
+  p.paginator {
+    font-weight: bold;
+  }
+
+  /* Paging */
+  .paging {
+    font-size: 1.15em;
+    padding: 9px 8px;
+
+    .prev,
+    .next {
+      position: relative;
+      bottom: 1px;
+    }
+
+    span {
+      border: initial;
+      border-radius: 16px;
+      font-weight: bold;
+      margin-right: 6px;
+      padding: 5px 6px;
+
+      &:hover {
+        background: #efefef;
+      }
+
+      &.current {
+        padding: 7px 10px;
+        color: #fff;
+        background: #505362;
+      }
+
+      a {
+        text-decoration: none;
+
+        &:active {
+          box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, 0.55);
+        }
+      }
+    }
+  }
+
+  /* Responsive design */
+  @media (max-width: @screen-xs-max) {
+    table.table .no-wrap:not(:first-of-type) {
+      white-space: initial;
+    }
+  }
+}

@@ -88,8 +88,8 @@ class EstudiantesController extends AppController {
 	}
 
 	/**
-	 * Devuelve si un legajo esta disponible. Si se especifica un
-	 * estudiante se considerara valido su propio legajo.
+	 * Devuelve si un legajo está disponible. Si se especifica un estudiante, se considerará
+	 * válido su propio legajo.
 	 */
 	public function check_legajo($id = null) {
 		$this->request->allowMethod('post');

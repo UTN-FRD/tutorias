@@ -9,16 +9,16 @@ $(document).ready(function() {
     Oculta los inputs de opciones si la pregunta no es de opciones multiples.
   */
   $('#tipo').on('change', function() {
-    option = $(this).children("option").filter(":selected").text()
+    var option = $(this).children("option").filter(":selected").text();
     if (['Menú Desplegable', 'Radio Button', 'Check Box'].indexOf(option) == -1) {
-      $('#div-opciones').hide();
+      $('.div-opciones').hide();
     } else {
-      $('#div-opciones').show();
+      $('.div-opciones').show();
     }
   }).trigger('change');
 
   var maxOpciones = 20;
-  var cantOpciones = $('#opciones .opcion').length;
+  var cantOpciones = $('.opcion').length;
   var indOpciones = cantOpciones;
 
   desactivarLinks(cantOpciones, maxOpciones);
@@ -26,7 +26,7 @@ $(document).ready(function() {
   /*
     Agrega una opción al hacer click en el botón de 'Agregar opción'.
   */
-  $('#agregarOpcion').click(function() {
+  $('.agregar-opcion').click(function() {
     if (cantOpciones < maxOpciones) {
       var inputOpcion = $('<input>', {
         name: 'data[Pregunta][valores][' + indOpciones + ']',
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
       var divOpcion = $('<div></div>', {class: 'opcion'}).append(inputOpcion, eliminarOpcion);
 
-      $('#opciones').append(divOpcion);
+      $('.opciones').append(divOpcion);
 
       ++cantOpciones;
       ++indOpciones;
@@ -60,7 +60,7 @@ $(document).ready(function() {
     Elimina una opción a elección al hacer click en los botones en forma de cruz que se
     encuentran a la derecha de los inputs de opciones.
   */
-  $('#div-opciones').on('click', '.eliminar', function() {
+  $('.div-opciones').on('click', '.eliminar', function() {
     if (cantOpciones > 0) {
       --cantOpciones;
       $(this).parent().remove();
@@ -73,21 +73,28 @@ $(document).ready(function() {
 });
 
 function desactivarLinks(cantOpciones, maxOpciones) {
- // Cuando queda una sola opción se impide eliminarla.
+  /*
+    Cuando queda una sola opción se impide eliminarla.
+  */
   if (cantOpciones <= 1) {
     $('.eliminar').addClass('desactivado');
   } else {
     $('.eliminar').removeClass('desactivado');
   }
 
-  // Al llegar a la máxima cantidad de opciones impide agregar más.
+  /*
+    Al llegar a la máxima cantidad de opciones impide agregar más.
+  */
   if (cantOpciones < maxOpciones) {
-    $('#agregarOpcion').removeClass('desactivado');
+    $('.agregar-opcion').removeClass('desactivado');
   } else {
-    $('#agregarOpcion').addClass('desactivado');
+    $('.agregar-opcion').addClass('desactivado');
   }
 }
 
+/*
+  Funciones para jQuery Validation.
+*/
 function rules() {
   return {
     'data[Pregunta][orden]': {

@@ -1,0 +1,98 @@
+html {
+  position: relative;
+  min-height: 100%;
+  padding-top: 70px;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+#content {
+  padding: 10px 20px 40px 20px;
+}
+
+/* Enlaces */
+a {
+  font-weight: bold;
+
+  &.desactivado {
+    color: gray;
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+/* Títulos */
+.page-title {
+  float: none;
+  margin: auto;
+}
+
+/* Header */
+#navbar-brand {
+  padding: 5px 27px 5px 10px;
+  margin-left: 0;
+  float: none;
+  display: inline-block;
+
+ .logo {
+    height: 100%;
+    padding: 5px 5px 5px 0;
+    display: inline;
+    transition: all 1s ease;
+  }
+
+  &:hover .logo {
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+}
+
+#navbar-collapse {
+  li:not(.divider) {
+    margin: 0 12px;
+  }
+
+  .dropdown-menu {
+    a {
+      padding: 3px 0;
+
+      .glyphicon {
+        padding: 0 7px 0 5px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+
+  .row {
+    text-align: right;
+    margin: 0;
+    height: auto;
+    padding: 7px 20px;
+  }
+}
+
+/* Responsive design */
+@media (max-width: @screen-xs-max) {
+  #navbar-brand:hover .logo {
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+}

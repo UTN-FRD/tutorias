@@ -12,7 +12,9 @@
 *.md text
 *.po text
 *.js text
+*.json text
 *.css text
+*.less text
 *.ini text
 *.properties text
 *.txt text

@@ -1,10 +1,12 @@
 <?php
 $this->assign('title', 'Usuarios');
-$this->Html->css('index', array('inline' => false));
-$this->Html->script('user/index', array('inline' => false));
+$this->Html->css('footable.core.bootstrap', array('inline' => false));
+$this->Html->css('user', array('inline' => false));
+$this->Html->script('footable.core', array('inline' => false));
+$this->Html->script('user.index', array('inline' => false));
 ?>
 
-<div class="row">
+<div class="row index">
   <div class="col-md-12 page-title">
     <h2>Usuarios</h2>
   </div>
@@ -23,20 +25,31 @@ $this->Html->script('user/index', array('inline' => false));
     <table class="table">
       <thead>
         <tr>
-          <th><?php echo $this->Paginator->sort('id'); ?></th>
-          <th><?php echo $this->Paginator->sort('username', 'Nombre de usuario'); ?></th>
-          <th><?php echo $this->Paginator->sort('role', 'Rol'); ?></th>
-          <th class="tx-actions"></th>
+          <th>
+            <?php echo $this->Paginator->sort('id'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('username', 'Nombre de usuario'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('role', 'Rol'); ?>
+          </th>
+          <th data-breakpoints="xs sm" data-type="html" class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($users as $user) { ?>
           <tr>
-            <td class="no-wrap"><?php echo h($user['User']['id']); ?></td>
-            <td><?php echo h($user['User']['username']); ?></td>
-            <td class="no-wrap"><?php echo h($user['User']['role']); ?></td>
-
+            <td class="no-wrap">
+              <?php echo h($user['User']['id']); ?>
+            </td>
+            <td>
+              <?php echo h($user['User']['username']); ?>
+            </td>
+            <td class="no-wrap">
+              <?php echo h($user['User']['role']); ?>
+            </td>
             <td class="tx-actions">
               <?php
               echo $this->Html->link(
@@ -50,10 +63,10 @@ $this->Html->script('user/index', array('inline' => false));
                   'Borrar',
                   '#',
                   array(
+                    'id' => $user['User']['id'],
                     'class' => 'btn btn-danger btn-sm',
                     'data-toggle' => 'modal',
-                    'data-target' => '#confirmar-baja',
-                    'data-id' => $user['User']['id'],
+                    'data-target' => '#confirmar',
                     'data-nombre' => $user['User']['username']
                   )
                 );
@@ -72,7 +85,7 @@ $this->Html->script('user/index', array('inline' => false));
     </table>
 
     <!-- Modal -->
-    <div id="confirmar-baja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="confirmar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

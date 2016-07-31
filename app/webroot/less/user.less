@@ -1,0 +1,77 @@
+@import "tutorias/variables.less";
+
+input[type='password'] {
+  font-weight: bolder;
+}
+
+/* Login */
+.login {
+  margin: 0;
+
+  form {
+    width: 100%;
+    padding: 3px;
+    color: #333;
+
+    .form-group {
+      padding: 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        font-size: 110%;
+      }
+
+      input {
+        width: 100%;
+        padding: 1%;
+      }
+    }
+  }
+}
+
+/* Add y edit */
+@label-md-width: 27.5%;
+@label-sm-width: 35%;
+@label-xs-width: 100%;
+
+.form-app {
+  .control-label {
+    width: @label-md-width;
+  }
+
+  .col-sm-8 {
+    width: (100% - @label-md-width);
+  }
+
+  .btn-toolbar {
+    margin-left: @label-md-width;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .control-label {
+      width: @label-sm-width;
+    }
+
+    .col-sm-8 {
+      width: (100% - @label-sm-width);
+    }
+
+    .btn-toolbar {
+      margin-left: @label-sm-width;
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    .control-label,
+    .col-sm-8 {
+      width: @label-xs-width;
+    }
+
+    .btn-toolbar {
+      margin-left: 0;
+    }
+  }
+}

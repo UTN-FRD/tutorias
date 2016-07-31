@@ -15,10 +15,10 @@ class PreguntasController extends AppController {
 
 		$preguntas = $this->paginate();
 
-		/*
-			Si el contenido de 'valores' es de 120 caracteres o más, lo trunca hasta el último
-			valor encontrado en sus primeros 120 caracteres y agrega puntos suspensivos.
-		*/
+		/**
+		 * Si el contenido de 'valores' es de 120 caracteres o más, lo trunca hasta el último
+		 * valor encontrado en sus primeros 120 caracteres y agrega puntos suspensivos.
+		 */
 		foreach ($preguntas as $key => $pregunta) {
 			if (strlen($pregunta['Pregunta']['valores']) > 120) {
 				$valores = substr($pregunta['Pregunta']['valores'], 0, 120);

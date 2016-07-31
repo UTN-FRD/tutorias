@@ -3,11 +3,20 @@
 /app/Config/database.php
 /app/Test
 /app/tmp
+/app/webroot/dist
 /plugins
 /vendors
 
 # Composer
 /app/Vendor
+
+# NodeJS
+node_modules
+jspm_packages
+build/Release
+.npm
+.node_repl_history
+npm-debug.log*
 
 # Editores
 .idea

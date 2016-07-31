@@ -70,6 +70,10 @@ class Encuesta extends AppModel {
 		return false;
 	}
 
+	/**
+	 * Si la pregunta de la encuesta en del tipo checkbox, transforma al array de respuestas
+	 * en un string donde las respuestas estan separadas por comas.
+	 */
 	public function beforeSave($options = array()) {
 		$pregunta = $this->Pregunta->findById($this->data['Encuesta']['pregunta_id']);
 

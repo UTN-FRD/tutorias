@@ -104,6 +104,12 @@ Configure::write('Dispatcher.filters', array(
 ));
 
 /**
+ * Nuevas rutas para los recursos.
+ */
+Configure::write('App.cssBaseUrl', 'app/webroot/dist/css/');
+Configure::write('App.jsBaseUrl', 'app/webroot/dist/js/');
+
+/**
  * Configures default file logging options
  */
 App::uses('CakeLog', 'Log');

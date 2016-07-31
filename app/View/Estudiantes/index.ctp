@@ -1,9 +1,10 @@
 <?php
-$this->Html->css('index', array('inline' => false));
-$this->Html->script('estudiante/index', array('inline' => false));
+$this->Html->css('footable.core.bootstrap', array('inline' => false));
+$this->Html->script('footable.core', array('inline' => false));
+$this->Html->script('estudiante.index', array('inline' => false));
 ?>
 
-<div class="row">
+<div class="row index">
   <div class="col-md-12 page-title">
     <h2>Estudiantes</h2>
   </div>
@@ -24,27 +25,47 @@ $this->Html->script('estudiante/index', array('inline' => false));
     <table class="table">
       <thead>
         <tr>
-          <th><?php echo $this->Paginator->sort('legajo'); ?></th>
-          <th><?php echo $this->Paginator->sort('nombre'); ?></th>
-          <th><?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?></th>
-          <th><?php echo $this->Paginator->sort('User.username', 'Tutor'); ?></th>
-          <th class="tx-actions"></th>
+          <th>
+            <?php echo $this->Paginator->sort('legajo'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('nombre'); ?>
+          </th>
+          <th>
+            <?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?>
+          </th>
+          <th data-breakpoints="xs" data-type="html">
+            <?php echo $this->Paginator->sort('User.username', 'Tutor'); ?>
+          </th>
+          <th data-breakpoints="xs sm" data-type="html" class="tx-actions"></th>
         </tr>
       </thead>
 
       <tbody>
         <?php foreach ($estudiantes as $estudiante) { ?>
           <tr>
-            <td class="no-wrap"><?php echo h($estudiante['Estudiante']['legajo']); ?></td>
-            <td><?php echo h($estudiante['Estudiante']['nombre']); ?></td>
-            <td class="no-wrap"><?php echo h($estudiante['Carrera']['descripcion']); ?></td>
-            <td><?php echo h($estudiante['User']['username']); ?></td>
-
+            <td class="no-wrap">
+              <?php echo h($estudiante['Estudiante']['legajo']); ?>
+            </td>
+            <td>
+              <?php echo h($estudiante['Estudiante']['nombre']); ?>
+            </td>
+            <td class="no-wrap">
+              <?php echo h($estudiante['Carrera']['descripcion']); ?>
+            </td>
+            <td>
+              <span class="footable-title">Tutor:</span>
+              <?php echo h($estudiante['User']['username']); ?>
+            </td>
             <td class="tx-actions">
               <?php
               echo $this->Html->link(
                 'Encuesta',
-                array('controller' => 'encuestas', 'action' => 'index', $estudiante['Estudiante']['id']),
+                array(
+                  'controller' => 'encuestas',
+                  'action' => 'index',
+                  $estudiante['Estudiante']['id']
+                ),
                 array('class' => 'btn btn-default btn-sm')
               );
 
@@ -59,10 +80,10 @@ $this->Html->script('estudiante/index', array('inline' => false));
                   'Borrar',
                   '#',
                   array(
+                    'id' => $estudiante['Estudiante']['id'],
                     'class' => 'btn btn-danger btn-sm',
                     'data-toggle' => 'modal',
-                    'data-target' => '#confirmar-baja',
-                    'data-id' => $estudiante['Estudiante']['id'],
+                    'data-target' => '#confirmar',
                     'data-nombre' => h($estudiante['Estudiante']['nombre'])
                   )
                 );
@@ -75,7 +96,7 @@ $this->Html->script('estudiante/index', array('inline' => false));
     </table>
 
     <!-- Modal -->
-    <div id="confirmar-baja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="confirmar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

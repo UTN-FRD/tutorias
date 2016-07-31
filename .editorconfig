@@ -24,6 +24,14 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
+[*.less]
+indent_style = space
+indent_size = 2
+
 [*.js]
+indent_style = space
+indent_size = 2
+
+[*.json]
 indent_style = space
 indent_size = 2
