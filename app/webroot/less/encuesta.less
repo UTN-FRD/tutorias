@@ -14,17 +14,17 @@
   }
 
   /* Título */
-  .page-title h2 {
-    margin-bottom: 20px;
-
-    a {
-      font-weight: 500;
+  .page-title {
+    h2 {
+      a {
+        font-weight: 500;
+      }
     }
   }
 
-  /* Botón 'Regenerar encuesta' */
-  .text-right .btn {
-    margin-bottom: 20px;
+  /* Modal */
+  .modal {
+    top: 20vh;
   }
 
   /* Formularios */
@@ -181,6 +181,12 @@
   }
 
   /* Responsive design */
+  @media (min-width: @screen-sm-min) {
+    .page-title {
+      margin-bottom: 0;
+    }
+  }
+
   @media (max-width: @screen-sm-max) {
     .message-left(@input-sm-width);
 
@@ -207,6 +213,12 @@
   }
 
   @media (max-width: @screen-xs-max) {
+    .page-title {
+      h2 {
+        margin-bottom: 10px;
+      }
+    }
+
     .input-number,
     .input-date,
     .input-select {
@@ -216,18 +228,6 @@
         width: @input-xs-width;
       }
     }
-
-/*
-    .input-date {
-      .daterange {
-        padding-right: 12px;
-      }
-
-      .glyphicon-calendar {
-        display: none;
-      }
-    }
-*/
 
     .has-error {
       .input-date,

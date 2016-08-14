@@ -9,16 +9,18 @@ $this->Html->script('user.index', array('inline' => false));
 <div class="row index">
   <div class="col-md-12 page-title">
     <h2>Usuarios</h2>
-  </div>
 
-  <div class="col-md-12 text-right">
-    <?php
-    echo $this->Html->link(
-      'Agregar usuario',
-      array('action' => 'add'),
-      array('class' => 'btn btn-add btn-default')
-    );
-    ?>
+    <a
+      class="btn btn-default"
+      href="<?php echo Router::url(array('action' => 'add')); ?>"
+    >
+      <span
+        class="visible-md-inline visible-lg-inline"
+      >Agregar usuario</span>
+      <span
+        class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
+      ></span>
+    </a>
   </div>
 
   <div class="col-md-12">
@@ -41,16 +43,16 @@ $this->Html->script('user.index', array('inline' => false));
       <tbody>
         <?php foreach ($users as $user) { ?>
           <tr>
-            <td class="no-wrap">
+            <td class="text-nowrap">
               <?php echo h($user['User']['id']); ?>
             </td>
             <td>
               <?php echo h($user['User']['username']); ?>
             </td>
-            <td class="no-wrap">
+            <td>
               <?php echo h($user['User']['role']); ?>
             </td>
-            <td class="tx-actions">
+            <td class="tx-actions text-nowrap">
               <?php
               echo $this->Html->link(
                 'Editar',

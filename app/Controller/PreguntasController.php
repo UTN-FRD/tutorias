@@ -28,7 +28,7 @@ class PreguntasController extends AppController {
 					$valores = substr($valores, 0, $ultimo_valor);
 				}
 
-				$preguntas[$key]['Pregunta']['valores'] = $valores.'...';
+				$preguntas[$key]['Pregunta']['valores'] = $valores . '...';
 			}
 		}
 

@@ -7,7 +7,7 @@ $this->Html->script('user.form-app', array('inline' => false));
 ?>
 
 <div class="row form-app">
-  <div class="col-md-11 page-title">
+  <div class="col-md-12 page-title">
     <h3>Editar usuario</h3>
   </div>
 
@@ -21,7 +21,7 @@ $this->Html->script('user.form-app', array('inline' => false));
   <fieldset class="col-md-12">
     <div class="form-group">
       <label for="username" class="control-label">Nombre de usuario</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[User][username]"
           id="username"
@@ -37,7 +37,7 @@ $this->Html->script('user.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="password" class="control-label">Contraseña</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[User][password]"
           id="password"
@@ -51,7 +51,7 @@ $this->Html->script('user.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="confirm-password" class="control-label">Repita su contraseña</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="confirm-password"
           id="confirm-password"

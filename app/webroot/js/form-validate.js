@@ -18,7 +18,6 @@ $(document).ready(function() {
     rules: rules(),
     messages: messages(),
 
-    ignore: 'select',
     errorElement: 'div',
 
     /* Valida el campo al oprimir una tecla, a menos que sea tab o reverse tab. */

@@ -5,9 +5,16 @@ $this->Html->css('user', array('inline' => false));
 
 <div class="row login">
   <div class="col-md-6">
-    <h1>Bienvenido</h1>
-    <p>Por favor, ingrese su nombre de usuario y contraseña.</p>
-    <p>Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de tutorías o diríjase a la oficina de SAE.</p>
+    <div class="page-title">
+      <h1>Bienvenido</h1>
+    </div>
+
+    <p>
+      Por favor, ingrese su nombre de usuario y contraseña.
+    </p>
+    <p>
+      Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de tutorías o diríjase a la oficina de SAE.
+    </p>
   </div>
 
   <div class="col-md-6">

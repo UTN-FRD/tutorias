@@ -1,20 +1,10 @@
 /* Index */
 .index {
-  /* Botón 'Agregar' */
-  .btn-add {
-    min-width: 147px;
-  }
-
   /* Tablas */
   table.table {
-    margin: 20px 0 15px 0;
-
-    .no-wrap {
-      white-space: nowrap;
-    }
+    margin-bottom: 15px;
 
     .tx-actions {
-      white-space: nowrap;
       text-align: center;
 
       a {
@@ -111,35 +101,6 @@
     }
   }
 
-  /* Modal */
-  .modal {
-    top: 25vh;
-
-    .modal-content {
-      background-color: @color-danger;
-      overflow: hidden;
-
-      .modal-header h4 {
-        color: #fff;
-        font-size: 1.15em;
-      }
-
-      .modal-body {
-        background-color: #fff;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-
-      .modal-footer {
-        background-color: #fff;
-
-        form {
-          width: 98%;
-        }
-      }
-    }
-  }
-
   /* Paginator */
   p.paginator {
     font-weight: bold;
@@ -185,6 +146,12 @@
 
   /* Responsive design */
   @media (max-width: @screen-xs-max) {
+    .page-title {
+      h2 {
+        display: inline;
+      }
+    }
+
     table.table .no-wrap:not(:first-of-type) {
       white-space: initial;
     }

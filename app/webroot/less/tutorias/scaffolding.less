@@ -15,18 +15,52 @@ body {
 /* Enlaces */
 a {
   font-weight: bold;
-
-  &.desactivado {
-    color: gray;
-    pointer-events: none;
-    cursor: default;
-  }
 }
 
 /* Títulos */
 .page-title {
-  float: none;
-  margin: auto;
+  margin: 15px 0;
+  float: left;
+  width: 100%;
+
+  & ~ * {
+    clear: both;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  .btn {
+    float: right;
+  }
+}
+
+/* Modales */
+.modal {
+  top: 25vh;
+
+  .modal-content {
+    background-color: @color-danger;
+    overflow: hidden;
+
+    .modal-header h4 {
+      color: #fff;
+      font-size: 1.15em;
+    }
+
+    .modal-body {
+      background-color: #fff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .modal-footer {
+      background-color: #fff;
+    }
+  }
 }
 
 /* Header */
@@ -53,12 +87,20 @@ a {
   }
 }
 
+@dropdown-menu-padding: 6px;
+
 #navbar-collapse {
-  li:not(.divider) {
+  li {
     margin: 0 12px;
+
+    &.divider {
+      margin: @dropdown-menu-padding 0;
+    }
   }
 
   .dropdown-menu {
+    padding: @dropdown-menu-padding 0;
+
     a {
       padding: 3px 0;
 
@@ -78,8 +120,8 @@ footer {
   width: 100%;
   background-color: #f5f5f5;
   display: flex;
-  justify-content: center;
   flex-direction: column-reverse;
+  justify-content: center;
 
   .row {
     text-align: right;
@@ -91,8 +133,7 @@ footer {
 
 /* Responsive design */
 @media (max-width: @screen-xs-max) {
-  #navbar-brand:hover .logo {
-    padding-bottom: 2px;
-    padding-top: 2px;
+  #content {
+    padding: 0 0 40px;
   }
 }

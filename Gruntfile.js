@@ -130,7 +130,22 @@ module.exports = function(grunt) {
         ]
       },
 
-      /* Copia los archivos CSS propios a 'dist/css/'. */
+      /* Copia las imagenes propias a 'dist/img/'. */
+      img: {
+        files: [
+          {
+            nonull: true,
+            expand: true,
+            flatten: true,
+            filter: 'isFile',
+            cwd: 'img/',
+            src: '**/*',
+            dest: 'dist/img/'
+          }
+        ]
+      },
+
+      /* Copia las librerías CSS descargadas con npm a 'dist/css/'. */
       css: {
         files: [
           {

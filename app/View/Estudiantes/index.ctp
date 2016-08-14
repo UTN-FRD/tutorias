@@ -7,19 +7,21 @@ $this->Html->script('estudiante.index', array('inline' => false));
 <div class="row index">
   <div class="col-md-12 page-title">
     <h2>Estudiantes</h2>
-  </div>
 
-  <?php if (AuthComponent::user('role') == 'admin') { ?>
-    <div class="col-md-12 text-right">
-      <?php
-      echo $this->Html->link(
-        'Agregar estudiante',
-        array('action' => 'add'),
-        array('class' => 'btn btn-add btn-default')
-      );
-      ?>
-    </div>
-  <?php } ?>
+    <?php if (AuthComponent::user('role') == 'admin') { ?>
+      <a
+        class="btn btn-default"
+        href="<?php echo Router::url(array('action' => 'add')); ?>"
+      >
+        <span
+          class="visible-md-inline visible-lg-inline"
+        >Agregar estudiante</span>
+        <span
+          class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
+        ></span>
+      </a>
+    <?php } ?>
+  </div>
 
   <div class="col-md-12">
     <table class="table">
@@ -44,20 +46,20 @@ $this->Html->script('estudiante.index', array('inline' => false));
       <tbody>
         <?php foreach ($estudiantes as $estudiante) { ?>
           <tr>
-            <td class="no-wrap">
+            <td class="text-nowrap">
               <?php echo h($estudiante['Estudiante']['legajo']); ?>
             </td>
             <td>
               <?php echo h($estudiante['Estudiante']['nombre']); ?>
             </td>
-            <td class="no-wrap">
+            <td>
               <?php echo h($estudiante['Carrera']['descripcion']); ?>
             </td>
             <td>
               <span class="footable-title">Tutor:</span>
               <?php echo h($estudiante['User']['username']); ?>
             </td>
-            <td class="tx-actions">
+            <td class="tx-actions text-nowrap">
               <?php
               echo $this->Html->link(
                 'Encuesta',

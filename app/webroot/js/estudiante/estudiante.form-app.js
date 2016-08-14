@@ -6,10 +6,9 @@ function rules() {
 
   return {
     'data[Estudiante][legajo]': {
-      remote: {
+      synchronousRemote: {
         url: window.baseUrl + 'estudiantes/check_legajo/' + legajo,
-        type: "post",
-        async: false
+        type: "post"
       },
       range: [0, 999999999]
     },

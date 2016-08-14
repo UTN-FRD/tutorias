@@ -3,7 +3,9 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
-	// Para que sea muestre el nombre del tutor en Estudiante.
+	/**
+	 *  Permite que se muestre el nombre del tutor en 'Estudiante'.
+	 */
 	public $displayField = 'username';
 
 	public $validate = array(

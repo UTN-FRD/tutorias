@@ -13,7 +13,21 @@ class UsersController extends AppController {
 
 	public function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+
+		$users = $this->paginate();
+
+		foreach ($users as $key => $user) {
+			switch ($user['User']['role']) {
+				case 'admin':
+					$users[$key]['User']['role'] = 'Administrador';
+					break;
+				case 'tutor':
+					$users[$key]['User']['role'] = 'Tutor';
+					break;
+			}
+		}
+
+		$this->set('users', $users);
 	}
 
 	public function add() {

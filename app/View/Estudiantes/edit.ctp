@@ -5,7 +5,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 ?>
 
 <div class="row form-app">
-  <div class="col-md-11 page-title">
+  <div class="col-md-12 page-title">
     <h3>Editar estudiante</h3>
   </div>
 
@@ -19,7 +19,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
   <fieldset class="col-md-12">
     <div class="form-group">
       <label for="legajo" class="control-label">Legajo</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[Estudiante][legajo]"
           id="legajo"
@@ -34,7 +34,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="nombre" class="control-label">Nombre</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[Estudiante][nombre]"
           id="nombre"
@@ -49,7 +49,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="carrera" class="control-label">Carrera</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <?php
         echo $this->Form->input('carrera_id', array(
           'id' => 'carrera',
@@ -63,7 +63,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
     <?php if (AuthComponent::user('role') == 'admin') { ?>
       <div class="form-group">
         <label for="tutor" class="control-label">Tutor</label>
-        <div class="col-sm-8">
+        <div class="control-input">
           <?php
           echo $this->Form->input('user_id', array(
             'id' => 'tutor',

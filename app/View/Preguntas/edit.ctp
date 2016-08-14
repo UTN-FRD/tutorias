@@ -7,7 +7,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 ?>
 
 <div class="row form-app">
-  <div class="col-md-11 page-title">
+  <div class="col-md-12 page-title">
     <h3>Editar pregunta</h3>
   </div>
 
@@ -21,7 +21,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
   <fieldset class="col-md-12">
     <div class="form-group">
       <label for="orden" class="control-label">Orden</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[Pregunta][orden]"
           id="orden"
@@ -36,7 +36,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="pregunta" class="control-label">Pregunta</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <input
           name="data[Pregunta][pregunta]"
           id="pregunta"
@@ -51,7 +51,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="ayuda" class="control-label">Ayuda</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <textarea
           name="data[Pregunta][ayuda]"
           id="ayuda"
@@ -65,7 +65,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="carrera" class="control-label">Visible en</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <?php
         echo $this->Form->input('carrera_id', array(
           'id' => 'carrera',
@@ -78,7 +78,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 
     <div class="form-group">
       <label for="tipo" class="control-label">Tipo</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <?php
         echo $this->Form->input('tipo', array(
           'id' => 'tipo',
@@ -91,7 +91,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
 
     <div class="form-group div-opciones">
       <label class="control-label">Opciones</label>
-      <div class="col-sm-8">
+      <div class="control-input">
         <div class="opciones">
           <?php foreach ($opciones as $key => $opcion) { ?>
             <div class="opcion">
@@ -101,7 +101,7 @@ $this->Html->script('pregunta.form-app', array('inline' => false));
                 class="form-control"
                 type="text"
                 value="<?php echo h($opcion); ?>"
-              ><a href="#" tabindex="-1" class="eliminar" title="Eliminar opción">&times;</a>
+              ><a href="#" tabindex="-1" class="eliminar btn" title="Eliminar opción">&times;</a>
             </div>
           <?php } ?>
         </div>

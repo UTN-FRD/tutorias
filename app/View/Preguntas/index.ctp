@@ -10,16 +10,18 @@ $this->Html->script('pregunta.index', array('inline' => false));
 <div class="row index">
   <div class="col-md-12 page-title">
     <h2>Preguntas</h2>
-  </div>
 
-  <div class="col-md-12 text-right">
-    <?php
-    echo $this->Html->link(
-      'Agregar pregunta',
-      array('action' => 'add'),
-      array('class' => 'btn btn-add btn-default')
-    );
-    ?>
+    <a
+      class="btn btn-default"
+      href="<?php echo Router::url(array('action' => 'add')); ?>"
+    >
+      <span
+        class="visible-md-inline visible-lg-inline"
+      >Agregar pregunta</span>
+      <span
+        class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
+      ></span>
+    </a>
   </div>
 
   <div class="col-md-12">
@@ -51,24 +53,24 @@ $this->Html->script('pregunta.index', array('inline' => false));
       <tbody>
         <?php foreach ($preguntas as $pregunta) { ?>
           <tr>
-            <td class="no-wrap">
+            <td class="text-nowrap">
               <?php echo h($pregunta['Pregunta']['orden']); ?>
             </td>
             <td>
               <?php echo h($pregunta['Pregunta']['pregunta']); ?>
             </td>
-            <td class="no-wrap">
+            <td>
               <?php echo h(Pregunta::tipos($pregunta['Pregunta']['tipo'])); ?>
             </td>
             <td class="td-opciones">
               <span class="footable-title">Opciones:</span>
               <?php echo h($pregunta['Pregunta']['valores']); ?>
             </td>
-            <td class="no-wrap">
+            <td>
               <span class="footable-title">Visible en:</span>
               <?php echo h($pregunta['Carrera']['descripcion']); ?>
             </td>
-            <td class="tx-activo no-wrap">
+            <td class="tx-activo text-nowrap">
               <span class="footable-title">Activa:</span>
               <?php
               echo $this->Form->checkbox('activo', array(
@@ -81,7 +83,7 @@ $this->Html->script('pregunta.index', array('inline' => false));
               ));
               ?>
             </td>
-            <td class="tx-actions">
+            <td class="tx-actions text-nowrap">
               <?php
               echo $this->Html->link(
                 'Editar',

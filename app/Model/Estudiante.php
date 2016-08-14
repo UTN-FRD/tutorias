@@ -56,7 +56,7 @@ class Estudiante extends AppModel {
 		return ($this->Carrera->exists($carrera) && $carrera < 128);
 	}
 
-	/*
+	/**
 	 * Devuelve si $estudiante tiene como tutor a $tutor.
 	 */
 	public function isOwnedBy($estudiante = null, $tutor = null) {

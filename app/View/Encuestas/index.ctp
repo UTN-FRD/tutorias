@@ -18,19 +18,54 @@ $this->Html->script('encuesta', array('inline' => false));
       );
       ?>
     </h2>
+
+    <?php if (AuthComponent::user('role') == 'admin') { ?>
+      <a
+        class="btn btn-default"
+        data-toggle= 'modal',
+        data-target= '#confirmar'
+        href="#"
+      >
+        <span
+          class="visible-md-inline visible-lg-inline"
+        >Regenerar encuesta</span>
+
+        <span
+          class="glyphicon glyphicon-refresh visible-xs-inline visible-sm-inline"
+        ></span>
+      </a>
+    <?php } ?>
   </div>
 
-  <?php if (AuthComponent::user('role') == 'admin') { ?>
-    <div class="col-md-12 text-right">
-      <?php
-      echo $this->Form->postLink(
-        'Regenerar encuesta',
-        array('action' => 'regenerate', $estudiante['id']),
-        array('class' => 'btn btn-default')
-      );
-      ?>
+  <!-- Modal -->
+  <div id="confirmar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Regenerar encuesta</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Esta acción eliminará todas las respuestas de esta encuesta y actualizará sus preguntas a las que se encuentren activas actualmente.
+          </p>
+          <p>
+            ¿Está seguro que desea regenerar la encuesta?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <?php
+          echo $this->Form->postLink(
+            'Sí',
+            array('action' => 'regenerate', $estudiante['id']),
+            array('class' => 'btn btn-danger')
+          );
+          ?>
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
     </div>
-  <?php } ?>
+  </div>
 
   <div class="col-md-12">
     <?php foreach ($encuestas as $encuesta) { ?>

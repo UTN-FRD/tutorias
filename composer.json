@@ -36,11 +36,11 @@
   "scripts": {
     "post-install-cmd": [
       "App\\Console\\Installer::postInstall",
-      "npm install --production",
+      "npm install",
       "grunt prod"
     ],
     "post-update-cmd": [
-      "npm update --production",
+      "npm update",
       "grunt prod"
     ]
   }

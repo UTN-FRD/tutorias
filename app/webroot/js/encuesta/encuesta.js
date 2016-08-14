@@ -80,7 +80,7 @@ function showResponse(responseText, statusText, xhr, $form) {
     class: 'glyphicon glyphicon-ok form-control-feedback'
   });
 
-  $form.removeClass('has-error');
+  $form.has('textarea, input:text, select').addClass('has-success').removeClass('has-error');
 }
 
 function showError(jqXHR, statusText, errorThrown, $form) {
@@ -89,5 +89,5 @@ function showError(jqXHR, statusText, errorThrown, $form) {
     class: 'glyphicon glyphicon-remove form-control-feedback'
   });
 
-  $form.addClass('has-error');
+  $form.has('textarea, input:text, select').addClass('has-error').removeClass('has-success');
 }

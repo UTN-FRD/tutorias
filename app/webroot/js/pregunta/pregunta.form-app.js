@@ -37,7 +37,7 @@ $(document).ready(function() {
 
       var eliminarOpcion = $('<a></a>', {
         href: '#',
-        class: 'eliminar',
+        class: 'eliminar btn',
         title: 'Eliminar opción',
         tabindex: '-1',
         html: '&times;'
@@ -77,18 +77,18 @@ function desactivarLinks(cantOpciones, maxOpciones) {
     Cuando queda una sola opción se impide eliminarla.
   */
   if (cantOpciones <= 1) {
-    $('.eliminar').addClass('desactivado');
+    $('.eliminar').addClass('disabled');
   } else {
-    $('.eliminar').removeClass('desactivado');
+    $('.eliminar').removeClass('disabled');
   }
 
   /*
     Al llegar a la máxima cantidad de opciones impide agregar más.
   */
   if (cantOpciones < maxOpciones) {
-    $('.agregar-opcion').removeClass('desactivado');
+    $('.agregar-opcion').removeClass('disabled');
   } else {
-    $('.agregar-opcion').addClass('desactivado');
+    $('.agregar-opcion').addClass('disabled');
   }
 }
 
