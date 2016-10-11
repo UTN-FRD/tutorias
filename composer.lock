@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0242c89910cdff3c91df502e2e7e2af9",
+    "hash": "8a133beaead18ea50f5c521a8a5bc8ce",
     "content-hash": "832ee0c69431b8d5d4086a473999ec73",
     "packages": [
         {
             "name": "cakedc/migrations",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/migrations.git",
-                "reference": "a8b53d8c5dba53fc48ae3f263f2d008b6787973f"
+                "reference": "aecca8fda1b3d38db359493c0387172a590e5bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/migrations/zipball/a8b53d8c5dba53fc48ae3f263f2d008b6787973f",
-                "reference": "a8b53d8c5dba53fc48ae3f263f2d008b6787973f",
+                "url": "https://api.github.com/repos/CakeDC/migrations/zipball/aecca8fda1b3d38db359493c0387172a590e5bf8",
+                "reference": "aecca8fda1b3d38db359493c0387172a590e5bf8",
                 "shasum": ""
             },
             "require": {
@@ -43,20 +43,20 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2015-12-18 10:32:40"
+            "time": "2016-10-04 09:29:47"
         },
         {
             "name": "cakephp/cakephp",
-            "version": "2.8.5",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "64e7c8d9914c845efa8d1865fe0472fd6b6706b6"
+                "reference": "6cdf38c2ef5798692ed9fb22221527b9f4210d19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/64e7c8d9914c845efa8d1865fe0472fd6b6706b6",
-                "reference": "64e7c8d9914c845efa8d1865fe0472fd6b6706b6",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/6cdf38c2ef5798692ed9fb22221527b9f4210d19",
+                "reference": "6cdf38c2ef5798692ed9fb22221527b9f4210d19",
                 "shasum": ""
             },
             "require": {
@@ -86,20 +86,20 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-06-13 02:15:08"
+            "time": "2016-10-11 01:36:32"
         },
         {
             "name": "composer/installers",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "a3595c5272a6f247228abb20076ed27321e4aae9"
+                "reference": "d78064c68299743e0161004f2de3a0204e33b804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/a3595c5272a6f247228abb20076ed27321e4aae9",
-                "reference": "a3595c5272a6f247228abb20076ed27321e4aae9",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d78064c68299743e0161004f2de3a0204e33b804",
+                "reference": "d78064c68299743e0161004f2de3a0204e33b804",
                 "shasum": ""
             },
             "require": {
@@ -146,6 +146,7 @@
                 "MODX Evo",
                 "Mautic",
                 "OXID",
+                "Plentymarkets",
                 "RadPHP",
                 "SMF",
                 "Thelia",
@@ -153,9 +154,11 @@
                 "agl",
                 "aimeos",
                 "annotatecms",
+                "attogram",
                 "bitrix",
                 "cakephp",
                 "chef",
+                "cockpit",
                 "codeigniter",
                 "concrete5",
                 "croogo",
@@ -179,16 +182,18 @@
                 "piwik",
                 "ppi",
                 "puppet",
+                "reindex",
                 "roundcube",
                 "shopware",
                 "silverstripe",
                 "symfony",
                 "typo3",
                 "wordpress",
+                "yawik",
                 "zend",
                 "zikula"
             ],
-            "time": "2016-07-05 06:18:20"
+            "time": "2016-08-13 20:53:52"
         }
     ],
     "packages-dev": [
