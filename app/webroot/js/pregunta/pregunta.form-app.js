@@ -101,7 +101,7 @@ function rules() {
       range: [0, 999999999]
     },
     'data[Pregunta][pregunta]': {
-      maxlength: 150
+      maxlength: 255
     },
     'data[Pregunta][ayuda]': {
       maxlength: 65535
