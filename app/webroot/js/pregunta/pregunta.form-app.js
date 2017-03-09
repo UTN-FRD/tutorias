@@ -118,7 +118,7 @@ function messages() {
     },
     'data[Pregunta][pregunta]': {
       required: 'Ingrese una pregunta',
-      maxlength: 'La pregunta puede tener como máximo 150 caracteres'
+      maxlength: 'La pregunta puede tener como máximo 255 caracteres'
     },
     'data[Pregunta][ayuda]': {
       maxlength: 'La ayuda puede tener como máximo 65535 caracteres'
