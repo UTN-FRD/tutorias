@@ -4,9 +4,10 @@ $this->Html->script('footable.core', array('inline' => false));
 $this->Html->script('estudiante.index', array('inline' => false));
 ?>
 
+
 <div class="row index">
   <div class="col-md-12 page-title">
-    <h2>Estudiantes</h2>
+    <h2>  <?php echo Configure::read('APP.USERS') ?></h2>
 
     <?php if (AuthComponent::user('role') == 'admin') { ?>
       <a
@@ -15,7 +16,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       >
         <span
           class="visible-md-inline visible-lg-inline"
-        >Agregar estudiante</span>
+        >Agregar <?php echo Configure::read('APP.USER') ?></span>
         <span
           class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
         ></span>

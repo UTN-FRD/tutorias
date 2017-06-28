@@ -78,7 +78,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               'class' => 'logo'
             ));
             ?>
-            <span>Tutorías</span>
+            <span><?php echo Configure::read('APP.TITLE') ?></span>
           </a>
         </div>
 
@@ -89,7 +89,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?> >
                 <?php
                 echo $this->Html->link(
-                  'Estudiantes',
+                  Configure::read('APP.USERS'),
                   array('controller' => 'estudiantes', 'action' => 'index')
                 );
                 ?>
