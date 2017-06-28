@@ -7,6 +7,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
 
 <div class="row index">
   <div class="col-md-12 page-title">
+  <?php // Configurar APP.USERS en app/Config/core.php ?>
     <h2>  <?php echo Configure::read('APP.USERS') ?></h2>
 
     <?php if (AuthComponent::user('role') == 'admin') { ?>
@@ -16,6 +17,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       >
         <span
           class="visible-md-inline visible-lg-inline"
+         <?php // Configurar APP.USER en app/Config/core.php ?>
         >Agregar <?php echo Configure::read('APP.USER') ?></span>
         <span
           class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
