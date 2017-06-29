@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', 'Tutorías - UTN FRD');
+$this->assign('title', Configure::read('APP.TITLE') . '- UTN FRD');
 $this->Html->css('user', array('inline' => false));
 ?>
 

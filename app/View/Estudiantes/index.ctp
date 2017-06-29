@@ -1,4 +1,5 @@
 <?php
+$this->assign('title', Configure::read('APP.USERS'));
 $this->Html->css('footable.core.bootstrap', array('inline' => false));
 $this->Html->script('footable.core', array('inline' => false));
 $this->Html->script('estudiante.index', array('inline' => false));
