@@ -13,7 +13,7 @@ $this->Html->css('user', array('inline' => false));
       Por favor, ingrese su nombre de usuario y contraseña.
     </p>
     <p>
-      Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de tutorías o diríjase a la oficina de SAE.
+      Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de <?php echo strtolower(Configure::read('APP.TITLE')) ?> o diríjase a la oficina de SAE.
     </p>
   </div>
 
