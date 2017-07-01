@@ -26,6 +26,7 @@
  * Autocargador de clases de Composer
  */
 require_once APP . DS . 'Vendor' . DS . 'autoload.php';
+
 /**
  * Autocargador de clases de CakePHP
  * https://github.com/composer/composer/commit/c80cb76b9b5082ecc3e5b53b1050f76bb27b127b
@@ -125,3 +126,8 @@ CakePlugin::load('DebugKit');
 if (PHP_SAPI === 'cli') {
 	CakePlugin::load('Migrations');
 }
+
+/**
+ * Especifica si la instalación corresponde a la versión de Graduados.
+ */
+//Configure::write('Plataforma.Graduados', false);

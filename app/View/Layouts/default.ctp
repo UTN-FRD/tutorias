@@ -159,7 +159,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <footer>
     <div class="row">
-      Desarrollado en el Laboratorío de Sistemas de la UTN FRD | Versión <a href="https://github.com/UTN-FRD/tutorias/tree/master" target="_blank">master</a>
+      Desarrollado en el Laboratorío de Sistemas de la UTN FRD | Versión <?php echo $this->Plataforma->obtenerVersion() ?>
     </div>
   </footer>
 </body>
