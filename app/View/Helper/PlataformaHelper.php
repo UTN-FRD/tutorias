@@ -30,7 +30,7 @@ class PlataformaHelper extends AppHelper {
 		if (file_exists($archivo)) {
 			$hash = file_get_contents($archivo);
 			if (!empty($hash)) {
-				$version = substr($version, 0, 7);
+				$version = substr($hash, 0, 7);
 			}
 		}
 
