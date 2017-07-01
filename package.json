@@ -2,10 +2,10 @@
   "name": "utn-frd-tutorias",
   "version": "1.0.1",
   "description": "Proyecto de Administración de Tutorías",
-  "license" : "MIT",
+  "license": "MIT",
   "author": {
-    "name" : "Laboratorio de Sistemas de Información de la UTN Facultad Regional Delta",
-    "url" : "http://lsi.no-ip.org/"
+    "name": "Laboratorio de Sistemas de Información de la UTN Facultad Regional Delta",
+    "url": "http://lsi.no-ip.org/"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "bootstrap": "~3.3.7",
     "bootstrap-daterangepicker": "~2.1.24",
     "bootstrap-toggle": "~2.2.2",
-    "footable": "fooplugins/FooTable#f4046aceabde939e8b02fc4a6ee7d0dbd4108f9e",
+    "footable": "github:fooplugins/FooTable#f4046aceabde939e8b02fc4a6ee7d0dbd4108f9e",
     "grunt": "~1.0.1",
     "grunt-contrib-clean": "~1.0.0",
     "grunt-contrib-copy": "~1.0.0",
