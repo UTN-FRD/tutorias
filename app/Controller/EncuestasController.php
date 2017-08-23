@@ -7,7 +7,7 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->Estudiante->id = $id;
 		if (!$this->Encuesta->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(substr($this->Plataforma->obtenerEncuestado(),0,-1) . ' inválido');
 		}
 
 		$estudiante = $this->Encuesta->Estudiante->read();
@@ -23,7 +23,7 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->Estudiante->id = $id;
 		if (!$this->Encuesta->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(substr($this->Plataforma->obtenerEncuestado(),0,-1) . ' inválido');
 		}
 
 		$estudiante = $this->Encuesta->Estudiante->read();
@@ -41,7 +41,7 @@ class EncuestasController extends AppController {
 		$this->Encuesta->id = $this->data['encuestaId'];
 
 		if (!$this->Encuesta->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(substr($this->Plataforma->obtenerEncuestado(),0,-1) . ' inválido');
 		}
 
 		$this->Encuesta->set('respuesta', $this->data['respuesta']);
