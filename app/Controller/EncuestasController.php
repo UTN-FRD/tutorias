@@ -29,6 +29,7 @@ class EncuestasController extends AppController {
 		$estudiante = $this->Encuesta->Estudiante->read();
 		$this->Encuesta->regenerar($this->Encuesta->Estudiante->id);
 
+		$this->Flash->success('La encuesta ha sido regenerada correctamente.');
 		return $this->redirect(array('action' => 'index', $id));
 	}
 
