@@ -159,7 +159,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <footer>
     <div class="row">
-      Desarrollado en el Laboratorío de Sistemas de la UTN FRD | Versión <?php echo $this->Plataforma->obtenerVersion() ?>
+      <?php
+      $version = Plataforma::obtenerVersion();
+      printf(
+        'Desarrollado en el Laboratorío de Sistemas de la UTN FRD | Versión %s',
+        $this->Html->link($version, "https://github.com/UTN-FRD/tutorias/tree/$version", array('target' => '_blank'))
+      );
+      ?>
     </div>
   </footer>
 </body>

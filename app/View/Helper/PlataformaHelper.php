@@ -6,6 +6,8 @@ App::uses('AppHelper', 'View');
 
 /**
  * Ayudante de la plataforma.
+ *
+ * @deprecated
  */
 class PlataformaHelper extends AppHelper {
 
@@ -101,7 +103,6 @@ class PlataformaHelper extends AppHelper {
 
 		return h($titulo);
 	}
-
 
 /**
  * Comprueba si la instalación corresponde a la versión de Graduados.
