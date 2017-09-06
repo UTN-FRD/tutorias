@@ -35,18 +35,18 @@ class EstudiantesController extends AppController {
 
 			if ($this->Estudiante->save($this->request->data)) {
 				$this->Estudiante->Encuesta->crear($this->Estudiante->id);
-				$this->Flash->success('El estudiante ha sido creado correctamente.');
+				$this->Flash->success('El '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').' ha sido creado correctamente.');
 				return $this->redirect(array('action' => 'index'));
 			}
 
-			$this->Flash->error('No se ha podido crear el estudiante. Por favor, intente nuevamente.');
+			$this->Flash->error('No se ha podido crear el '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').'. Por favor, intente nuevamente.');
 		}
 	}
 
 	public function edit($id = null) {
 		$this->Estudiante->id = $id;
 		if (!$this->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException((Plataforma::esTutorias() ? 'Estudiante' : 'Graduado').' inválido');
 		}
 
 		$this->set(array(
@@ -60,11 +60,11 @@ class EstudiantesController extends AppController {
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Estudiante->save($this->request->data)) {
-				$this->Flash->success('El estudiante ha sido actualizado correctamente.');
+				$this->Flash->success('El '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').' ha sido actualizado correctamente.');
 				return $this->redirect(array('action' => 'index'));
 			}
 
-			$this->Flash->error('No se ha podido actualizar el estudiante. Por favor, intente nuevamente.');
+			$this->Flash->error('No se ha podido actualizar el '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').'. Por favor, intente nuevamente.');
 		}
 
 		$this->request->data = $this->Estudiante->read();
@@ -75,13 +75,13 @@ class EstudiantesController extends AppController {
 
 		$this->Estudiante->id = $id;
 		if (!$this->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException((Plataforma::esTutorias() ? 'Estudiante' : 'Graduado').' inválido');
 		}
 
 		if ($this->Estudiante->delete()) {
-			$this->Flash->success('El estudiante se ha eliminado correctamente.');
+			$this->Flash->success('El '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').' se ha eliminado correctamente.');
 		} else {
-			$this->Flash->error('No se ha podido eliminar el estudiante. Por favor, intente nuevamente.');
+			$this->Flash->error('No se ha podido eliminar el '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').'. Por favor, intente nuevamente.');
 		}
 
 		return $this->redirect(array('action' => 'index'));

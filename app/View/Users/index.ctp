@@ -92,7 +92,7 @@ $this->Html->script('user.index', array('inline' => false));
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Eliminar <?php echo strtolower($this->Plataforma->obtenerTitulo()) ?></h4>
+            <h4 class="modal-title" id="myModalLabel">Eliminar <?php echo Plataforma::esTutorias() ? 'tutor' : 'usuario'?></h4>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">

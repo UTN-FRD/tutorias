@@ -6,7 +6,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
 
 <div class="row index">
   <div class="col-md-12 page-title">
-    <h2><?php echo $this->Plataforma->obtenerEncuestado() ?></h2>
+    <h2><?php echo Plataforma::esTutorias() ? 'Estudiantes' : 'Graduados'  ?></h2>
 
     <?php if (AuthComponent::user('role') == 'admin') { ?>
       <a
@@ -15,7 +15,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       >
         <span
           class="visible-md-inline visible-lg-inline"
-        >Agregar <?php echo strtolower($this->Plataforma->obtenerEncuestado())?></span>
+        >Agregar <?php echo Plataforma::esTutorias() ? 'estudiante' : 'graduado'?></span>
         <span
           class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
         ></span>
@@ -28,7 +28,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       <thead>
         <tr>
           <th>
-            <?php echo $this->Paginator->sort($this->Plataforma->obtenerID()); ?>
+            <?php echo $this->Paginator->sort(Plataforma::esTutorias() ? 'Legajo' : 'DNI') ; ?>
           </th>
           <th>
             <?php echo $this->Paginator->sort('nombre'); ?>
@@ -37,7 +37,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
             <?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?>
           </th>
           <th data-breakpoints="xs" data-type="html">
-            <?php echo $this->Paginator->sort('User.username', $this->Plataforma->obtenerUsuario()); ?>
+            <?php echo $this->Paginator->sort('User.username', Plataforma::esTutorias() ? 'Tutor' : 'Usuario'); ?>
           </th>
           <th data-breakpoints="xs sm" data-type="html" class="tx-actions"></th>
         </tr>
@@ -103,7 +103,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Eliminar estudiante</h4>
+            <h4 class="modal-title" id="myModalLabel">Eliminar <?php echo Plataforma::esTutorias() ? 'estudiante' : 'graduado'?></h4>
           </div>
           <div class="modal-body"></div>
           <div class="modal-footer">

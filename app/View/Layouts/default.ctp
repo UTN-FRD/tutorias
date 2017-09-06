@@ -78,7 +78,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               'class' => 'logo'
             ));
             ?>
-            <span> <?php echo $this->Plataforma->obtenerTitulo() ?></span>
+            <span> <?php echo Plataforma::esTutorias() ? 'Tutorías' : 'Graduados'  ?></span>
           </a>
         </div>
 
@@ -89,7 +89,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
               <li <?php if ($this->request->params['controller'] == 'estudiantes') { echo 'class="active"'; } ?> >
                 <?php
                 echo $this->Html->link(
-                  $this->Plataforma->obtenerEncuestado() ,
+                  Plataforma::esTutorias() ? 'Estudiantes' : 'Graduados'  ,
                   array('controller' => 'estudiantes', 'action' => 'index')
                 );
                 ?>

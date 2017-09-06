@@ -6,7 +6,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
 <div class="row form-app">
   <div class="col-md-12 page-title">
-    <h3>Editar estudiante</h3>
+    <h3>Editar <?php echo Plataforma::esTutorias() ? 'estudiante' : 'graduado'?></h3>
   </div>
 
   <?php
@@ -18,7 +18,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
   <fieldset class="col-md-12">
     <div class="form-group">
-      <label for="legajo" class="control-label">Legajo</label>
+      <label for="legajo" class="control-label"><?php echo Plataforma::esTutorias() ? 'Legajo' : 'DNI'?></label>
       <div class="control-input">
         <input
           name="data[Estudiante][legajo]"
@@ -62,7 +62,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
     <?php if (AuthComponent::user('role') == 'admin') { ?>
       <div class="form-group">
-        <label for="tutor" class="control-label">Tutor</label>
+        <label for="tutor" class="control-label"><?php echo Plataforma::esTutorias() ? 'Tutor' : 'Usuario'?></label>
         <div class="control-input">
           <?php
           echo $this->Form->input('user_id', array(

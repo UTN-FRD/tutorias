@@ -1,5 +1,5 @@
 <?php
-$this->assign('title', $this->Plataforma->obtenerTitulo('UTN FRD'));
+$this->assign('title', Plataforma::esTutorias() ? 'Tutorias' : 'Graduados');
 $this->Html->css('user', array('inline' => false));
 ?>
 
@@ -13,7 +13,7 @@ $this->Html->css('user', array('inline' => false));
       Por favor, ingrese su nombre de usuario y contraseña.
     </p>
     <p>
-      Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de <?php echo strtolower($this->Plataforma->obtenerTitulo()) ?> o diríjase a la oficina de SAE.
+      Si olvidó sus credenciales de acceso, por favor, comuníquese con el administrador de <?php echo Plataforma::esTutorias() ? 'tutorías' : 'graduados' ?> o diríjase a la oficina de SAE.
     </p>
   </div>
 
