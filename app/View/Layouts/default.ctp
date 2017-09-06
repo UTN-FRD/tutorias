@@ -29,6 +29,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
   <script type="text/javascript">
     window.baseUrl = "<?php echo Router::url('/') ?>";
+    var APP_TUTORIAS = <?php echo Plataforma::esTutorias() ? 'true' : 'false'; ?>;
   </script>
 
   <?php
