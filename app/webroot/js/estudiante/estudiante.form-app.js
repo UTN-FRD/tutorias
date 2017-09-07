@@ -22,10 +22,10 @@ function rules() {
 function messages() {
   return {
     'data[Estudiante][legajo]': {
-      required: 'Ingrese un legajo',
-      remote: 'El legajo ingresado no está disponible',
-      number: 'El legajo debe ser un número',
-      range: 'El legajo ingresado debe ser un número entre 0 y 999.999.999'
+      required: 'Ingrese un '+ (APP_TUTORIAS ?  'legajo' : 'DNI'),
+      remote: 'El '+ (APP_TUTORIAS ?  'legajo' : 'DNI') + ' ingresado no está disponible',
+      number: 'El '+ (APP_TUTORIAS ?  'legajo' : 'DNI' )+ ' debe ser un número',
+      range: 'El '+ (APP_TUTORIAS ?  'legajo' : 'DNI' )+ ' ingresado debe ser un número entre 0 y 999.999.999'
     },
     'data[Estudiante][nombre]': {
       required: 'Ingrese un nombre',
