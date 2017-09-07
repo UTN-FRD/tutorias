@@ -8,7 +8,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
   <div class="col-md-12 page-title">
     <h2>Estudiantes</h2>
 
-    <?php if (AuthComponent::user('role') == 'admin') { ?>
+    <?php if (AuthComponent::user('role') == 'admin' || AuthComponent::user('role') == 'administrativo') { ?>
       <a
         class="btn btn-default"
         href="<?php echo Router::url(array('action' => 'add')); ?>"
