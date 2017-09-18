@@ -6,7 +6,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
 <div class="row form-app">
   <div class="col-md-12 page-title">
-    <h3>Agregar estudiante</h3>
+    <h3>Agregar <?php echo strtolower($this->Plataforma->obtenerEncuestado())?> </h3>
   </div>
 
   <?php
@@ -17,7 +17,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
   <fieldset class="col-md-12">
     <div class="form-group">
-      <label for="legajo" class="control-label">Legajo</label>
+      <label for="legajo" class="control-label"><?php echo $this->Plataforma->obtenerID() ?></label>
       <div class="control-input">
         <input
           name="data[Estudiante][legajo]"
@@ -58,7 +58,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
     </div>
 
     <div class="form-group">
-      <label for="tutor" class="control-label">Tutor</label>
+      <label for="tutor" class="control-label"><?php echo $this->Plataforma->obtenerUsuario() ?></label>
       <div class="control-input">
         <?php
         echo $this->Form->input('user_id', array(

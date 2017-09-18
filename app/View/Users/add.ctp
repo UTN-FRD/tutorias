@@ -68,7 +68,7 @@ $this->Html->script('user.form-app', array('inline' => false));
           'id' => 'role',
           'label' => false,
           'class' => 'form-control',
-          'options' => array('tutor' => 'Tutor', 'admin' => 'Administrador')
+          'options' => array(strtolower($this->Plataforma->obtenerTitulo()) =>  $this->Plataforma->obtenerUsuario() , 'admin' => 'Administrador')
         ));
         ?>
       </div>

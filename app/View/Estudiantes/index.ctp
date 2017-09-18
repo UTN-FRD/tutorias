@@ -6,7 +6,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
 
 <div class="row index">
   <div class="col-md-12 page-title">
-    <h2>Estudiantes</h2>
+    <h2><?php echo $this->Plataforma->obtenerEncuestado() ?></h2>
 
     <?php if (AuthComponent::user('role') == 'admin') { ?>
       <a
@@ -15,7 +15,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       >
         <span
           class="visible-md-inline visible-lg-inline"
-        >Agregar estudiante</span>
+        >Agregar <?php echo strtolower($this->Plataforma->obtenerEncuestado())?></span>
         <span
           class="glyphicon glyphicon-plus visible-xs-inline visible-sm-inline"
         ></span>
@@ -28,7 +28,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
       <thead>
         <tr>
           <th>
-            <?php echo $this->Paginator->sort('legajo'); ?>
+            <?php echo $this->Paginator->sort($this->Plataforma->obtenerID()); ?>
           </th>
           <th>
             <?php echo $this->Paginator->sort('nombre'); ?>
@@ -37,7 +37,7 @@ $this->Html->script('estudiante.index', array('inline' => false));
             <?php echo $this->Paginator->sort('Carrera.descripcion', 'Carrera'); ?>
           </th>
           <th data-breakpoints="xs" data-type="html">
-            <?php echo $this->Paginator->sort('User.username', 'Tutor'); ?>
+            <?php echo $this->Paginator->sort('User.username', $this->Plataforma->obtenerUsuario()); ?>
           </th>
           <th data-breakpoints="xs sm" data-type="html" class="tx-actions"></th>
         </tr>
