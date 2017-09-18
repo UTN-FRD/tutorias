@@ -11,7 +11,7 @@ class EstudiantesController extends AppController {
 
 	public function index() {
 		$this->Estudiante->recursive = 0;
-		if ($this->Auth->user('role') == 'admin') {
+		if ($this->Auth->user('role') == 'admin' || $this->Auth->user('role') == 'administrativo') {
 			$this->set('estudiantes', $this->paginate('Estudiante'));
 		} else {
 			$this->set('estudiantes', $this->paginate('Estudiante', array(
@@ -35,8 +35,12 @@ class EstudiantesController extends AppController {
 
 			if ($this->Estudiante->save($this->request->data)) {
 				$this->Estudiante->Encuesta->crear($this->Estudiante->id);
-				$this->Flash->success('El estudiante ha sido creado correctamente.');
-				return $this->redirect(array('action' => 'index'));
+				$this->Flash->success('El '.(Plataforma::esTutorias() ? 'estudiante' : 'graduado').' ha sido creado correctamente.');
+				if($this->Auth->user('role')==='administrativo') {
+				    return $this->redirect(array('controller' => 'encuestas', 'action' => 'index', $this->Estudiante->id)); }
+				else {
+				    return $this->redirect(array('action' => 'index')); }
+
 			}
 
 			$this->Flash->error('No se ha podido crear el estudiante. Por favor, intente nuevamente.');

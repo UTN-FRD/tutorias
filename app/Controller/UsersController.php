@@ -24,6 +24,9 @@ class UsersController extends AppController {
 				case 'tutor':
 					$users[$key]['User']['role'] = 'Tutor';
 					break;
+				case 'administrativo':
+					$users[$key]['User']['role'] = 'Administrativo';
+					break;					
 			}
 		}
 

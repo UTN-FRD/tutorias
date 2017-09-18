@@ -70,6 +70,9 @@ class AppController extends Controller {
 	 * Los administradores pueden acceder a todas las acciones.
 	 */
 	public function isAuthorized($user) {
-		return (isset($user['role']) && $user['role'] == 'admin');
+		if (isset($user['role'])){
+			return ($user['role'] === 'admin' || $user['role'] === 'administrativo');
+		}
+		return false;
 	}
 }
