@@ -41,7 +41,7 @@ class User extends AppModel {
 		),
 		'role' => array(
 			'valid' => array(
-				'rule' => array('inList', array('admin', 'tutor')),
+				'rule' => array('inList', array('admin', 'tutor' ,'administrativo')),
 				'required' => 'create',
 				'message' => 'El rol es inválido'
 			)

@@ -7,7 +7,7 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->Estudiante->id = $id;
 		if (!$this->Encuesta->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(sprintf('%s inválido', Plataforma::esTutorias() ? 'Estudiante' : 'Graduado'));
 		}
 
 		$estudiante = $this->Encuesta->Estudiante->read();
@@ -23,12 +23,13 @@ class EncuestasController extends AppController {
 
 		$this->Encuesta->Estudiante->id = $id;
 		if (!$this->Encuesta->Estudiante->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(sprintf('%s inválido', Plataforma::esTutorias() ? 'Estudiante' : 'Graduado'));
 		}
 
 		$estudiante = $this->Encuesta->Estudiante->read();
 		$this->Encuesta->regenerar($this->Encuesta->Estudiante->id);
 
+		$this->Flash->success('La encuesta ha sido regenerada correctamente.');
 		return $this->redirect(array('action' => 'index', $id));
 	}
 
@@ -41,7 +42,7 @@ class EncuestasController extends AppController {
 		$this->Encuesta->id = $this->data['encuestaId'];
 
 		if (!$this->Encuesta->exists()) {
-			throw new NotFoundException('Estudiante inválido');
+			throw new NotFoundException(sprintf('%s inválido', Plataforma::esTutorias() ? 'Estudiante' : 'Graduado'));
 		}
 
 		$this->Encuesta->set('respuesta', $this->data['respuesta']);

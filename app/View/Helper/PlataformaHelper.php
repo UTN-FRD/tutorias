@@ -6,6 +6,8 @@ App::uses('AppHelper', 'View');
 
 /**
  * Ayudante de la plataforma.
+ *
+ * @deprecated
  */
 class PlataformaHelper extends AppHelper {
 
@@ -47,6 +49,54 @@ class PlataformaHelper extends AppHelper {
  */
 	public function obtenerTitulo($texto = null) {
 		$titulo = !$this->esGraduados() ? 'Tutorías' : 'Graduados';
+		if ($texto) {
+			$titulo .= " - $texto";
+		}
+
+		return h($titulo);
+	}
+
+/**
+ * Obtiene el encuestado de la plataforma
+ *
+ * @param string|null $texto Especifica una cadena adicional para el encuestado.
+ *
+ * @return string
+ */
+	public function obtenerEncuestado($texto = null) {
+		$titulo = !$this->esGraduados() ? 'Estudiantes' : 'Graduados';
+		if ($texto) {
+			$titulo .= " - $texto";
+		}
+
+		return h($titulo);
+	}
+
+/**
+ * Obtiene el ID de los usuarios de la plataforma
+ *
+ * @param string|null $texto Especifica una cadena adicional para el ID.
+ *
+ * @return string
+ */
+	public function obtenerID($texto = null) {
+		$titulo = !$this->esGraduados() ? 'Legajo' : 'DNI';
+		if ($texto) {
+			$titulo .= " - $texto";
+		}
+
+		return h($titulo);
+	}
+
+/**
+ * Obtiene el nombre de los usuarios de la plataforma
+ *
+ * @param string|null $texto Especifica una cadena adicional para el usuario.
+ *
+ * @return string
+ */
+	public function obtenerUsuario($texto = null) {
+		$titulo = !$this->esGraduados() ? 'Tutor' : 'Usuario';
 		if ($texto) {
 			$titulo .= " - $texto";
 		}

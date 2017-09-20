@@ -19,7 +19,7 @@ $this->Html->script('encuesta', array('inline' => false));
       ?>
     </h2>
 
-    <?php if (AuthComponent::user('role') == 'admin') { ?>
+    <?php if (AuthComponent::user('role') == 'admin' || AuthComponent::user('role') == 'administrativo') { ?>
       <a
         class="btn btn-default"
         data-toggle= 'modal',

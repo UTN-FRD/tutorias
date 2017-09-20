@@ -128,6 +128,6 @@ if (PHP_SAPI === 'cli') {
 }
 
 /**
- * Especifica si la instalación corresponde a la versión de Graduados.
+ * Plataforma
  */
-//Configure::write('Plataforma.Graduados', false);
+App::uses('Plataforma', 'Lib');
