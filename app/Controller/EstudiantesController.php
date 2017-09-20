@@ -21,10 +21,19 @@ class EstudiantesController extends AppController {
 	}
 
 	public function add() {
+		if (Plataforma::esTutorias()) {
+			$this->set(array(
+				'users' => $this->Estudiante->User->find('list', array(
+					'conditions' => array('User.role' => 'tutor')
+				))
+			));
+		} else {
+			$this->set('users', array(
+				$this->Auth->user('id') => $this->Auth->user('username')
+			));
+		}
+
 		$this->set(array(
-			'users' => $this->Estudiante->User->find('list', array(
-				'conditions' => array('User.role' => 'tutor')
-			)),
 			'carreras' => $this->Estudiante->Carrera->find('list', array(
 				'conditions' => array('Carrera.id <' => '128')
 			))
