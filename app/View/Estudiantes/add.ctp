@@ -6,7 +6,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
 <div class="row form-app">
   <div class="col-md-12 page-title">
-    <h3>Agregar <?php echo strtolower($this->Plataforma->obtenerEncuestado())?> </h3>
+    <h3>Agregar <?php echo Plataforma::esTutorias() ? 'estudiante' : 'graduado' ?></h3>
   </div>
 
   <?php
@@ -17,7 +17,7 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
 
   <fieldset class="col-md-12">
     <div class="form-group">
-      <label for="legajo" class="control-label"><?php echo $this->Plataforma->obtenerID() ?></label>
+      <label for="legajo" class="control-label"><?php echo Plataforma::esTutorias() ? 'Legajo' : 'D.N.I' ?></label>
       <div class="control-input">
         <input
           name="data[Estudiante][legajo]"
@@ -58,14 +58,23 @@ $this->Html->script('estudiante.form-app', array('inline' => false));
     </div>
 
     <div class="form-group">
-      <label for="tutor" class="control-label"><?php echo $this->Plataforma->obtenerUsuario() ?></label>
+      <label for="tutor" class="control-label"><?php echo Plataforma::esTutorias() ? 'Tutor' : 'Usuario' ?></label>
       <div class="control-input">
         <?php
-        echo $this->Form->input('user_id', array(
-          'id' => 'tutor',
-          'label' => false,
-          'class' => 'form-control'
-        ));
+        if (Plataforma::esTutorias()):
+          echo $this->Form->input('user_id', array(
+            'id' => 'tutor',
+            'label' => false,
+            'class' => 'form-control'
+          ));
+        else:
+          echo $this->Form->input('user_id', array(
+            'id' => 'tutor',
+            'label' => false,
+            'value' => AuthComponent::user('id'),
+            'class' => 'form-control'
+          ));
+        endif;
         ?>
       </div>
     </div>
